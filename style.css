@@ -1,0 +1,2437 @@
+/* =====================================================
+   Study Planner - Modern UI
+===================================================== */
+
+
+/* =====================================================
+   1. 기본 설정
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+:root {
+
+    --bg: #f5f7fb;
+
+    --card: #ffffff;
+
+    --text: #1f2937;
+
+    --sub-text: #6b7280;
+
+    --border: #e5e7eb;
+
+    --primary: #6366f1;
+
+    --primary-hover: #4f46e5;
+
+    --danger: #ef4444;
+
+    --success: #10b981;
+
+    --shadow:
+        0 8px 30px
+        rgba(15, 23, 42, 0.06);
+
+    --radius: 18px;
+
+}
+
+
+body {
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans KR",
+        sans-serif;
+
+    background:
+        var(--bg);
+
+    color:
+        var(--text);
+
+    min-height:
+        100vh;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+
+}
+
+
+/* =====================================================
+   2. 공통
+===================================================== */
+
+button,
+input,
+textarea {
+
+    font-family:
+        inherit;
+
+}
+
+
+button {
+
+    border:
+        none;
+
+    cursor:
+        pointer;
+
+    transition:
+        all 0.2s ease;
+
+}
+
+
+input,
+textarea {
+
+    width:
+        100%;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    border-radius:
+        12px;
+
+    padding:
+        12px 14px;
+
+    font-size:
+        14px;
+
+    outline:
+        none;
+
+    transition:
+        border 0.2s,
+        box-shadow 0.2s;
+
+}
+
+
+input:focus,
+textarea:focus {
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(99, 102, 241, 0.12);
+
+}
+
+
+textarea {
+
+    resize:
+        vertical;
+
+    min-height:
+        90px;
+
+}
+
+
+.hidden {
+
+    display:
+        none !important;
+
+}
+
+
+/* =====================================================
+   3. 로그인
+===================================================== */
+
+#login-page {
+
+    min-height:
+        100vh;
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    padding:
+        20px;
+
+    background:
+
+        radial-gradient(
+            circle at top left,
+            rgba(99, 102, 241, 0.12),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            rgba(139, 92, 246, 0.12),
+            transparent 35%
+        ),
+
+        var(--bg);
+
+}
+
+
+.login-container {
+
+    width:
+        100%;
+
+    max-width:
+        420px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        24px;
+
+    padding:
+        42px 36px;
+
+    box-shadow:
+        var(--shadow);
+
+    text-align:
+        center;
+
+}
+
+
+.login-container h1 {
+
+    font-size:
+        28px;
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.login-container > p {
+
+    color:
+        var(--sub-text);
+
+    margin-bottom:
+        28px;
+
+}
+
+
+#login-form {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        12px;
+
+}
+
+
+#login-form button {
+
+    height:
+        48px;
+
+    border-radius:
+        12px;
+
+    font-size:
+        15px;
+
+    font-weight:
+        600;
+
+}
+
+
+#login-form button[type="submit"] {
+
+    background:
+        var(--primary);
+
+    color:
+        white;
+
+}
+
+
+#login-form button[type="submit"]:hover {
+
+    background:
+        var(--primary-hover);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+#signup-button {
+
+    background:
+        #eef2ff;
+
+    color:
+        var(--primary);
+
+}
+
+
+#signup-button:hover {
+
+    background:
+        #e0e7ff;
+
+}
+
+
+#login-message {
+
+    margin-top:
+        15px;
+
+    color:
+        var(--danger);
+
+    font-size:
+        13px;
+
+}
+
+
+/* =====================================================
+   4. 앱 헤더
+===================================================== */
+
+#app-page header {
+
+    height:
+        72px;
+
+    background:
+        var(--card);
+
+    border-bottom:
+        1px solid var(--border);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    padding:
+        0 32px;
+
+    position:
+        sticky;
+
+    top:
+        0;
+
+    z-index:
+        100;
+
+}
+
+
+.header-left h1 {
+
+    font-size:
+        20px;
+
+    font-weight:
+        700;
+
+}
+
+
+.header-right {
+
+    display:
+        flex;
+
+    gap:
+        10px;
+
+}
+
+
+.header-right button {
+
+    height:
+        40px;
+
+    padding:
+        0 16px;
+
+    border-radius:
+        10px;
+
+    background:
+        var(--bg);
+
+    color:
+        var(--text);
+
+    font-weight:
+        600;
+
+}
+
+
+.header-right button:hover {
+
+    background:
+        var(--border);
+
+}
+
+
+#dark-mode-button {
+
+    width:
+        40px;
+
+    padding:
+        0;
+
+    font-size:
+        18px;
+
+}
+
+
+/* =====================================================
+   5. 메인
+===================================================== */
+
+main {
+
+    width:
+        100%;
+
+    max-width:
+        1100px;
+
+    margin:
+        0 auto;
+
+    padding:
+        36px 24px 80px;
+
+}
+
+
+/* =====================================================
+   6. 날짜 네비게이션
+===================================================== */
+
+.date-section {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        28px;
+
+    margin-bottom:
+        24px;
+
+}
+
+
+.date-section > button {
+
+    width:
+        44px;
+
+    height:
+        44px;
+
+    border-radius:
+        12px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    color:
+        var(--text);
+
+    font-size:
+        18px;
+
+}
+
+
+.date-section > button:hover {
+
+    background:
+        var(--primary);
+
+    color:
+        white;
+
+    border-color:
+        var(--primary);
+
+}
+
+
+.date-section > div {
+
+    text-align:
+        center;
+
+}
+
+
+.date-section h2 {
+
+    font-size:
+        22px;
+
+    margin-bottom:
+        8px;
+
+}
+
+
+#today-button {
+
+    padding:
+        6px 14px;
+
+    border-radius:
+        20px;
+
+    background:
+        #eef2ff;
+
+    color:
+        var(--primary);
+
+    font-size:
+        12px;
+
+    font-weight:
+        600;
+
+}
+
+
+/* =====================================================
+   7. 보기 방식
+===================================================== */
+
+.view-section {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        5px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    padding:
+        5px;
+
+    border-radius:
+        12px;
+
+    width:
+        fit-content;
+
+    margin:
+        0 auto 30px;
+
+}
+
+
+.view-button {
+
+    padding:
+        9px 20px;
+
+    border-radius:
+        8px;
+
+    background:
+        transparent;
+
+    color:
+        var(--sub-text);
+
+    font-weight:
+        600;
+
+}
+
+
+.view-button:hover {
+
+    color:
+        var(--text);
+
+}
+
+
+.view-button.active {
+
+    background:
+        var(--primary);
+
+    color:
+        white;
+
+}
+
+
+/* =====================================================
+   8. 카드 공통
+===================================================== */
+
+.plan-add-section,
+.planner-section,
+.dday-section,
+.statistics-section {
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+
+    padding:
+        26px;
+
+    margin-bottom:
+        24px;
+
+    box-shadow:
+        var(--shadow);
+
+}
+
+
+.plan-add-section h2,
+.dday-section h2,
+.statistics-section h2 {
+
+    font-size:
+        18px;
+
+    margin-bottom:
+        22px;
+
+}
+
+
+/* =====================================================
+   9. 계획 추가
+===================================================== */
+
+#plan-form {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        16px;
+
+}
+
+
+#plan-form > div {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        7px;
+
+}
+
+
+#plan-form label {
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+
+    color:
+        var(--sub-text);
+
+}
+
+
+#plan-form textarea {
+
+    min-height:
+        48px;
+
+}
+
+
+#plan-form button {
+
+    grid-column:
+        1 / -1;
+
+    height:
+        48px;
+
+    background:
+        var(--primary);
+
+    color:
+        white;
+
+    border-radius:
+        12px;
+
+    font-weight:
+        700;
+
+    font-size:
+        15px;
+
+}
+
+
+#plan-form button:hover {
+
+    background:
+        var(--primary-hover);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* =====================================================
+   10. 계획 카드
+===================================================== */
+
+.planner-section {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        12px;
+
+}
+
+
+.plan-card {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        100px 1fr auto;
+
+    align-items:
+        center;
+
+    gap:
+        20px;
+
+    padding:
+        20px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        14px;
+
+    background:
+        var(--card);
+
+    transition:
+        all 0.2s ease;
+
+}
+
+
+.plan-card:hover {
+
+    border-color:
+        #c7d2fe;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(99, 102, 241, 0.08);
+
+}
+
+
+.plan-time {
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+
+    color:
+        var(--primary);
+
+}
+
+
+.plan-content h3 {
+
+    font-size:
+        16px;
+
+    margin-bottom:
+        5px;
+
+}
+
+
+.plan-content p {
+
+    font-size:
+        13px;
+
+    color:
+        var(--sub-text);
+
+}
+
+
+.plan-actions {
+
+    display:
+        flex;
+
+    gap:
+        6px;
+
+}
+
+
+.plan-actions button {
+
+    width:
+        36px;
+
+    height:
+        36px;
+
+    border-radius:
+        9px;
+
+    background:
+        var(--bg);
+
+    font-size:
+        15px;
+
+}
+
+
+.plan-actions button:hover {
+
+    background:
+        var(--border);
+
+}
+
+
+.plan-card.completed {
+
+    opacity:
+        0.55;
+
+}
+
+
+.plan-card.completed .plan-content h3 {
+
+    text-decoration:
+        line-through;
+
+}
+
+
+.empty-plan {
+
+    text-align:
+        center;
+
+    padding:
+        50px 20px;
+
+    color:
+        var(--sub-text);
+
+}
+
+
+.empty-icon {
+
+    font-size:
+        40px;
+
+    margin-bottom:
+        12px;
+
+}
+
+
+.empty-plan h3 {
+
+    color:
+        var(--text);
+
+    margin-bottom:
+        8px;
+
+}
+
+
+/* =====================================================
+   11. 주간
+===================================================== */
+
+.week-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap:
+        10px;
+
+    width:
+        100%;
+
+}
+
+
+.week-day {
+
+    min-height:
+        180px;
+
+    padding:
+        12px;
+
+    background:
+        var(--bg);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        12px;
+
+}
+
+
+.week-day-header {
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+    margin-bottom:
+        12px;
+
+    color:
+        var(--primary);
+
+}
+
+
+.week-plan {
+
+    padding:
+        8px;
+
+    margin-bottom:
+        6px;
+
+    border-radius:
+        8px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    font-size:
+        12px;
+
+    cursor:
+        pointer;
+
+}
+
+
+.week-plan:hover {
+
+    border-color:
+        var(--primary);
+
+}
+
+
+.week-plan.completed {
+
+    text-decoration:
+        line-through;
+
+    opacity:
+        0.5;
+
+}
+
+
+.no-plan {
+
+    font-size:
+        11px;
+
+    color:
+        var(--sub-text);
+
+}
+
+
+/* =====================================================
+   12. 월간
+===================================================== */
+
+.month-calendar {
+
+    width:
+        100%;
+
+}
+
+
+.month-weekdays,
+.month-days {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap:
+        8px;
+
+}
+
+
+.month-weekdays {
+
+    margin-bottom:
+        8px;
+
+}
+
+
+.month-weekdays span {
+
+    text-align:
+        center;
+
+    font-size:
+        12px;
+
+    color:
+        var(--sub-text);
+
+    font-weight:
+        700;
+
+}
+
+
+.month-day {
+
+    min-height:
+        100px;
+
+    padding:
+        10px;
+
+    background:
+        var(--bg);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        10px;
+
+    cursor:
+        pointer;
+
+}
+
+
+.month-day:hover {
+
+    border-color:
+        var(--primary);
+
+}
+
+
+.empty-day {
+
+    opacity:
+        0.3;
+
+}
+
+
+.month-day-number {
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+
+    margin-bottom:
+        7px;
+
+}
+
+
+.month-plan {
+
+    font-size:
+        10px;
+
+    padding:
+        4px 6px;
+
+    margin-bottom:
+        4px;
+
+    border-radius:
+        5px;
+
+    background:
+        #eef2ff;
+
+    color:
+        var(--primary);
+
+    overflow:
+        hidden;
+
+    white-space:
+        nowrap;
+
+    text-overflow:
+        ellipsis;
+
+}
+
+
+/* =====================================================
+   13. D-Day
+===================================================== */
+
+#dday-form {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 180px auto;
+
+    gap:
+        10px;
+
+    margin-bottom:
+        18px;
+
+}
+
+
+#dday-form button {
+
+    padding:
+        0 18px;
+
+    border-radius:
+        10px;
+
+    background:
+        var(--primary);
+
+    color:
+        white;
+
+    font-weight:
+        600;
+
+}
+
+
+#dday-list {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        8px;
+
+}
+
+
+.dday-item {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    padding:
+        14px 16px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        12px;
+
+}
+
+
+.dday-item strong {
+
+    font-size:
+        14px;
+
+}
+
+
+.dday-item > strong {
+
+    color:
+        var(--primary);
+
+    font-size:
+        18px;
+
+}
+
+
+.dday-item small {
+
+    display:
+        block;
+
+    margin-top:
+        3px;
+
+    color:
+        var(--sub-text);
+
+}
+
+
+/* =====================================================
+   14. 통계
+===================================================== */
+
+.statistics {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        12px;
+
+}
+
+
+.stat-card {
+
+    padding:
+        20px;
+
+    background:
+        var(--bg);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        14px;
+
+}
+
+
+.stat-card h3 {
+
+    font-size:
+        12px;
+
+    color:
+        var(--sub-text);
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.stat-card strong {
+
+    font-size:
+        24px;
+
+}
+
+
+/* =====================================================
+   15. 공부 시간 그래프
+===================================================== */
+
+#statistics-chart {
+
+    margin-top:
+        30px;
+
+}
+
+
+#statistics-chart h3 {
+
+    font-size:
+        15px;
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.chart-container {
+
+    height:
+        200px;
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        space-around;
+
+    gap:
+        10px;
+
+    padding:
+        20px;
+
+    background:
+        var(--bg);
+
+    border-radius:
+        14px;
+
+}
+
+
+.chart-bar {
+
+    width:
+        40px;
+
+    min-height:
+        10px;
+
+    background:
+        var(--primary);
+
+    border-radius:
+        8px 8px 3px 3px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        flex-end;
+
+    padding-bottom:
+        6px;
+
+    color:
+        white;
+
+    transition:
+        height 0.4s ease;
+
+}
+
+
+.chart-bar span {
+
+    position:
+        absolute;
+
+    transform:
+        translateY(28px);
+
+    color:
+        var(--sub-text);
+
+    font-size:
+        11px;
+
+}
+
+
+.chart-bar small {
+
+    font-size:
+        9px;
+
+}
+
+
+/* =====================================================
+   16. PDF
+===================================================== */
+
+.export-section {
+
+    text-align:
+        center;
+
+    margin-top:
+        10px;
+
+    margin-bottom:
+        50px;
+
+}
+
+
+#pdf-button {
+
+    padding:
+        13px 24px;
+
+    border-radius:
+        12px;
+
+    background:
+        var(--text);
+
+    color:
+        white;
+
+    font-weight:
+        600;
+
+}
+
+
+#pdf-button:hover {
+
+    opacity:
+        0.85;
+
+}
+
+
+/* =====================================================
+   17. 다크모드
+===================================================== */
+
+body.dark {
+
+    --bg:
+        #111827;
+
+    --card:
+        #1f2937;
+
+    --text:
+        #f9fafb;
+
+    --sub-text:
+        #9ca3af;
+
+    --border:
+        #374151;
+
+    --shadow:
+        0 8px 30px
+        rgba(0, 0, 0, 0.25);
+
+}
+
+
+body.dark #signup-button {
+
+    background:
+        #312e81;
+
+    color:
+        #c7d2fe;
+
+}
+
+
+body.dark .month-plan {
+
+    background:
+        #312e81;
+
+    color:
+        #c7d2fe;
+
+}
+
+
+body.dark #today-button {
+
+    background:
+        #312e81;
+
+    color:
+        #c7d2fe;
+
+}
+
+
+/* =====================================================
+   18. 모바일
+===================================================== */
+
+@media (
+    max-width: 768px
+) {
+
+    #app-page header {
+
+        padding:
+            0 16px;
+
+    }
+
+
+    .header-left h1 {
+
+        font-size:
+            17px;
+
+    }
+
+
+    .header-right button {
+
+        padding:
+            0 10px;
+
+    }
+
+
+    main {
+
+        padding:
+            24px 14px 60px;
+
+    }
+
+
+    .date-section {
+
+        gap:
+            16px;
+
+    }
+
+
+    .date-section h2 {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .view-button {
+
+        padding:
+            8px 14px;
+
+    }
+
+
+    .plan-add-section,
+    .planner-section,
+    .dday-section,
+    .statistics-section {
+
+        padding:
+            18px;
+
+        border-radius:
+            15px;
+
+    }
+
+
+    #plan-form {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    #plan-form button {
+
+        grid-column:
+            auto;
+
+    }
+
+
+    .plan-card {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            10px;
+
+    }
+
+
+    .plan-actions {
+
+        justify-content:
+            flex-end;
+
+    }
+
+
+    .week-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            8px;
+
+    }
+
+
+    .week-day {
+
+        min-height:
+            auto;
+
+    }
+
+
+    .month-days,
+    .month-weekdays {
+
+        gap:
+            3px;
+
+    }
+
+
+    .month-day {
+
+        min-height:
+            70px;
+
+        padding:
+            6px;
+
+    }
+
+
+    .month-plan {
+
+        font-size:
+            8px;
+
+    }
+
+
+    #dday-form {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    #dday-form button {
+
+        height:
+            44px;
+
+    }
+
+
+    .statistics {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .stat-card {
+
+        padding:
+            15px;
+
+    }
+
+
+    .stat-card strong {
+
+        font-size:
+            20px;
+
+    }
+
+
+    .chart-container {
+
+        padding:
+            15px 8px;
+
+    }
+
+
+    .chart-bar {
+
+        width:
+            28px;
+
+    }
+
+}
+
+
+/* =====================================================
+   19. 작은 모바일
+===================================================== */
+
+@media (
+    max-width: 420px
+) {
+
+    .login-container {
+
+        padding:
+            32px 22px;
+
+    }
+
+
+    .date-section > button {
+
+        width:
+            38px;
+
+        height:
+            38px;
+
+    }
+
+
+    .date-section h2 {
+
+        font-size:
+            16px;
+
+    }
+
+
+    .view-button {
+
+        padding:
+            7px 10px;
+
+        font-size:
+            12px;
+
+    }
+
+
+    .statistics {
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+}
+
+
+/* =====================================================
+   20. 인쇄 / PDF
+===================================================== */
+
+@media print {
+
+    body {
+
+        background:
+            white;
+
+    }
+
+
+    #login-page,
+    header,
+    .date-section,
+    .view-section,
+    .plan-add-section,
+    .dday-section,
+    .export-section {
+
+        display:
+            none !important;
+
+    }
+
+
+    main {
+
+        max-width:
+            100%;
+
+        padding:
+            0;
+
+    }
+
+
+    .planner-section,
+    .statistics-section {
+
+        box-shadow:
+            none;
+
+        border:
+            none;
+
+    }
+
+}
+
+/* =====================================================
+   날짜 복사 모달
+===================================================== */
+
+.modal {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        1000;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        20px;
+
+    background:
+        rgba(0, 0, 0, 0.45);
+
+    backdrop-filter:
+        blur(5px);
+
+}
+
+
+.modal.hidden {
+
+    display:
+        none;
+
+}
+
+
+.modal-content {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    max-width:
+        400px;
+
+    padding:
+        30px;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        20px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.2);
+
+    animation:
+        modalOpen 0.2s ease;
+
+}
+
+
+@keyframes modalOpen {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(15px)
+            scale(0.97);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+.modal-content h2 {
+
+    margin-bottom:
+        8px;
+
+}
+
+
+.modal-content p {
+
+    color:
+        var(--sub-text);
+
+    font-size:
+        14px;
+
+    margin-bottom:
+        24px;
+
+}
+
+
+.modal-content label {
+
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+
+}
+
+
+.modal-content input {
+
+    margin-bottom:
+        15px;
+
+}
+
+
+.modal-close {
+
+    position:
+        absolute;
+
+    top:
+        15px;
+
+    right:
+        15px;
+
+    width:
+        32px;
+
+    height:
+        32px;
+
+    border-radius:
+        8px;
+
+    background:
+        var(--bg);
+
+    color:
+        var(--text);
+
+    font-size:
+        16px;
+
+}
+
+
+.modal-close:hover {
+
+    background:
+        var(--border);
+
+}
+
+
+.confirm-copy-button {
+
+    width:
+        100%;
+
+    height:
+        46px;
+
+    border-radius:
+        10px;
+
+    background:
+        var(--primary);
+
+    color:
+        white;
+
+    font-weight:
+        700;
+
+}
+
+
+.confirm-copy-button:hover {
+
+    background:
+        var(--primary-hover);
+
+}
+
+
+@media (
+    max-width: 420px
+) {
+
+    .modal-content {
+
+        padding:
+            25px 20px;
+
+    }
+
+}
+
+/* =====================================================
+   PDF 저장 시 계획 세부 내용 표시
+===================================================== */
+
+@media print {
+
+    /* 계획 카드 전체 */
+    .plan-card {
+        display: grid !important;
+        grid-template-columns: 100px 1fr auto !important;
+        gap: 20px !important;
+
+        padding: 15px !important;
+        margin-bottom: 10px !important;
+
+        background: white !important;
+        color: black !important;
+
+        border: 1px solid #ddd !important;
+        border-radius: 8px !important;
+
+        page-break-inside: avoid;
+    }
+
+
+    /* 과목 + 세부 내용 */
+    .plan-content {
+        display: block !important;
+    }
+
+
+    /* 과목 */
+    .plan-content h3 {
+        display: block !important;
+
+        color: black !important;
+
+        font-size: 16px !important;
+
+        margin-bottom: 6px !important;
+    }
+
+
+    /* 세부 내용 */
+    .plan-content p {
+        display: block !important;
+
+        color: #555 !important;
+
+        font-size: 13px !important;
+
+        white-space: normal !important;
+
+        overflow: visible !important;
+
+        height: auto !important;
+
+        max-height: none !important;
+    }
+
+
+    /* 시간 */
+    .plan-time {
+        display: block !important;
+
+        color: black !important;
+
+        font-size: 13px !important;
+    }
+
+
+    /* 수정/완료/복사/삭제 버튼 숨기기 */
+    .plan-actions {
+        display: none !important;
+    }
+
+}
+
+.dday-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dday-delete-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.dday-delete-button:hover {
+    transform: scale(1.1);
+}
+
+/* =====================================================
+   21. 태블릿 / 패드 대응
+===================================================== */
+
+/* 태블릿 가로·세로 화면 */
+@media (min-width: 769px) and (max-width: 1100px) {
+
+    main {
+        max-width: 950px;
+        padding: 30px 20px 70px;
+    }
+
+    #app-page header {
+        padding: 0 24px;
+    }
+
+    /* 계획 카드 */
+    .plan-card {
+        grid-template-columns: 90px 1fr auto;
+        gap: 15px;
+    }
+
+    /* 주간 보기 */
+    .week-grid {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .week-day {
+        min-height: 160px;
+        padding: 9px;
+    }
+
+    .week-plan {
+        padding: 7px;
+        font-size: 11px;
+    }
+
+    /* 월간 보기 */
+    .month-weekdays,
+    .month-days {
+        gap: 5px;
+    }
+
+    .month-day {
+        min-height: 90px;
+        padding: 8px;
+    }
+
+    /* 통계 */
+    .statistics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =====================================================
+   22. 터치 기기 대응
+===================================================== */
+
+@media (hover: none) and (pointer: coarse) {
+
+    button {
+        min-height: 44px;
+    }
+
+    .date-section > button {
+        width: 46px;
+        height: 46px;
+    }
+
+    .plan-actions button {
+        width: 42px;
+        height: 42px;
+    }
+
+    .dday-delete-button {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .view-button {
+        min-height: 44px;
+    }
+
+    .month-day {
+        cursor: pointer;
+    }
+
+}
+
+
+/* =====================================================
+   23. 태블릿 세로 모드
+===================================================== */
+
+@media (min-width: 600px) and (max-width: 900px) and (orientation: portrait) {
+
+    main {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #plan-form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #dday-form {
+        grid-template-columns: 1fr 180px;
+    }
+
+    #dday-form button {
+        grid-column: 1 / -1;
+        height: 46px;
+    }
+
+    .week-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .week-day {
+        min-height: auto;
+    }
+
+}
+
+
+/* =====================================================
+   24. 가로 모드 최적화
+===================================================== */
+
+@media (min-width: 769px) and (orientation: landscape) {
+
+    main {
+        max-width: 1100px;
+    }
+
+}
+
+
+/* =====================================================
+   25. 모바일 가로 모드
+===================================================== */
+
+@media (max-width: 768px) and (orientation: landscape) {
+
+    main {
+        padding-top: 20px;
+    }
+
+    .plan-card {
+        grid-template-columns: 90px 1fr auto;
+    }
+
+    .week-grid {
+        grid-template-columns: repeat(7, minmax(100px, 1fr));
+        overflow-x: auto;
+    }
+
+}
