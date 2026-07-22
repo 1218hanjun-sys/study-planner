@@ -3669,3 +3669,6 @@ body.dark .chart-bar {
     }
 
 }
+body {
+    background: red !important;
+}
