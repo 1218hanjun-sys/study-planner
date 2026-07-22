@@ -2641,6 +2641,522 @@ function renderStatistics() {
 
 }
 
+// ======================================================
+// 30. 과목별 공부 시간 통계
+// ======================================================
+
+function renderSubjectStatistics() {
+
+    const container =
+        document.getElementById(
+            "subject-statistics"
+        );
+
+
+    if (!container) {
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        "";
+
+
+    const userPlans =
+        getStatisticsPlans();
+
+
+    const subjectData = {};
+
+
+    // ==================================================
+    // 과목별 데이터 계산
+    // ==================================================
+
+    userPlans.forEach(
+
+        function(plan) {
+
+            const subject =
+                (plan.subject || "").trim();
+
+
+            if (!subject) {
+
+                return;
+
+            }
+
+
+            if (!subjectData[subject]) {
+
+                subjectData[subject] = {
+
+                    total: 0,
+
+                    completed: 0,
+
+                    minutes: 0
+
+                };
+
+            }
+
+
+            subjectData[subject].total++;
+
+
+            if (plan.completed) {
+
+                subjectData[subject].completed++;
+
+            }
+
+
+            subjectData[subject].minutes +=
+
+                getPlanMinutes(plan);
+
+        }
+
+    );
+
+
+    // ==================================================
+    // 제목
+    // ==================================================
+
+    const title =
+        document.createElement("h3");
+
+
+    title.textContent =
+        "📚 과목별 공부 시간";
+
+
+    container.appendChild(
+        title
+    );
+
+
+    // ==================================================
+    // 데이터 없음
+    // ==================================================
+
+    if (
+        Object.keys(subjectData).length === 0
+    ) {
+
+        const empty =
+            document.createElement("p");
+
+
+        empty.textContent =
+            "선택한 기간에 등록된 공부 계획이 없습니다.";
+
+
+        container.appendChild(
+            empty
+        );
+
+
+        return;
+
+    }
+
+
+    // ==================================================
+    // 전체 공부 시간
+    // ==================================================
+
+    const totalMinutes =
+
+        Object.values(subjectData).reduce(
+
+            function(sum, data) {
+
+                return (
+
+                    sum +
+                    data.minutes
+
+                );
+
+            },
+
+            0
+
+        );
+
+
+    // ==================================================
+    // 전체 영역
+    // ==================================================
+
+    const content =
+        document.createElement("div");
+
+
+    content.className =
+        "subject-statistics-content";
+
+
+    // ==================================================
+    // 과목 색상
+    // ==================================================
+
+    const colors = [
+
+        "#6366f1",
+
+        "#10b981",
+
+        "#f59e0b",
+
+        "#ef4444",
+
+        "#8b5cf6",
+
+        "#06b6d4"
+
+    ];
+
+
+    const subjects =
+
+        Object.keys(subjectData)
+            .sort();
+
+
+    // ==================================================
+    // 원형 그래프
+    // ==================================================
+
+    const pie =
+        document.createElement("div");
+
+
+    pie.className =
+        "subject-pie";
+
+
+    let currentAngle =
+        0;
+
+
+    const gradientParts = [];
+
+
+    subjects.forEach(
+
+        function(subject, index) {
+
+            const data =
+                subjectData[subject];
+
+
+            const percentage =
+
+                totalMinutes === 0
+
+                    ? 0
+
+                    : (
+
+                        data.minutes /
+                        totalMinutes
+
+                    ) * 100;
+
+
+            const startAngle =
+                currentAngle;
+
+
+            const endAngle =
+
+                currentAngle +
+                percentage *
+                3.6;
+
+
+            gradientParts.push(
+
+                colors[
+                    index %
+                    colors.length
+                ] +
+
+                " " +
+
+                startAngle +
+
+                "deg " +
+
+                endAngle +
+
+                "deg"
+
+            );
+
+
+            currentAngle =
+                endAngle;
+
+        }
+
+    );
+
+
+    pie.style.background =
+
+        "conic-gradient(" +
+
+        gradientParts.join(", ") +
+
+        ")";
+
+
+    // ==================================================
+    // 원형 그래프 중앙
+    // ==================================================
+
+    const center =
+        document.createElement("div");
+
+
+    center.className =
+        "subject-pie-center";
+
+
+    const totalHours =
+
+        Math.floor(
+            totalMinutes / 60
+        );
+
+
+    const remainingMinutes =
+
+        totalMinutes % 60;
+
+
+    const totalTime =
+        document.createElement("strong");
+
+
+    totalTime.textContent =
+
+        totalHours +
+
+        "시간 " +
+
+        remainingMinutes +
+
+        "분";
+
+
+    const totalLabel =
+        document.createElement("span");
+
+
+    totalLabel.textContent =
+        "전체 공부 시간";
+
+
+    center.appendChild(
+        totalTime
+    );
+
+
+    center.appendChild(
+        totalLabel
+    );
+
+
+    pie.appendChild(
+        center
+    );
+
+
+    content.appendChild(
+        pie
+    );
+
+
+    // ==================================================
+    // 과목별 목록
+    // ==================================================
+
+    const list =
+        document.createElement("div");
+
+
+    list.className =
+        "subject-statistics-list";
+
+
+    subjects.forEach(
+
+        function(subject, index) {
+
+            const data =
+                subjectData[subject];
+
+
+            const percentage =
+
+                totalMinutes === 0
+
+                    ? 0
+
+                    : Math.round(
+
+                        data.minutes /
+                        totalMinutes *
+                        100
+
+                    );
+
+
+            const item =
+                document.createElement("div");
+
+
+            item.className =
+                "subject-stat-item";
+
+
+            // 과목명
+
+            const name =
+                document.createElement("div");
+
+
+            name.className =
+                "subject-stat-name";
+
+
+            const color =
+                document.createElement("span");
+
+
+            color.className =
+                "subject-stat-color";
+
+
+            color.style.background =
+
+                colors[
+                    index %
+                    colors.length
+                ];
+
+
+            const subjectName =
+                document.createElement("span");
+
+
+            subjectName.textContent =
+                subject;
+
+
+            name.appendChild(
+                color
+            );
+
+
+            name.appendChild(
+                subjectName
+            );
+
+
+            // 공부 시간
+
+            const time =
+                document.createElement("span");
+
+
+            time.className =
+                "subject-stat-time";
+
+
+            const hours =
+
+                Math.floor(
+                    data.minutes / 60
+                );
+
+
+            const minutes =
+
+                data.minutes % 60;
+
+
+            time.textContent =
+
+                hours +
+
+                "시간 " +
+
+                minutes +
+
+                "분";
+
+
+            // 비율
+
+            const detail =
+                document.createElement("span");
+
+
+            detail.className =
+                "subject-stat-detail";
+
+
+            detail.textContent =
+
+                percentage +
+
+                "%";
+
+
+            item.appendChild(
+                name
+            );
+
+
+            item.appendChild(
+                time
+            );
+
+
+            item.appendChild(
+                detail
+            );
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+
+    );
+
+
+    content.appendChild(
+        list
+    );
+
+
+    container.appendChild(
+        content
+    );
+
+}
 
 
 // ======================================================
