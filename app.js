@@ -25,16 +25,19 @@ const supabaseClient =
 // 1. 앱 상태
 // ======================================================
 
-let currentDate =
-    new Date();
+let currentDate = new Date();
 
-let currentView =
-    "day";
+let currentView = "day";
 
 let currentUser =
-    localStorage.getItem(
-        "studyPlannerUser"
-    ) || null;
+    localStorage.getItem("studyPlannerUser") || null;
+
+
+// 통계 기간
+// day   = 일간
+// week  = 주간
+// month = 월간
+let statisticsPeriod = "week";
 
 
 // ======================================================
@@ -51,132 +54,81 @@ let ddays = [];
 // ======================================================
 
 const loginPage =
-    document.getElementById(
-        "login-page"
-    );
+    document.getElementById("login-page");
 
 const appPage =
-    document.getElementById(
-        "app-page"
-    );
+    document.getElementById("app-page");
 
 const loginForm =
-    document.getElementById(
-        "login-form"
-    );
+    document.getElementById("login-form");
 
 const signupButton =
-    document.getElementById(
-        "signup-button"
-    );
+    document.getElementById("signup-button");
 
 const logoutButton =
-    document.getElementById(
-        "logout-button"
-    );
+    document.getElementById("logout-button");
 
 const loginMessage =
-    document.getElementById(
-        "login-message"
-    );
+    document.getElementById("login-message");
 
 const previousDateButton =
-    document.getElementById(
-        "previous-date"
-    );
+    document.getElementById("previous-date");
 
 const nextDateButton =
-    document.getElementById(
-        "next-date"
-    );
+    document.getElementById("next-date");
 
 const todayButton =
-    document.getElementById(
-        "today-button"
-    );
+    document.getElementById("today-button");
 
 const currentDateElement =
-    document.getElementById(
-        "current-date"
-    );
+    document.getElementById("current-date");
 
 const planner =
-    document.getElementById(
-        "planner"
-    );
+    document.getElementById("planner");
 
 const planForm =
-    document.getElementById(
-        "plan-form"
-    );
+    document.getElementById("plan-form");
 
 const ddayForm =
-    document.getElementById(
-        "dday-form"
-    );
+    document.getElementById("dday-form");
 
 const ddayList =
-    document.getElementById(
-        "dday-list"
-    );
+    document.getElementById("dday-list");
 
 const darkModeButton =
-    document.getElementById(
-        "dark-mode-button"
-    );
+    document.getElementById("dark-mode-button");
 
 const pdfButton =
-    document.getElementById(
-        "pdf-button"
-    );
+    document.getElementById("pdf-button");
 
 const copyModal =
-    document.getElementById(
-        "copy-modal"
-    );
+    document.getElementById("copy-modal");
 
 const closeCopyModal =
-    document.getElementById(
-        "close-copy-modal"
-    );
+    document.getElementById("close-copy-modal");
 
 const confirmCopyButton =
-    document.getElementById(
-        "confirm-copy-button"
-    );
+    document.getElementById("confirm-copy-button");
 
 const copyTargetDate =
-    document.getElementById(
-        "copy-target-date"
-    );
+    document.getElementById("copy-target-date");
 
 const totalPlansElement =
-    document.getElementById(
-        "total-plans"
-    );
+    document.getElementById("total-plans");
 
 const completedPlansElement =
-    document.getElementById(
-        "completed-plans"
-    );
+    document.getElementById("completed-plans");
 
 const studyTimeElement =
-    document.getElementById(
-        "study-time"
-    );
+    document.getElementById("study-time");
 
 const achievementElement =
-    document.getElementById(
-        "achievement"
-    );
+    document.getElementById("achievement");
 
 const viewButtons =
-    document.querySelectorAll(
-        ".view-button"
-    );
+    document.querySelectorAll(".view-button");
 
-let copyingPlanId =
-    null;
+let copyingPlanId = null;
 
 
 // ======================================================
@@ -191,18 +143,12 @@ function formatDateKey(date) {
     const month =
         String(
             date.getMonth() + 1
-        ).padStart(
-            2,
-            "0"
-        );
+        ).padStart(2, "0");
 
     const day =
         String(
             date.getDate()
-        ).padStart(
-            2,
-            "0"
-        );
+        ).padStart(2, "0");
 
     return (
         year +
@@ -463,18 +409,14 @@ loginForm.addEventListener(
 
         const email =
             document
-                .getElementById(
-                    "email"
-                )
+                .getElementById("email")
                 .value
                 .trim();
 
 
         const password =
             document
-                .getElementById(
-                    "password"
-                )
+                .getElementById("password")
                 .value
                 .trim();
 
@@ -515,9 +457,7 @@ loginForm.addEventListener(
 
         if (error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
             loginMessage.textContent =
                 "로그인 실패: " +
@@ -530,6 +470,12 @@ loginForm.addEventListener(
 
         currentUser =
             data.user.email;
+
+
+        localStorage.setItem(
+            "studyPlannerUser",
+            currentUser
+        );
 
 
         loginMessage.textContent =
@@ -558,18 +504,14 @@ signupButton.addEventListener(
 
         const email =
             document
-                .getElementById(
-                    "email"
-                )
+                .getElementById("email")
                 .value
                 .trim();
 
 
         const password =
             document
-                .getElementById(
-                    "password"
-                )
+                .getElementById("password")
                 .value
                 .trim();
 
@@ -622,9 +564,7 @@ signupButton.addEventListener(
 
         if (error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
             loginMessage.textContent =
                 "회원가입 실패: " +
@@ -635,7 +575,6 @@ signupButton.addEventListener(
         }
 
 
-        // 이메일 인증이 필요한 경우
         if (
             data.user &&
             !data.session
@@ -649,7 +588,6 @@ signupButton.addEventListener(
         }
 
 
-        // 이메일 인증이 필요 없는 경우
         if (
             data.user &&
             data.session
@@ -657,6 +595,12 @@ signupButton.addEventListener(
 
             currentUser =
                 data.user.email;
+
+
+            localStorage.setItem(
+                "studyPlannerUser",
+                currentUser
+            );
 
 
             await loadData();
@@ -695,9 +639,7 @@ logoutButton.addEventListener(
 
         if (error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
             return;
 
@@ -710,6 +652,11 @@ logoutButton.addEventListener(
         plans = [];
 
         ddays = [];
+
+
+        localStorage.removeItem(
+            "studyPlannerUser"
+        );
 
 
         showLogin();
@@ -727,16 +674,12 @@ function showLogin() {
 
     loginPage
         .classList
-        .remove(
-            "hidden"
-        );
+        .remove("hidden");
 
 
     appPage
         .classList
-        .add(
-            "hidden"
-        );
+        .add("hidden");
 
 }
 
@@ -749,16 +692,12 @@ function showApp() {
 
     loginPage
         .classList
-        .add(
-            "hidden"
-        );
+        .add("hidden");
 
 
     appPage
         .classList
-        .remove(
-            "hidden"
-        );
+        .remove("hidden");
 
 
     renderAll();
@@ -782,8 +721,7 @@ previousDateButton.addEventListener(
 
             currentDate.setDate(
 
-                currentDate.getDate()
-                - 1
+                currentDate.getDate() - 1
 
             );
 
@@ -795,8 +733,7 @@ previousDateButton.addEventListener(
 
             currentDate.setDate(
 
-                currentDate.getDate()
-                - 7
+                currentDate.getDate() - 7
 
             );
 
@@ -806,8 +743,7 @@ previousDateButton.addEventListener(
 
             currentDate.setMonth(
 
-                currentDate.getMonth()
-                - 1
+                currentDate.getMonth() - 1
 
             );
 
@@ -837,8 +773,7 @@ nextDateButton.addEventListener(
 
             currentDate.setDate(
 
-                currentDate.getDate()
-                + 1
+                currentDate.getDate() + 1
 
             );
 
@@ -850,8 +785,7 @@ nextDateButton.addEventListener(
 
             currentDate.setDate(
 
-                currentDate.getDate()
-                + 7
+                currentDate.getDate() + 7
 
             );
 
@@ -861,8 +795,7 @@ nextDateButton.addEventListener(
 
             currentDate.setMonth(
 
-                currentDate.getMonth()
-                + 1
+                currentDate.getMonth() + 1
 
             );
 
@@ -898,7 +831,7 @@ todayButton.addEventListener(
 
 
 // ======================================================
-// 14. 일간 / 주간 / 월간
+// 14. 일간 / 주간 / 월간 보기
 // ======================================================
 
 viewButtons.forEach(
@@ -944,35 +877,27 @@ planForm.addEventListener(
 
         const subject =
             document
-                .getElementById(
-                    "plan-subject"
-                )
+                .getElementById("plan-subject")
                 .value
                 .trim();
 
 
         const detail =
             document
-                .getElementById(
-                    "plan-detail"
-                )
+                .getElementById("plan-detail")
                 .value
                 .trim();
 
 
         const start =
             document
-                .getElementById(
-                    "plan-start"
-                )
+                .getElementById("plan-start")
                 .value;
 
 
         const end =
             document
-                .getElementById(
-                    "plan-end"
-                )
+                .getElementById("plan-end")
                 .value;
 
 
@@ -1051,9 +976,7 @@ planForm.addEventListener(
 
         if (error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
             alert(
                 "계획 저장에 실패했습니다."
@@ -1092,8 +1015,7 @@ async function togglePlan(id) {
 
                     item.id === id &&
 
-                    item.user ===
-                        currentUser
+                    item.user === currentUser
 
                 );
 
@@ -1131,9 +1053,7 @@ async function togglePlan(id) {
 
     if (error) {
 
-        console.error(
-            error
-        );
+        console.error(error);
 
         alert(
             "계획 수정에 실패했습니다."
@@ -1175,9 +1095,7 @@ async function deletePlan(id) {
 
     if (error) {
 
-        console.error(
-            error
-        );
+        console.error(error);
 
         alert(
             "계획 삭제에 실패했습니다."
@@ -1211,8 +1129,7 @@ function copyPlan(id) {
 
                     plan.id === id &&
 
-                    plan.user ===
-                        currentUser
+                    plan.user === currentUser
 
                 );
 
@@ -1238,9 +1155,7 @@ function copyPlan(id) {
 
     copyModal
         .classList
-        .remove(
-            "hidden"
-        );
+        .remove("hidden");
 
 }
 
@@ -1252,9 +1167,7 @@ function copyPlan(id) {
 function createPlanCard(plan) {
 
     const card =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     card.className =
         "plan-card";
@@ -1264,17 +1177,13 @@ function createPlanCard(plan) {
         plan.completed
     ) {
 
-        card.classList.add(
-            "completed"
-        );
+        card.classList.add("completed");
 
     }
 
 
     const time =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     time.className =
         "plan-time";
@@ -1287,27 +1196,21 @@ function createPlanCard(plan) {
 
 
     const content =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     content.className =
         "plan-content";
 
 
     const title =
-        document.createElement(
-            "h3"
-        );
+        document.createElement("h3");
 
     title.textContent =
         plan.subject;
 
 
     const detail =
-        document.createElement(
-            "p"
-        );
+        document.createElement("p");
 
     detail.textContent =
 
@@ -1315,29 +1218,20 @@ function createPlanCard(plan) {
         "세부 내용 없음";
 
 
-    content.appendChild(
-        title
-    );
+    content.appendChild(title);
 
-    content.appendChild(
-        detail
-    );
+    content.appendChild(detail);
 
 
     const actions =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     actions.className =
         "plan-actions";
 
 
-    // 완료
     const completeButton =
-        document.createElement(
-            "button"
-        );
+        document.createElement("button");
 
     completeButton.textContent =
 
@@ -1352,18 +1246,13 @@ function createPlanCard(plan) {
     completeButton.onclick =
         function() {
 
-            togglePlan(
-                plan.id
-            );
+            togglePlan(plan.id);
 
         };
 
 
-    // 수정
     const editButton =
-        document.createElement(
-            "button"
-        );
+        document.createElement("button");
 
     editButton.textContent =
         "✏️";
@@ -1375,18 +1264,13 @@ function createPlanCard(plan) {
     editButton.onclick =
         function() {
 
-            editPlan(
-                plan.id
-            );
+            editPlan(plan.id);
 
         };
 
 
-    // 복사
     const copyButton =
-        document.createElement(
-            "button"
-        );
+        document.createElement("button");
 
     copyButton.textContent =
         "📋";
@@ -1398,18 +1282,13 @@ function createPlanCard(plan) {
     copyButton.onclick =
         function() {
 
-            copyPlan(
-                plan.id
-            );
+            copyPlan(plan.id);
 
         };
 
 
-    // 삭제
     const deleteButton =
-        document.createElement(
-            "button"
-        );
+        document.createElement("button");
 
     deleteButton.textContent =
         "🗑️";
@@ -1421,9 +1300,7 @@ function createPlanCard(plan) {
     deleteButton.onclick =
         function() {
 
-            deletePlan(
-                plan.id
-            );
+            deletePlan(plan.id);
 
         };
 
@@ -1445,17 +1322,11 @@ function createPlanCard(plan) {
     );
 
 
-    card.appendChild(
-        time
-    );
+    card.appendChild(time);
 
-    card.appendChild(
-        content
-    );
+    card.appendChild(content);
 
-    card.appendChild(
-        actions
-    );
+    card.appendChild(actions);
 
 
     return card;
@@ -1470,9 +1341,7 @@ function createPlanCard(plan) {
 function renderDay() {
 
     const dateKey =
-        formatDateKey(
-            currentDate
-        );
+        formatDateKey(currentDate);
 
 
     const todayPlans =
@@ -1482,11 +1351,9 @@ function renderDay() {
 
                 return (
 
-                    plan.user ===
-                        currentUser &&
+                    plan.user === currentUser &&
 
-                    plan.date ===
-                        dateKey
+                    plan.date === dateKey
 
                 );
 
@@ -1540,9 +1407,7 @@ function renderDay() {
 
             planner.appendChild(
 
-                createPlanCard(
-                    plan
-                )
+                createPlanCard(plan)
 
             );
 
@@ -1578,8 +1443,7 @@ function getMonday(date) {
 
     result.setDate(
 
-        result.getDate()
-        +
+        result.getDate() +
         difference
 
     );
@@ -1593,15 +1457,11 @@ function getMonday(date) {
 function renderWeek() {
 
     const monday =
-        getMonday(
-            currentDate
-        );
+        getMonday(currentDate);
 
 
     const grid =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     grid.className =
         "week-grid";
@@ -1627,39 +1487,30 @@ function renderWeek() {
     ) {
 
         const date =
-            new Date(
-                monday
-            );
+            new Date(monday);
 
 
         date.setDate(
 
-            monday.getDate()
-            +
+            monday.getDate() +
             i
 
         );
 
 
         const dateKey =
-            formatDateKey(
-                date
-            );
+            formatDateKey(date);
 
 
         const dayBox =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
         dayBox.className =
             "week-day";
 
 
         const header =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
         header.className =
             "week-day-header";
@@ -1667,20 +1518,14 @@ function renderWeek() {
 
         header.textContent =
 
-            dayNames[i]
-            +
-            " "
-            +
-            (date.getMonth() + 1)
-            +
-            "/"
-            +
+            dayNames[i] +
+            " " +
+            (date.getMonth() + 1) +
+            "/" +
             date.getDate();
 
 
-        dayBox.appendChild(
-            header
-        );
+        dayBox.appendChild(header);
 
 
         const dayPlans =
@@ -1690,11 +1535,9 @@ function renderWeek() {
 
                     return (
 
-                        plan.user ===
-                            currentUser &&
+                        plan.user === currentUser &&
 
-                        plan.date ===
-                            dateKey
+                        plan.date === dateKey
 
                     );
 
@@ -1708,9 +1551,7 @@ function renderWeek() {
             function(plan) {
 
                 const item =
-                    document.createElement(
-                        "div"
-                    );
+                    document.createElement("div");
 
 
                 item.className =
@@ -1721,9 +1562,7 @@ function renderWeek() {
                     plan.completed
                 ) {
 
-                    item.classList.add(
-                        "completed"
-                    );
+                    item.classList.add("completed");
 
                 }
 
@@ -1738,9 +1577,7 @@ function renderWeek() {
 
                             : ""
 
-                    )
-
-                    +
+                    ) +
 
                     plan.subject;
 
@@ -1749,9 +1586,7 @@ function renderWeek() {
                     function() {
 
                         currentDate =
-                            new Date(
-                                date
-                            );
+                            new Date(date);
 
 
                         currentView =
@@ -1766,9 +1601,7 @@ function renderWeek() {
                     };
 
 
-                dayBox.appendChild(
-                    item
-                );
+                dayBox.appendChild(item);
 
             }
 
@@ -1780,9 +1613,7 @@ function renderWeek() {
         ) {
 
             const empty =
-                document.createElement(
-                    "span"
-                );
+                document.createElement("span");
 
 
             empty.className =
@@ -1793,23 +1624,17 @@ function renderWeek() {
                 "계획 없음";
 
 
-            dayBox.appendChild(
-                empty
-            );
+            dayBox.appendChild(empty);
 
         }
 
 
-        grid.appendChild(
-            dayBox
-        );
+        grid.appendChild(dayBox);
 
     }
 
 
-    planner.appendChild(
-        grid
-    );
+    planner.appendChild(grid);
 
 }
 
@@ -1845,9 +1670,7 @@ function renderMonth() {
 
 
     const calendar =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     calendar.className =
         "month-calendar";
@@ -1867,9 +1690,7 @@ function renderMonth() {
 
 
     const weekdayRow =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     weekdayRow.className =
         "month-weekdays";
@@ -1880,33 +1701,25 @@ function renderMonth() {
         function(day) {
 
             const element =
-                document.createElement(
-                    "span"
-                );
+                document.createElement("span");
 
 
             element.textContent =
                 day;
 
 
-            weekdayRow.appendChild(
-                element
-            );
+            weekdayRow.appendChild(element);
 
         }
 
     );
 
 
-    calendar.appendChild(
-        weekdayRow
-    );
+    calendar.appendChild(weekdayRow);
 
 
     const daysContainer =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     daysContainer.className =
         "month-days";
@@ -1919,18 +1732,14 @@ function renderMonth() {
     ) {
 
         const empty =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         empty.className =
             "month-day empty-day";
 
 
-        daysContainer.appendChild(
-            empty
-        );
+        daysContainer.appendChild(empty);
 
     }
 
@@ -1950,24 +1759,18 @@ function renderMonth() {
 
 
         const dateKey =
-            formatDateKey(
-                date
-            );
+            formatDateKey(date);
 
 
         const box =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
         box.className =
             "month-day";
 
 
         const number =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
         number.className =
             "month-day-number";
@@ -1977,9 +1780,7 @@ function renderMonth() {
             day;
 
 
-        box.appendChild(
-            number
-        );
+        box.appendChild(number);
 
 
         const dayPlans =
@@ -1989,11 +1790,9 @@ function renderMonth() {
 
                     return (
 
-                        plan.user ===
-                            currentUser &&
+                        plan.user === currentUser &&
 
-                        plan.date ===
-                            dateKey
+                        plan.date === dateKey
 
                     );
 
@@ -2003,18 +1802,13 @@ function renderMonth() {
 
 
         dayPlans
-            .slice(
-                0,
-                3
-            )
+            .slice(0, 3)
             .forEach(
 
                 function(plan) {
 
                     const item =
-                        document.createElement(
-                            "div"
-                        );
+                        document.createElement("div");
 
 
                     item.className =
@@ -2025,9 +1819,7 @@ function renderMonth() {
                         plan.subject;
 
 
-                    box.appendChild(
-                        item
-                    );
+                    box.appendChild(item);
 
                 }
 
@@ -2038,9 +1830,7 @@ function renderMonth() {
             function() {
 
                 currentDate =
-                    new Date(
-                        date
-                    );
+                    new Date(date);
 
 
                 currentView =
@@ -2055,21 +1845,15 @@ function renderMonth() {
             };
 
 
-        daysContainer.appendChild(
-            box
-        );
+        daysContainer.appendChild(box);
 
     }
 
 
-    calendar.appendChild(
-        daysContainer
-    );
+    calendar.appendChild(daysContainer);
 
 
-    planner.appendChild(
-        calendar
-    );
+    planner.appendChild(calendar);
 
 }
 
@@ -2089,18 +1873,14 @@ ddayForm.addEventListener(
 
         const title =
             document
-                .getElementById(
-                    "dday-title"
-                )
+                .getElementById("dday-title")
                 .value
                 .trim();
 
 
         const date =
             document
-                .getElementById(
-                    "dday-date"
-                )
+                .getElementById("dday-date")
                 .value;
 
 
@@ -2206,8 +1986,7 @@ function renderDDays() {
 
                 return (
 
-                    dday.user ===
-                        currentUser
+                    dday.user === currentUser
 
                 );
 
@@ -2250,9 +2029,7 @@ function renderDDays() {
 
 
             const target =
-                parseDate(
-                    dday.date
-                );
+                parseDate(dday.date);
 
 
             const difference =
@@ -2261,8 +2038,7 @@ function renderDDays() {
 
                     (
 
-                        target.getTime()
-                        -
+                        target.getTime() -
                         today.getTime()
 
                     )
@@ -2298,17 +2074,13 @@ function renderDDays() {
 
                 text =
                     "D+" +
-                    Math.abs(
-                        difference
-                    );
+                    Math.abs(difference);
 
             }
 
 
             const item =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("div");
 
 
             item.className =
@@ -2424,8 +2196,194 @@ function renderDDays() {
                 };
 
 
-            ddayList.appendChild(
-                item
+            ddayList.appendChild(item);
+
+        }
+
+    );
+
+}
+
+
+// ======================================================
+// 25. 시간 계산 함수
+// ======================================================
+
+function getPlanMinutes(plan) {
+
+    if (
+        !plan.start ||
+        !plan.end
+    ) {
+
+        return 0;
+
+    }
+
+
+    const start =
+        plan.start.split(":");
+
+
+    const end =
+        plan.end.split(":");
+
+
+    const startMinutes =
+
+        Number(start[0]) * 60 +
+        Number(start[1]);
+
+
+    const endMinutes =
+
+        Number(end[0]) * 60 +
+        Number(end[1]);
+
+
+    if (
+        endMinutes <= startMinutes
+    ) {
+
+        return 0;
+
+    }
+
+
+    return (
+        endMinutes -
+        startMinutes
+    );
+
+}
+
+
+// ======================================================
+// 26. 날짜 범위 계산
+// ======================================================
+
+function getStatisticsRange() {
+
+    const start =
+        new Date(currentDate);
+
+
+    const end =
+        new Date(currentDate);
+
+
+    if (
+        statisticsPeriod === "day"
+    ) {
+
+        return {
+
+            start:
+                formatDateKey(start),
+
+            end:
+                formatDateKey(end)
+
+        };
+
+    }
+
+
+    if (
+        statisticsPeriod === "week"
+    ) {
+
+        const monday =
+            getMonday(currentDate);
+
+
+        const sunday =
+            new Date(monday);
+
+
+        sunday.setDate(
+            monday.getDate() + 6
+        );
+
+
+        return {
+
+            start:
+                formatDateKey(monday),
+
+            end:
+                formatDateKey(sunday)
+
+        };
+
+    }
+
+
+    if (
+        statisticsPeriod === "month"
+    ) {
+
+        const firstDay =
+            new Date(
+
+                currentDate.getFullYear(),
+
+                currentDate.getMonth(),
+
+                1
+
+            );
+
+
+        const lastDay =
+            new Date(
+
+                currentDate.getFullYear(),
+
+                currentDate.getMonth() + 1,
+
+                0
+
+            );
+
+
+        return {
+
+            start:
+                formatDateKey(firstDay),
+
+            end:
+                formatDateKey(lastDay)
+
+        };
+
+    }
+
+}
+
+
+// ======================================================
+// 27. 선택 기간 통계 계획
+// ======================================================
+
+function getStatisticsPlans() {
+
+    const range =
+        getStatisticsRange();
+
+
+    return plans.filter(
+
+        function(plan) {
+
+            return (
+
+                plan.user === currentUser &&
+
+                plan.date >= range.start &&
+
+                plan.date <= range.end
+
             );
 
         }
@@ -2436,26 +2394,158 @@ function renderDDays() {
 
 
 // ======================================================
-// 25. 전체 통계
+// 28. 통계 기간 버튼 생성
 // ======================================================
 
-function renderStatistics() {
+function renderStatisticsPeriodButtons() {
 
-    const userPlans =
-        plans.filter(
+    const statisticsSection =
+        document.querySelector(
+            ".statistics-section"
+        );
 
-            function(plan) {
 
-                return (
+    if (!statisticsSection) {
 
-                    plan.user ===
-                        currentUser
+        return;
 
+    }
+
+
+    let periodContainer =
+        document.getElementById(
+            "statistics-period-buttons"
+        );
+
+
+    if (!periodContainer) {
+
+        periodContainer =
+            document.createElement("div");
+
+
+        periodContainer.id =
+            "statistics-period-buttons";
+
+
+        periodContainer.className =
+            "statistics-period-buttons";
+
+
+        const statisticsTitle =
+            statisticsSection.querySelector(
+                "h2"
+            );
+
+
+        if (
+            statisticsTitle
+        ) {
+
+            statisticsTitle.insertAdjacentElement(
+
+                "afterend",
+
+                periodContainer
+
+            );
+
+        }
+
+    }
+
+
+    periodContainer.innerHTML =
+        "";
+
+
+    const periods = [
+
+        {
+            key: "day",
+            text: "일간"
+        },
+
+        {
+            key: "week",
+            text: "주간"
+        },
+
+        {
+            key: "month",
+            text: "월간"
+        }
+
+    ];
+
+
+    periods.forEach(
+
+        function(period) {
+
+            const button =
+                document.createElement("button");
+
+
+            button.type =
+                "button";
+
+
+            button.textContent =
+                period.text;
+
+
+            button.className =
+                "statistics-period-button";
+
+
+            if (
+                statisticsPeriod === period.key
+            ) {
+
+                button.classList.add(
+                    "active"
                 );
 
             }
 
-        );
+
+            button.onclick =
+                function() {
+
+                    statisticsPeriod =
+                        period.key;
+
+
+                    renderStatistics();
+
+                    renderChart();
+
+                    renderSubjectStatistics();
+
+                };
+
+
+            periodContainer.appendChild(button);
+
+        }
+
+    );
+
+}
+
+
+// ======================================================
+// 29. 기간별 통계
+// ======================================================
+
+function renderStatistics() {
+
+    renderStatisticsPeriodButtons();
+
+
+    const userPlans =
+        getStatisticsPlans();
 
 
     const total =
@@ -2482,50 +2572,8 @@ function renderStatistics() {
 
         function(plan) {
 
-            if (
-                !plan.start ||
-                !plan.end
-            ) {
-
-                return;
-
-            }
-
-
-            const start =
-                plan.start.split(":");
-
-
-            const end =
-                plan.end.split(":");
-
-
-            const startMinutes =
-
-                Number(start[0]) * 60
-                +
-                Number(start[1]);
-
-
-            const endMinutes =
-
-                Number(end[0]) * 60
-                +
-                Number(end[1]);
-
-
-            if (
-                endMinutes >
-                startMinutes
-            ) {
-
-                totalMinutes +=
-
-                    endMinutes
-                    -
-                    startMinutes;
-
-            }
+            totalMinutes +=
+                getPlanMinutes(plan);
 
         }
 
@@ -2550,10 +2598,8 @@ function renderStatistics() {
 
             : Math.round(
 
-                completed
-                /
-                total
-                *
+                completed /
+                total *
                 100
 
             );
@@ -2584,7 +2630,7 @@ function renderStatistics() {
 
 
 // ======================================================
-// 26. 과목별 통계
+// 30. 과목별 통계
 // ======================================================
 
 function renderSubjectStatistics() {
@@ -2607,20 +2653,7 @@ function renderSubjectStatistics() {
 
 
     const userPlans =
-        plans.filter(
-
-            function(plan) {
-
-                return (
-
-                    plan.user ===
-                        currentUser
-
-                );
-
-            }
-
-        );
+        getStatisticsPlans();
 
 
     const subjectData = {};
@@ -2660,11 +2693,9 @@ function renderSubjectStatistics() {
             }
 
 
-            // 전체 계획 수
             subjectData[subject].total++;
 
 
-            // 완료 계획 수
             if (
                 plan.completed
             ) {
@@ -2674,48 +2705,9 @@ function renderSubjectStatistics() {
             }
 
 
-            // 공부 시간
-            if (
-                plan.start &&
-                plan.end
-            ) {
+            subjectData[subject].minutes +=
 
-                const start =
-                    plan.start.split(":");
-
-
-                const end =
-                    plan.end.split(":");
-
-
-                const startMinutes =
-
-                    Number(start[0]) * 60
-                    +
-                    Number(start[1]);
-
-
-                const endMinutes =
-
-                    Number(end[0]) * 60
-                    +
-                    Number(end[1]);
-
-
-                if (
-                    endMinutes >
-                    startMinutes
-                ) {
-
-                    subjectData[subject].minutes +=
-
-                        endMinutes
-                        -
-                        startMinutes;
-
-                }
-
-            }
+                getPlanMinutes(plan);
 
         }
 
@@ -2723,39 +2715,29 @@ function renderSubjectStatistics() {
 
 
     const title =
-        document.createElement(
-            "h3"
-        );
+        document.createElement("h3");
 
 
     title.textContent =
         "📚 과목별 통계";
 
 
-    container.appendChild(
-        title
-    );
+    container.appendChild(title);
 
 
     if (
-        Object.keys(
-            subjectData
-        ).length === 0
+        Object.keys(subjectData).length === 0
     ) {
 
         const empty =
-            document.createElement(
-                "p"
-            );
+            document.createElement("p");
 
 
         empty.textContent =
-            "아직 등록된 공부 계획이 없습니다.";
+            "선택한 기간에 등록된 공부 계획이 없습니다.";
 
 
-        container.appendChild(
-            empty
-        );
+        container.appendChild(empty);
 
 
         return;
@@ -2764,18 +2746,14 @@ function renderSubjectStatistics() {
 
 
     const cards =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
 
     cards.className =
         "subject-statistics-grid";
 
 
-    Object.keys(
-        subjectData
-    )
+    Object.keys(subjectData)
 
         .sort()
 
@@ -2795,10 +2773,8 @@ function renderSubjectStatistics() {
 
                         : Math.round(
 
-                            data.completed
-                            /
-                            data.total
-                            *
+                            data.completed /
+                            data.total *
                             100
 
                         );
@@ -2815,9 +2791,7 @@ function renderSubjectStatistics() {
 
 
                 const card =
-                    document.createElement(
-                        "div"
-                    );
+                    document.createElement("div");
 
 
                 card.className =
@@ -2825,9 +2799,7 @@ function renderSubjectStatistics() {
 
 
                 const subjectTitle =
-                    document.createElement(
-                        "h4"
-                    );
+                    document.createElement("h4");
 
 
                 subjectTitle.textContent =
@@ -2835,9 +2807,7 @@ function renderSubjectStatistics() {
 
 
                 const total =
-                    document.createElement(
-                        "p"
-                    );
+                    document.createElement("p");
 
 
                 total.textContent =
@@ -2848,9 +2818,7 @@ function renderSubjectStatistics() {
 
 
                 const completed =
-                    document.createElement(
-                        "p"
-                    );
+                    document.createElement("p");
 
 
                 completed.textContent =
@@ -2861,9 +2829,7 @@ function renderSubjectStatistics() {
 
 
                 const studyTime =
-                    document.createElement(
-                        "p"
-                    );
+                    document.createElement("p");
 
 
                 studyTime.textContent =
@@ -2876,9 +2842,7 @@ function renderSubjectStatistics() {
 
 
                 const achievementText =
-                    document.createElement(
-                        "p"
-                    );
+                    document.createElement("p");
 
 
                 achievementText.textContent =
@@ -2889,9 +2853,7 @@ function renderSubjectStatistics() {
 
 
                 const progressBackground =
-                    document.createElement(
-                        "div"
-                    );
+                    document.createElement("div");
 
 
                 progressBackground.className =
@@ -2899,9 +2861,7 @@ function renderSubjectStatistics() {
 
 
                 const progress =
-                    document.createElement(
-                        "div"
-                    );
+                    document.createElement("div");
 
 
                 progress.className =
@@ -2948,24 +2908,20 @@ function renderSubjectStatistics() {
                 );
 
 
-                cards.appendChild(
-                    card
-                );
+                cards.appendChild(card);
 
             }
 
         );
 
 
-    container.appendChild(
-        cards
-    );
+    container.appendChild(cards);
 
 }
 
 
 // ======================================================
-// 27. 주간 공부 시간 그래프
+// 31. 주간 공부 시간 그래프
 // ======================================================
 
 function renderChart() {
@@ -2988,74 +2944,43 @@ function renderChart() {
 
 
     const title =
-        document.createElement(
-            "h3"
-        );
+        document.createElement("h3");
 
 
     title.textContent =
-        "최근 7일 공부 시간";
+
+        statisticsPeriod === "day"
+
+            ? "오늘 공부 시간"
+
+            : statisticsPeriod === "week"
+
+                ? "이번 주 공부 시간"
+
+                : "이번 달 공부 시간";
 
 
-    chart.appendChild(
-        title
-    );
+    chart.appendChild(title);
 
 
     const container =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
 
     container.className =
         "chart-container";
 
 
-    const monday =
-        getMonday(
-            currentDate
-        );
+    // ==================================================
+    // 일간
+    // ==================================================
 
-
-    const days = [
-
-        "월",
-        "화",
-        "수",
-        "목",
-        "금",
-        "토",
-        "일"
-
-    ];
-
-
-    for (
-        let i = 0;
-        i < 7;
-        i++
+    if (
+        statisticsPeriod === "day"
     ) {
 
-        const date =
-            new Date(
-                monday
-            );
-
-
-        date.setDate(
-
-            monday.getDate()
-            +
-            i
-
-        );
-
-
         const dateKey =
-            formatDateKey(
-                date
-            );
+            formatDateKey(currentDate);
 
 
         const dayPlans =
@@ -3065,11 +2990,9 @@ function renderChart() {
 
                     return (
 
-                        plan.user ===
-                            currentUser &&
+                        plan.user === currentUser &&
 
-                        plan.date ===
-                            dateKey
+                        plan.date === dateKey
 
                     );
 
@@ -3086,50 +3009,8 @@ function renderChart() {
 
             function(plan) {
 
-                if (
-                    !plan.start ||
-                    !plan.end
-                ) {
-
-                    return;
-
-                }
-
-
-                const start =
-                    plan.start.split(":");
-
-
-                const end =
-                    plan.end.split(":");
-
-
-                const startMinutes =
-
-                    Number(start[0]) * 60
-                    +
-                    Number(start[1]);
-
-
-                const endMinutes =
-
-                    Number(end[0]) * 60
-                    +
-                    Number(end[1]);
-
-
-                if (
-                    endMinutes >
-                    startMinutes
-                ) {
-
-                    minutes +=
-
-                        endMinutes
-                        -
-                        startMinutes;
-
-                }
+                minutes +=
+                    getPlanMinutes(plan);
 
             }
 
@@ -3137,9 +3018,7 @@ function renderChart() {
 
 
         const bar =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         bar.className =
@@ -3152,10 +3031,8 @@ function renderChart() {
 
                 100,
 
-                minutes
-                /
-                600
-                *
+                minutes /
+                600 *
                 100
 
             );
@@ -3166,66 +3043,346 @@ function renderChart() {
             Math.max(
                 5,
                 height
-            )
-            +
+            ) +
             "%";
 
 
         const label =
-            document.createElement(
-                "span"
-            );
+            document.createElement("span");
 
 
         label.textContent =
-            days[i];
+            "오늘";
 
 
         const time =
-            document.createElement(
-                "small"
-            );
+            document.createElement("small");
 
 
         time.textContent =
 
             Math.floor(
                 minutes / 60
-            )
-            +
-            "h "
-            +
-            minutes % 60
-            +
+            ) +
+            "h " +
+            minutes % 60 +
             "m";
 
 
-        bar.appendChild(
-            label
-        );
+        bar.appendChild(label);
+
+        bar.appendChild(time);
 
 
-        bar.appendChild(
-            time
-        );
-
-
-        container.appendChild(
-            bar
-        );
+        container.appendChild(bar);
 
     }
 
 
-    chart.appendChild(
-        container
-    );
+    // ==================================================
+    // 주간
+    // ==================================================
+
+    else if (
+        statisticsPeriod === "week"
+    ) {
+
+        const monday =
+            getMonday(currentDate);
+
+
+        const days = [
+
+            "월",
+            "화",
+            "수",
+            "목",
+            "금",
+            "토",
+            "일"
+
+        ];
+
+
+        for (
+            let i = 0;
+            i < 7;
+            i++
+        ) {
+
+            const date =
+                new Date(monday);
+
+
+            date.setDate(
+
+                monday.getDate() +
+                i
+
+            );
+
+
+            const dateKey =
+                formatDateKey(date);
+
+
+            const dayPlans =
+                plans.filter(
+
+                    function(plan) {
+
+                        return (
+
+                            plan.user === currentUser &&
+
+                            plan.date === dateKey
+
+                        );
+
+                    }
+
+                );
+
+
+            let minutes =
+                0;
+
+
+            dayPlans.forEach(
+
+                function(plan) {
+
+                    minutes +=
+                        getPlanMinutes(plan);
+
+                }
+
+            );
+
+
+            const bar =
+                document.createElement("div");
+
+
+            bar.className =
+                "chart-bar";
+
+
+            const height =
+
+                Math.min(
+
+                    100,
+
+                    minutes /
+                    600 *
+                    100
+
+                );
+
+
+            bar.style.height =
+
+                Math.max(
+                    5,
+                    height
+                ) +
+                "%";
+
+
+            const label =
+                document.createElement("span");
+
+
+            label.textContent =
+                days[i];
+
+
+            const time =
+                document.createElement("small");
+
+
+            time.textContent =
+
+                Math.floor(
+                    minutes / 60
+                ) +
+                "h " +
+                minutes % 60 +
+                "m";
+
+
+            bar.appendChild(label);
+
+            bar.appendChild(time);
+
+
+            container.appendChild(bar);
+
+        }
+
+    }
+
+
+    // ==================================================
+    // 월간
+    // ==================================================
+
+    else if (
+        statisticsPeriod === "month"
+    ) {
+
+        const year =
+            currentDate.getFullYear();
+
+
+        const month =
+            currentDate.getMonth();
+
+
+        const lastDay =
+            new Date(
+
+                year,
+
+                month + 1,
+
+                0
+
+            );
+
+
+        const totalDays =
+            lastDay.getDate();
+
+
+        for (
+            let day = 1;
+            day <= totalDays;
+            day++
+        ) {
+
+            const date =
+                new Date(
+
+                    year,
+
+                    month,
+
+                    day
+
+                );
+
+
+            const dateKey =
+                formatDateKey(date);
+
+
+            const dayPlans =
+                plans.filter(
+
+                    function(plan) {
+
+                        return (
+
+                            plan.user === currentUser &&
+
+                            plan.date === dateKey
+
+                        );
+
+                    }
+
+                );
+
+
+            let minutes =
+                0;
+
+
+            dayPlans.forEach(
+
+                function(plan) {
+
+                    minutes +=
+                        getPlanMinutes(plan);
+
+                }
+
+            );
+
+
+            const bar =
+                document.createElement("div");
+
+
+            bar.className =
+                "chart-bar month-chart-bar";
+
+
+            const height =
+
+                Math.min(
+
+                    100,
+
+                    minutes /
+                    600 *
+                    100
+
+                );
+
+
+            bar.style.height =
+
+                Math.max(
+                    3,
+                    height
+                ) +
+                "%";
+
+
+            const label =
+                document.createElement("span");
+
+
+            label.textContent =
+                day;
+
+
+            const time =
+                document.createElement("small");
+
+
+            time.textContent =
+
+                Math.floor(
+                    minutes / 60
+                ) +
+                "h " +
+                minutes % 60 +
+                "m";
+
+
+            bar.appendChild(label);
+
+            bar.appendChild(time);
+
+
+            container.appendChild(bar);
+
+        }
+
+    }
+
+
+    chart.appendChild(container);
 
 }
 
 
 // ======================================================
-// 28. 다크모드
+// 32. 다크모드
 // ======================================================
 
 darkModeButton.addEventListener(
@@ -3237,9 +3394,7 @@ darkModeButton.addEventListener(
         document
             .body
             .classList
-            .toggle(
-                "dark"
-            );
+            .toggle("dark");
 
 
         const isDark =
@@ -3247,9 +3402,7 @@ darkModeButton.addEventListener(
             document
                 .body
                 .classList
-                .contains(
-                    "dark"
-                );
+                .contains("dark");
 
 
         localStorage.setItem(
@@ -3266,7 +3419,7 @@ darkModeButton.addEventListener(
 
 
 // ======================================================
-// 29. PDF 저장
+// 33. PDF 저장
 // ======================================================
 
 pdfButton.addEventListener(
@@ -3283,7 +3436,7 @@ pdfButton.addEventListener(
 
 
 // ======================================================
-// 30. 보기 버튼 상태
+// 34. 보기 버튼 상태
 // ======================================================
 
 function updateViewButtons() {
@@ -3298,8 +3451,7 @@ function updateViewButtons() {
 
                     "active",
 
-                    button.dataset.view
-                    ===
+                    button.dataset.view ===
                     currentView
 
                 );
@@ -3312,16 +3464,14 @@ function updateViewButtons() {
 
 
 // ======================================================
-// 31. 전체 렌더링
+// 35. 전체 렌더링
 // ======================================================
 
 function renderAll() {
 
     currentDateElement.textContent =
 
-        formatKoreanDate(
-            currentDate
-        );
+        formatKoreanDate(currentDate);
 
 
     planner.innerHTML =
@@ -3356,46 +3506,42 @@ function renderAll() {
     renderDDays();
 
 
-    // 전체 통계
+    // 기간별 전체 통계
     renderStatistics();
 
 
-    // 과목별 통계
+    // 기간별 과목 통계
     renderSubjectStatistics();
 
 
-    // 주간 그래프
+    // 기간별 공부 시간 그래프
     renderChart();
 
 }
 
 
 // ======================================================
-// 32. 다크모드 복원
+// 36. 다크모드 복원
 // ======================================================
 
 if (
 
     localStorage.getItem(
         "studyPlannerDark"
-    )
-    ===
-    "true"
+    ) === "true"
 
 ) {
 
     document
         .body
         .classList
-        .add(
-            "dark"
-        );
+        .add("dark");
 
 }
 
 
 // ======================================================
-// 33. 로그인 상태 확인
+// 37. 로그인 상태 확인
 // ======================================================
 
 async function checkAuth() {
@@ -3419,6 +3565,12 @@ async function checkAuth() {
 
         currentUser =
             session.user.email;
+
+
+        localStorage.setItem(
+            "studyPlannerUser",
+            currentUser
+        );
 
 
         await loadData();
@@ -3451,7 +3603,7 @@ checkAuth();
 
 
 // ======================================================
-// 34. 계획 수정
+// 38. 계획 수정
 // ======================================================
 
 async function editPlan(id) {
@@ -3465,8 +3617,7 @@ async function editPlan(id) {
 
                     item.id === id &&
 
-                    item.user ===
-                        currentUser
+                    item.user === currentUser
 
                 );
 
@@ -3619,7 +3770,7 @@ async function editPlan(id) {
 
 
 // ======================================================
-// 35. 복사 모달 닫기
+// 39. 복사 모달 닫기
 // ======================================================
 
 closeCopyModal.addEventListener(
@@ -3636,7 +3787,7 @@ closeCopyModal.addEventListener(
 
 
 // ======================================================
-// 36. 계획 복사
+// 40. 계획 복사
 // ======================================================
 
 confirmCopyButton.addEventListener(
@@ -3703,11 +3854,9 @@ confirmCopyButton.addEventListener(
 
                     return (
 
-                        plan.id ===
-                            copyingPlanId &&
+                        plan.id === copyingPlanId &&
 
-                        plan.user ===
-                            currentUser
+                        plan.user === currentUser
 
                     );
 
@@ -3813,16 +3962,14 @@ confirmCopyButton.addEventListener(
 
 
 // ======================================================
-// 37. 복사 모달 닫기 함수
+// 41. 복사 모달 닫기 함수
 // ======================================================
 
 function closeCopyModalWindow() {
 
     copyModal
         .classList
-        .add(
-            "hidden"
-        );
+        .add("hidden");
 
 
     copyingPlanId =
