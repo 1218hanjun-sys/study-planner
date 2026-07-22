@@ -2642,293 +2642,297 @@ function renderStatistics() {
 }
 
 
-// ======================================================
-// 30. 과목별 통계
-// ======================================================
+/* =====================================================
+   과목별 공부 시간 원형 그래프
+===================================================== */
 
-function renderSubjectStatistics() {
+.subject-pie {
 
-    const container =
-        document.getElementById(
-            "subject-statistics"
-        );
+    position:
+        relative;
+
+    width:
+        240px;
+
+    height:
+        240px;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    box-shadow:
+        0 8px 25px
+        rgba(15, 23, 42, 0.08);
+
+}
 
 
-    if (!container) {
+/* 원형 그래프 중앙 구멍 */
 
-        return;
+.subject-pie::before {
 
-    }
-
-
-    container.innerHTML =
+    content:
         "";
 
+    position:
+        absolute;
 
-    const userPlans =
-        getStatisticsPlans();
+    width:
+        145px;
 
+    height:
+        145px;
 
-    const subjectData = {};
+    border-radius:
+        50%;
 
+    background:
+        var(--card);
 
-    userPlans.forEach(
-
-        function(plan) {
-
-            const subject =
-                plan.subject.trim();
-
-
-            if (
-                !subject
-            ) {
-
-                return;
-
-            }
+}
 
 
-            if (
-                !subjectData[subject]
-            ) {
+/* 중앙 텍스트 */
 
-                subjectData[subject] = {
+.subject-pie-center {
 
-                    total: 0,
+    position:
+        relative;
 
-                    completed: 0,
+    z-index:
+        2;
 
-                    minutes: 0
+    display:
+        flex;
 
-                };
+    flex-direction:
+        column;
 
-            }
+    align-items:
+        center;
 
+    justify-content:
+        center;
 
-            subjectData[subject].total++;
+    text-align:
+        center;
 
-
-            if (
-                plan.completed
-            ) {
-
-                subjectData[subject].completed++;
-
-            }
-
-
-            subjectData[subject].minutes +=
-
-                getPlanMinutes(plan);
-
-        }
-
-    );
+}
 
 
-    const title =
-        document.createElement("h3");
+.subject-pie-center strong {
+
+    font-size:
+        20px;
+
+    font-weight:
+        800;
+
+    color:
+        var(--text);
+
+}
 
 
-    title.textContent =
-        "📚 과목별 통계";
+.subject-pie-center span {
+
+    margin-top:
+        5px;
+
+    font-size:
+        11px;
+
+    color:
+        var(--sub-text);
+
+}
 
 
-    container.appendChild(title);
+/* 과목별 통계 항목 */
+
+.subject-statistics-list {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        10px;
+
+}
 
 
-    if (
-        Object.keys(subjectData).length === 0
-    ) {
+/* 과목별 한 줄 */
 
-        const empty =
-            document.createElement("p");
+.subject-stat-item {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    padding:
+        13px 15px;
+
+    background:
+        var(--bg);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        12px;
+
+    transition:
+        all 0.2s ease;
+
+}
 
 
-        empty.textContent =
-            "선택한 기간에 등록된 공부 계획이 없습니다.";
+.subject-stat-item:hover {
+
+    border-color:
+        #c7d2fe;
+
+    transform:
+        translateY(-1px);
+
+}
 
 
-        container.appendChild(empty);
+/* 과목명 */
+
+.subject-stat-name {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+}
 
 
-        return;
+/* 원형 그래프 색상 */
+
+.subject-stat-color {
+
+    width:
+        11px;
+
+    height:
+        11px;
+
+    border-radius:
+        50%;
+
+    flex-shrink:
+        0;
+
+}
+
+
+/* 시간 + 퍼센트 */
+
+.subject-stat-time {
+
+    color:
+        var(--text);
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+
+}
+
+
+.subject-stat-detail {
+
+    min-width:
+        45px;
+
+    text-align:
+        right;
+
+    color:
+        var(--sub-text);
+
+    font-size:
+        12px;
+
+}
+
+
+/* =====================================================
+   과목별 통계 모바일
+===================================================== */
+
+@media (
+    max-width: 768px
+) {
+
+    .subject-statistics-content {
+
+        grid-template-columns:
+            1fr;
 
     }
 
 
-    const cards =
-        document.createElement("div");
+    .subject-pie {
 
+        width:
+            210px;
 
-    cards.className =
-        "subject-statistics-grid";
+        height:
+            210px;
 
+    }
 
-    Object.keys(subjectData)
 
-        .sort()
+    .subject-pie::before {
 
-        .forEach(
+        width:
+            125px;
 
-            function(subject) {
+        height:
+            125px;
 
-                const data =
-                    subjectData[subject];
+    }
 
 
-                const achievement =
+    .subject-pie-center strong {
 
-                    data.total === 0
+        font-size:
+            17px;
 
-                        ? 0
-
-                        : Math.round(
-
-                            data.completed /
-                            data.total *
-                            100
-
-                        );
-
-
-                const hours =
-                    Math.floor(
-                        data.minutes / 60
-                    );
-
-
-                const minutes =
-                    data.minutes % 60;
-
-
-                const card =
-                    document.createElement("div");
-
-
-                card.className =
-                    "subject-stat-card";
-
-
-                const subjectTitle =
-                    document.createElement("h4");
-
-
-                subjectTitle.textContent =
-                    subject;
-
-
-                const total =
-                    document.createElement("p");
-
-
-                total.textContent =
-
-                    "전체 계획: " +
-                    data.total +
-                    "개";
-
-
-                const completed =
-                    document.createElement("p");
-
-
-                completed.textContent =
-
-                    "완료: " +
-                    data.completed +
-                    "개";
-
-
-                const studyTime =
-                    document.createElement("p");
-
-
-                studyTime.textContent =
-
-                    "공부 시간: " +
-                    hours +
-                    "시간 " +
-                    minutes +
-                    "분";
-
-
-                const achievementText =
-                    document.createElement("p");
-
-
-                achievementText.textContent =
-
-                    "달성률: " +
-                    achievement +
-                    "%";
-
-
-                const progressBackground =
-                    document.createElement("div");
-
-
-                progressBackground.className =
-                    "subject-progress";
-
-
-                const progress =
-                    document.createElement("div");
-
-
-                progress.className =
-                    "subject-progress-bar";
-
-
-                progress.style.width =
-                    achievement +
-                    "%";
-
-
-                progressBackground.appendChild(
-                    progress
-                );
-
-
-                card.appendChild(
-                    subjectTitle
-                );
-
-
-                card.appendChild(
-                    total
-                );
-
-
-                card.appendChild(
-                    completed
-                );
-
-
-                card.appendChild(
-                    studyTime
-                );
-
-
-                card.appendChild(
-                    achievementText
-                );
-
-
-                card.appendChild(
-                    progressBackground
-                );
-
-
-                cards.appendChild(card);
-
-            }
-
-        );
-
-
-    container.appendChild(cards);
+    }
 
 }
 
