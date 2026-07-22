@@ -3482,3 +3482,7 @@ body.dark #login-page #signup-button:hover {
 
 }
 ```
+body.dark #pdf-button {
+    background: #f9fafb;
+    color: #111827;
+}
