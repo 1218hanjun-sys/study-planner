@@ -1,13 +1,11 @@
-```css
 /* =========================================================
-   STUDY PLANNER
-   Modern Dashboard UI
-   기존 HTML / JS ID & CLASS 100% 호환
+   STUDY PLANNER — MODERN DASHBOARD UI
+   HTML / JS 기능 유지용 전체 CSS
 ========================================================= */
 
 
 /* =========================================================
-   1. RESET & DESIGN TOKENS
+   1. RESET & VARIABLES
 ========================================================= */
 
 * {
@@ -17,53 +15,45 @@
 }
 
 :root {
-
-    --bg: #f6f7fb;
+    --bg: #f4f6fb;
     --card: #ffffff;
-    --card-soft: #f9fafb;
+    --card-soft: #f8f9fd;
 
-    --text: #171923;
-    --sub-text: #737887;
+    --text: #182033;
+    --sub-text: #7b8498;
 
-    --border: #e7e9ef;
+    --border: #e7eaf1;
 
-    --primary: #635bff;
-    --primary-hover: #5148e8;
-    --primary-soft: #efedff;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-soft: #eef0ff;
 
-    --danger: #ef4444;
     --success: #10b981;
+    --danger: #ef4444;
     --warning: #f59e0b;
 
     --shadow-sm:
-        0 2px 8px rgba(15, 23, 42, 0.04);
+        0 4px 15px rgba(15, 23, 42, 0.04);
 
     --shadow:
-        0 12px 35px rgba(15, 23, 42, 0.06);
+        0 12px 35px rgba(15, 23, 42, 0.07);
 
     --shadow-lg:
-        0 25px 70px rgba(15, 23, 42, 0.10);
+        0 20px 60px rgba(15, 23, 42, 0.12);
 
     --radius-sm: 10px;
     --radius: 16px;
     --radius-lg: 24px;
 
     --transition:
-        all 0.2s ease;
-
+        all 0.22s ease;
 }
-
-
-/* =========================================================
-   2. BASE
-========================================================= */
 
 html {
     scroll-behavior: smooth;
 }
 
 body {
-
     min-height: 100vh;
 
     font-family:
@@ -79,42 +69,26 @@ body {
     color:
         var(--text);
 
-    line-height:
-        1.5;
-
     transition:
-        background 0.25s ease,
-        color 0.25s ease;
-
+        background 0.3s ease,
+        color 0.3s ease;
 }
 
 button,
 input,
 textarea {
-
-    font-family:
-        inherit;
-
+    font-family: inherit;
 }
 
 button {
-
-    border:
-        none;
-
-    cursor:
-        pointer;
-
-    transition:
-        var(--transition);
-
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
 }
 
 input,
 textarea {
-
-    width:
-        100%;
+    width: 100%;
 
     border:
         1px solid var(--border);
@@ -138,56 +112,42 @@ textarea {
         none;
 
     transition:
-        var(--transition);
-
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
 
 input::placeholder,
 textarea::placeholder {
-
-    color:
-        #a2a6b2;
-
+    color: #a5adbd;
 }
 
 input:focus,
 textarea:focus {
-
     border-color:
         var(--primary);
 
     box-shadow:
         0 0 0 4px
-        rgba(99, 91, 255, 0.10);
-
+        rgba(99, 102, 241, 0.1);
 }
 
 textarea {
-
-    min-height:
-        90px;
-
-    resize:
-        vertical;
-
+    resize: vertical;
+    min-height: 90px;
 }
 
 .hidden {
-
-    display:
-        none !important;
-
+    display: none !important;
 }
 
 
 /* =========================================================
-   3. LOGIN
+   2. LOGIN
 ========================================================= */
 
 #login-page {
-
-    min-height:
-        100vh;
+    min-height: 100vh;
 
     display:
         flex;
@@ -202,39 +162,34 @@ textarea {
         24px;
 
     background:
-
         radial-gradient(
-            circle at 10% 10%,
-            rgba(99, 91, 255, 0.16),
-            transparent 32%
+            circle at 15% 15%,
+            rgba(99, 102, 241, 0.16),
+            transparent 30%
         ),
 
         radial-gradient(
-            circle at 90% 90%,
-            rgba(139, 92, 246, 0.12),
-            transparent 32%
+            circle at 85% 85%,
+            rgba(139, 92, 246, 0.14),
+            transparent 30%
         ),
 
         var(--bg);
-
 }
 
 .login-container {
-
-    width:
-        100%;
-
-    max-width:
-        420px;
+    width: 100%;
+    max-width: 430px;
 
     padding:
         44px 38px;
 
     background:
-        rgba(255, 255, 255, 0.92);
+        rgba(255, 255, 255, 0.88);
 
     border:
-        1px solid rgba(255, 255, 255, 0.8);
+        1px solid
+        rgba(255, 255, 255, 0.8);
 
     border-radius:
         28px;
@@ -243,102 +198,27 @@ textarea {
         var(--shadow-lg);
 
     backdrop-filter:
-        blur(20px);
+        blur(18px);
 
     text-align:
         center;
-
-    animation:
-        loginAppear 0.4s ease;
-
-}
-
-@keyframes loginAppear {
-
-    from {
-
-        opacity:
-            0;
-
-        transform:
-            translateY(15px)
-            scale(0.98);
-
-    }
-
-    to {
-
-        opacity:
-            1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
-}
-
-.login-container::before {
-
-    content:
-        "📚";
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    width:
-        64px;
-
-    height:
-        64px;
-
-    margin:
-        0 auto 20px;
-
-    border-radius:
-        18px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #635bff,
-            #8b5cf6
-        );
-
-    font-size:
-        30px;
-
-    box-shadow:
-        0 12px 25px
-        rgba(99, 91, 255, 0.25);
-
 }
 
 .login-container h1 {
-
     font-size:
-        27px;
+        28px;
 
     font-weight:
         800;
 
     letter-spacing:
-        -0.7px;
+        -0.8px;
 
     margin-bottom:
-        8px;
-
+        10px;
 }
 
 .login-container > p {
-
     color:
         var(--sub-text);
 
@@ -347,11 +227,9 @@ textarea {
 
     margin-bottom:
         28px;
-
 }
 
 #login-form {
-
     display:
         flex;
 
@@ -359,21 +237,17 @@ textarea {
         column;
 
     gap:
-        11px;
-
+        12px;
 }
 
 #login-form input {
-
     height:
         50px;
-
 }
 
 #login-form button {
-
     height:
-        50px;
+        48px;
 
     border-radius:
         12px;
@@ -383,18 +257,16 @@ textarea {
 
     font-weight:
         700;
-
 }
 
 #login-form button[type="submit"] {
-
     margin-top:
-        5px;
+        4px;
 
     background:
         linear-gradient(
             135deg,
-            #635bff,
+            #6366f1,
             #7c3aed
         );
 
@@ -402,74 +274,52 @@ textarea {
         white;
 
     box-shadow:
-        0 10px 22px
-        rgba(99, 91, 255, 0.22);
-
+        0 8px 18px
+        rgba(99, 102, 241, 0.25);
 }
 
 #login-form button[type="submit"]:hover {
-
     transform:
         translateY(-2px);
 
     box-shadow:
-        0 14px 28px
-        rgba(99, 91, 255, 0.30);
-
+        0 12px 24px
+        rgba(99, 102, 241, 0.3);
 }
 
 #signup-button {
-
-    background:
-        transparent;
-
-    color:
-        var(--sub-text);
-
-    border:
-        1px solid var(--border);
-
-}
-
-#signup-button:hover {
-
     background:
         var(--primary-soft);
 
     color:
         var(--primary);
+}
 
-    border-color:
-        #c9c5ff;
-
+#signup-button:hover {
+    background:
+        #e1e5ff;
 }
 
 #login-message {
-
     min-height:
-        20px;
+        18px;
 
     margin-top:
-        14px;
+        16px;
 
     color:
         var(--danger);
 
     font-size:
         13px;
-
-    font-weight:
-        600;
-
 }
 
 
 /* =========================================================
-   4. APP HEADER
+   3. APP HEADER
 ========================================================= */
 
 #app-page header {
-
     position:
         sticky;
 
@@ -480,7 +330,7 @@ textarea {
         100;
 
     height:
-        70px;
+        72px;
 
     display:
         flex;
@@ -495,31 +345,28 @@ textarea {
         0 32px;
 
     background:
-        rgba(255, 255, 255, 0.86);
+        rgba(255, 255, 255, 0.88);
 
     border-bottom:
-        1px solid var(--border);
+        1px solid
+        rgba(231, 234, 241, 0.8);
 
     backdrop-filter:
-        blur(16px);
-
+        blur(18px);
 }
 
 .header-left h1 {
-
     font-size:
-        19px;
+        20px;
 
     font-weight:
         800;
 
     letter-spacing:
-        -0.4px;
-
+        -0.5px;
 }
 
 .header-right {
-
     display:
         flex;
 
@@ -528,11 +375,9 @@ textarea {
 
     gap:
         8px;
-
 }
 
 .header-right button {
-
     height:
         40px;
 
@@ -548,16 +393,18 @@ textarea {
     color:
         var(--text);
 
-    border:
-        1px solid var(--border);
+    font-size:
+        13px;
 
     font-weight:
-        600;
+        700;
 
+    border:
+        1px solid
+        var(--border);
 }
 
 .header-right button:hover {
-
     background:
         var(--primary-soft);
 
@@ -565,12 +412,10 @@ textarea {
         var(--primary);
 
     border-color:
-        #d4d0ff;
-
+        #d9ddff;
 }
 
 #dark-mode-button {
-
     width:
         40px;
 
@@ -579,37 +424,33 @@ textarea {
 
     font-size:
         17px;
-
 }
 
 
 /* =========================================================
-   5. MAIN
+   4. MAIN
 ========================================================= */
 
 main {
-
     width:
         100%;
 
     max-width:
-        1180px;
+        1120px;
 
     margin:
         0 auto;
 
     padding:
         34px 24px 80px;
-
 }
 
 
 /* =========================================================
-   6. DATE NAVIGATION
+   5. DATE NAVIGATION
 ========================================================= */
 
 .date-section {
-
     display:
         flex;
 
@@ -620,23 +461,18 @@ main {
         center;
 
     gap:
-        24px;
+        28px;
 
     margin-bottom:
         22px;
-
 }
 
 .date-section > button {
-
     width:
-        42px;
+        44px;
 
     height:
-        42px;
-
-    border:
-        1px solid var(--border);
+        44px;
 
     border-radius:
         12px;
@@ -647,12 +483,20 @@ main {
     color:
         var(--text);
 
+    border:
+        1px solid
+        var(--border);
+
     box-shadow:
         var(--shadow-sm);
 
+    font-size:
+        16px;
 }
 
 .date-section > button:hover {
+    color:
+        white;
 
     background:
         var(--primary);
@@ -660,26 +504,19 @@ main {
     border-color:
         var(--primary);
 
-    color:
-        white;
-
     transform:
         translateY(-2px);
-
 }
 
 .date-section > div {
-
     min-width:
         180px;
 
     text-align:
         center;
-
 }
 
 .date-section h2 {
-
     font-size:
         22px;
 
@@ -690,14 +527,12 @@ main {
         -0.5px;
 
     margin-bottom:
-        7px;
-
+        8px;
 }
 
 #today-button {
-
     padding:
-        5px 13px;
+        6px 14px;
 
     border-radius:
         999px;
@@ -713,25 +548,24 @@ main {
 
     font-weight:
         700;
-
 }
 
 #today-button:hover {
-
     background:
         var(--primary);
 
     color:
         white;
-
 }
 
 
 /* =========================================================
-   7. VIEW SWITCHER
+   6. VIEW SWITCHER
 ========================================================= */
 
 .view-section {
+    width:
+        fit-content;
 
     display:
         flex;
@@ -739,39 +573,35 @@ main {
     gap:
         4px;
 
-    width:
-        fit-content;
-
     margin:
-        0 auto 28px;
+        0 auto 30px;
 
     padding:
-        4px;
+        5px;
 
     background:
         var(--card);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
         12px;
 
     box-shadow:
         var(--shadow-sm);
-
 }
 
 .view-button {
-
     min-width:
-        70px;
+        72px;
 
     padding:
-        9px 15px;
+        9px 16px;
 
     border-radius:
-        9px;
+        8px;
 
     background:
         transparent;
@@ -784,18 +614,14 @@ main {
 
     font-weight:
         700;
-
 }
 
 .view-button:hover {
-
     color:
         var(--text);
-
 }
 
 .view-button.active {
-
     background:
         var(--primary);
 
@@ -803,50 +629,50 @@ main {
         white;
 
     box-shadow:
-        0 5px 12px
-        rgba(99, 91, 255, 0.22);
-
+        0 4px 12px
+        rgba(99, 102, 241, 0.22);
 }
 
 
 /* =========================================================
-   8. COMMON SECTION CARDS
+   7. COMMON SECTIONS
 ========================================================= */
 
 .plan-add-section,
 .planner-section,
 .dday-section,
 .statistics-section {
-
     background:
         var(--card);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
         var(--radius-lg);
 
-    box-shadow:
-        var(--shadow);
+    padding:
+        28px;
 
     margin-bottom:
-        22px;
+        24px;
 
-}
-
-.plan-add-section,
-.dday-section,
-.statistics-section {
-
-    padding:
-        26px;
-
+    box-shadow:
+        var(--shadow);
 }
 
 .plan-add-section h2,
 .dday-section h2,
-.statistics-section h2 {
+.statistics-section > h2 {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
 
     font-size:
         18px;
@@ -855,20 +681,18 @@ main {
         800;
 
     letter-spacing:
-        -0.3px;
+        -0.4px;
 
     margin-bottom:
         22px;
-
 }
 
 
 /* =========================================================
-   9. PLAN ADD
+   8. PLAN FORM
 ========================================================= */
 
 #plan-form {
-
     display:
         grid;
 
@@ -876,12 +700,10 @@ main {
         1fr 1fr;
 
     gap:
-        15px;
-
+        16px;
 }
 
 #plan-form > div {
-
     display:
         flex;
 
@@ -890,49 +712,51 @@ main {
 
     gap:
         7px;
-
 }
 
 #plan-form label {
-
     font-size:
         12px;
-
-    color:
-        var(--sub-text);
 
     font-weight:
         700;
 
+    color:
+        var(--sub-text);
 }
 
 #plan-form input {
-
     height:
         46px;
-
 }
 
 #plan-form textarea {
-
     min-height:
         46px;
 
+    height:
+        46px;
 }
 
 #plan-form button {
-
     grid-column:
         1 / -1;
 
     height:
         48px;
 
+    margin-top:
+        2px;
+
     border-radius:
         12px;
 
     background:
-        var(--primary);
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #7c3aed
+        );
 
     color:
         white;
@@ -945,27 +769,24 @@ main {
 
     box-shadow:
         0 8px 18px
-        rgba(99, 91, 255, 0.18);
-
+        rgba(99, 102, 241, 0.2);
 }
 
 #plan-form button:hover {
-
-    background:
-        var(--primary-hover);
-
     transform:
         translateY(-2px);
 
+    box-shadow:
+        0 12px 25px
+        rgba(99, 102, 241, 0.27);
 }
 
 
 /* =========================================================
-   10. PLAN LIST
+   9. PLANNER / PLAN CARD
 ========================================================= */
 
 .planner-section {
-
     display:
         flex;
 
@@ -973,111 +794,98 @@ main {
         column;
 
     gap:
-        10px;
-
-    padding:
-        16px;
-
+        12px;
 }
 
 .plan-card {
-
     display:
         grid;
 
     grid-template-columns:
-        95px 1fr auto;
+        105px 1fr auto;
 
     align-items:
         center;
 
     gap:
-        18px;
+        20px;
 
     padding:
-        18px;
+        20px;
 
     background:
         var(--card);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
-        14px;
+        16px;
 
     transition:
         var(--transition);
-
 }
 
 .plan-card:hover {
-
     border-color:
-        #c8c4ff;
-
-    box-shadow:
-        0 10px 25px
-        rgba(99, 91, 255, 0.07);
+        #cdd2ff;
 
     transform:
         translateY(-2px);
 
+    box-shadow:
+        0 10px 25px
+        rgba(99, 102, 241, 0.08);
 }
 
 .plan-time {
-
     font-size:
-        12px;
+        13px;
 
     font-weight:
         800;
 
     color:
         var(--primary);
-
 }
 
 .plan-content h3 {
-
     font-size:
-        15px;
+        16px;
 
     font-weight:
         800;
 
     margin-bottom:
-        4px;
-
+        5px;
 }
 
 .plan-content p {
-
     color:
         var(--sub-text);
 
     font-size:
         13px;
 
+    line-height:
+        1.6;
 }
 
 .plan-actions {
-
     display:
         flex;
 
     gap:
-        5px;
-
+        6px;
 }
 
 .plan-actions button {
-
     width:
-        34px;
+        36px;
 
     height:
-        34px;
+        36px;
 
     border-radius:
         9px;
@@ -1089,295 +897,267 @@ main {
         var(--text);
 
     border:
-        1px solid var(--border);
-
+        1px solid
+        var(--border);
 }
 
 .plan-actions button:hover {
-
     background:
         var(--primary-soft);
 
     color:
         var(--primary);
 
+    border-color:
+        #d9ddff;
 }
 
 .plan-card.completed {
-
     opacity:
-        0.52;
-
+        0.55;
 }
 
 .plan-card.completed .plan-content h3 {
-
     text-decoration:
         line-through;
-
 }
 
 .empty-plan {
-
     padding:
-        55px 20px;
+        60px 20px;
 
     text-align:
         center;
 
     color:
         var(--sub-text);
-
 }
 
 .empty-icon {
-
     font-size:
-        40px;
+        42px;
 
     margin-bottom:
         12px;
-
 }
 
 .empty-plan h3 {
-
     color:
         var(--text);
 
+    font-size:
+        16px;
+
     margin-bottom:
         7px;
-
 }
 
 
 /* =========================================================
-   11. WEEK
+   10. WEEK VIEW
 ========================================================= */
 
 .week-grid {
-
     display:
         grid;
 
     grid-template-columns:
-        repeat(7, minmax(0, 1fr));
+        repeat(7, 1fr);
 
     gap:
-        8px;
+        10px;
 
     width:
         100%;
-
 }
 
 .week-day {
-
     min-height:
         180px;
 
     padding:
-        11px;
+        13px;
 
     background:
         var(--card-soft);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
-        12px;
-
+        14px;
 }
 
 .week-day-header {
-
-    margin-bottom:
-        10px;
-
-    color:
-        var(--primary);
-
     font-size:
         12px;
 
     font-weight:
         800;
 
+    color:
+        var(--primary);
+
+    margin-bottom:
+        12px;
 }
 
 .week-plan {
-
     padding:
-        8px;
+        9px;
 
     margin-bottom:
-        6px;
-
-    border:
-        1px solid var(--border);
+        7px;
 
     border-radius:
-        8px;
+        9px;
 
     background:
         var(--card);
 
-    font-size:
-        11px;
-
-    cursor:
-        pointer;
-
-}
-
-.week-plan:hover {
-
-    border-color:
-        var(--primary);
-
-}
-
-.week-plan.completed {
-
-    opacity:
-        0.45;
-
-    text-decoration:
-        line-through;
-
-}
-
-.no-plan {
-
-    color:
-        var(--sub-text);
-
-    font-size:
-        11px;
-
-}
-
-
-/* =========================================================
-   12. MONTH
-========================================================= */
-
-.month-calendar {
-
-    width:
-        100%;
-
-}
-
-.month-weekdays,
-.month-days {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(7, minmax(0, 1fr));
-
-    gap:
-        7px;
-
-}
-
-.month-weekdays {
-
-    margin-bottom:
-        7px;
-
-}
-
-.month-weekdays span {
-
-    padding:
-        7px;
-
-    text-align:
-        center;
-
-    color:
-        var(--sub-text);
-
-    font-size:
-        11px;
-
-    font-weight:
-        800;
-
-}
-
-.month-day {
-
-    min-height:
-        105px;
-
-    padding:
-        9px;
-
-    background:
-        var(--card-soft);
-
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
-    border-radius:
-        10px;
+    font-size:
+        11px;
 
     cursor:
         pointer;
 
     transition:
         var(--transition);
-
 }
 
-.month-day:hover {
-
+.week-plan:hover {
     border-color:
         var(--primary);
 
     transform:
         translateY(-1px);
-
 }
 
-.empty-day {
-
+.week-plan.completed {
     opacity:
-        0.3;
+        0.5;
 
+    text-decoration:
+        line-through;
 }
 
-.month-day-number {
+.no-plan {
+    color:
+        var(--sub-text);
 
+    font-size:
+        11px;
+}
+
+
+/* =========================================================
+   11. MONTH VIEW
+========================================================= */
+
+.month-calendar {
+    width:
+        100%;
+}
+
+.month-weekdays,
+.month-days {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap:
+        8px;
+}
+
+.month-weekdays {
     margin-bottom:
-        6px;
+        8px;
+}
+
+.month-weekdays span {
+    padding:
+        8px 0;
+
+    text-align:
+        center;
+
+    color:
+        var(--sub-text);
 
     font-size:
         12px;
 
     font-weight:
         800;
+}
 
+.month-day {
+    min-height:
+        105px;
+
+    padding:
+        10px;
+
+    background:
+        var(--card-soft);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        12px;
+
+    cursor:
+        pointer;
+
+    transition:
+        var(--transition);
+}
+
+.month-day:hover {
+    border-color:
+        var(--primary);
+
+    transform:
+        translateY(-1px);
+}
+
+.empty-day {
+    opacity:
+        0.35;
+}
+
+.month-day-number {
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    margin-bottom:
+        8px;
 }
 
 .month-plan {
-
-    padding:
-        4px 6px;
-
-    margin-bottom:
-        3px;
-
     overflow:
         hidden;
 
+    padding:
+        5px 7px;
+
+    margin-bottom:
+        4px;
+
     border-radius:
-        5px;
+        6px;
 
     background:
         var(--primary-soft);
@@ -1386,23 +1166,21 @@ main {
         var(--primary);
 
     font-size:
-        9px;
+        10px;
 
     white-space:
         nowrap;
 
     text-overflow:
         ellipsis;
-
 }
 
 
 /* =========================================================
-   13. D-DAY
+   12. D-DAY
 ========================================================= */
 
 #dday-form {
-
     display:
         grid;
 
@@ -1410,15 +1188,13 @@ main {
         1fr 180px auto;
 
     gap:
-        9px;
+        10px;
 
     margin-bottom:
-        16px;
-
+        18px;
 }
 
 #dday-form button {
-
     padding:
         0 20px;
 
@@ -1431,20 +1207,22 @@ main {
     color:
         white;
 
-    font-weight:
-        700;
+    font-size:
+        13px;
 
+    font-weight:
+        800;
 }
 
 #dday-form button:hover {
-
     background:
         var(--primary-hover);
 
+    transform:
+        translateY(-1px);
 }
 
 #dday-list {
-
     display:
         flex;
 
@@ -1453,11 +1231,9 @@ main {
 
     gap:
         8px;
-
 }
 
 .dday-item {
-
     display:
         flex;
 
@@ -1468,51 +1244,47 @@ main {
         space-between;
 
     padding:
-        14px 16px;
+        16px;
 
     background:
         var(--card-soft);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
-        12px;
-
+        13px;
 }
 
 .dday-item strong {
-
     font-size:
         14px;
-
 }
 
 .dday-item > strong {
-
     color:
         var(--primary);
 
     font-size:
         18px;
-
 }
 
 .dday-item small {
-
     display:
         block;
 
     margin-top:
-        3px;
+        4px;
 
     color:
         var(--sub-text);
 
+    font-size:
+        12px;
 }
 
 .dday-actions {
-
     display:
         flex;
 
@@ -1521,39 +1293,42 @@ main {
 
     gap:
         8px;
-
 }
 
 .dday-delete-button {
+    width:
+        34px;
+
+    height:
+        34px;
 
     padding:
-        6px;
+        0;
+
+    border-radius:
+        8px;
 
     background:
         transparent;
 
-    color:
-        var(--sub-text);
-
+    font-size:
+        15px;
 }
 
 .dday-delete-button:hover {
-
-    color:
-        var(--danger);
+    background:
+        #fee2e2;
 
     transform:
-        scale(1.1);
-
+        scale(1.05);
 }
 
 
 /* =========================================================
-   14. STATISTICS
+   13. STATISTICS SUMMARY
 ========================================================= */
 
 .statistics {
-
     display:
         grid;
 
@@ -1562,116 +1337,79 @@ main {
 
     gap:
         12px;
-
 }
 
 .stat-card {
-
     position:
         relative;
+
+    overflow:
+        hidden;
 
     padding:
         20px;
 
     background:
-        var(--card-soft);
+        linear-gradient(
+            145deg,
+            var(--card-soft),
+            var(--card)
+        );
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
-        14px;
+        15px;
 
-    overflow:
-        hidden;
-
+    transition:
+        var(--transition);
 }
 
-.stat-card::before {
-
+.stat-card::after {
     content:
         "";
 
     position:
         absolute;
 
-    top:
-        0;
-
-    left:
-        0;
-
     width:
-        100%;
+        60px;
 
     height:
-        3px;
+        60px;
+
+    right:
+        -20px;
+
+    bottom:
+        -20px;
+
+    border-radius:
+        50%;
 
     background:
-        var(--primary);
+        var(--primary-soft);
 
     opacity:
-        0.8;
+        0.7;
+}
 
+.stat-card:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        var(--shadow);
 }
 
 .stat-card h3 {
+    position:
+        relative;
 
-    margin-bottom:
-        9px;
-
-    color:
-        var(--sub-text);
-
-    font-size:
-        11px;
-
-    font-weight:
-        700;
-
-}
-
-.stat-card strong {
-
-    font-size:
-        25px;
-
-    font-weight:
-        800;
-
-}
-
-
-/* =========================================================
-   15. STATISTICS PERIOD
-========================================================= */
-
-.statistics-period {
-
-    display:
-        flex;
-
-    gap:
-        6px;
-
-    margin-bottom:
-        20px;
-
-}
-
-.statistics-period-button {
-
-    padding:
-        8px 15px;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        9px;
-
-    background:
-        var(--card-soft);
+    z-index:
+        1;
 
     color:
         var(--sub-text);
@@ -1682,20 +1420,76 @@ main {
     font-weight:
         700;
 
+    margin-bottom:
+        10px;
+}
+
+.stat-card strong {
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    font-size:
+        25px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.5px;
+}
+
+
+/* =========================================================
+   14. PERIOD BUTTONS
+========================================================= */
+
+.statistics-period {
+    display:
+        flex;
+
+    gap:
+        7px;
+
+    margin-bottom:
+        20px;
+}
+
+.statistics-period-button {
+    padding:
+        8px 15px;
+
+    border-radius:
+        9px;
+
+    background:
+        var(--card-soft);
+
+    color:
+        var(--sub-text);
+
+    border:
+        1px solid
+        var(--border);
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
 }
 
 .statistics-period-button:hover {
-
     color:
         var(--primary);
 
     border-color:
-        #c8c4ff;
-
+        #cdd2ff;
 }
 
 .statistics-period-button.active {
-
     background:
         var(--primary);
 
@@ -1705,35 +1499,32 @@ main {
     border-color:
         var(--primary);
 
+    font-weight:
+        800;
 }
 
 
 /* =========================================================
-   16. STUDY TIME CHART
+   15. STUDY TIME CHART
 ========================================================= */
 
 #statistics-chart {
-
     margin-top:
-        28px;
-
+        30px;
 }
 
 #statistics-chart h3 {
-
-    margin-bottom:
-        18px;
-
     font-size:
         15px;
 
     font-weight:
         800;
 
+    margin-bottom:
+        16px;
 }
 
 .chart-container {
-
     height:
         220px;
 
@@ -1750,29 +1541,34 @@ main {
         10px;
 
     padding:
-        20px 18px;
+        20px 15px;
+
+    overflow-x:
+        auto;
 
     background:
         var(--card-soft);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
         15px;
-
 }
 
 .chart-bar {
-
     position:
         relative;
 
     width:
-        38px;
+        40px;
 
     min-height:
         8px;
+
+    flex-shrink:
+        0;
 
     display:
         flex;
@@ -1787,10 +1583,10 @@ main {
         column;
 
     padding-bottom:
-        5px;
+        6px;
 
     border-radius:
-        8px 8px 3px 3px;
+        9px 9px 4px 4px;
 
     background:
         linear-gradient(
@@ -1800,17 +1596,27 @@ main {
         );
 
     transition:
-        height 0.4s ease;
+        height 0.4s ease,
+        transform 0.2s ease;
+}
 
+.chart-bar:hover {
+    transform:
+        translateY(-3px);
+
+    filter:
+        brightness(1.05);
 }
 
 .chart-bar span {
-
     position:
         absolute;
 
     bottom:
-        -28px;
+        -25px;
+
+    transform:
+        none;
 
     color:
         var(--sub-text);
@@ -1818,25 +1624,30 @@ main {
     font-size:
         10px;
 
+    white-space:
+        nowrap;
 }
 
 .chart-bar small {
-
     color:
         white;
 
     font-size:
         9px;
 
+    font-weight:
+        700;
+
+    white-space:
+        nowrap;
 }
 
 
 /* =========================================================
-   17. SUBJECT STATISTICS
+   16. SUBJECT STATISTICS
 ========================================================= */
 
 .subject-statistics {
-
     margin-top:
         32px;
 
@@ -1844,41 +1655,43 @@ main {
         28px;
 
     border-top:
-        1px solid var(--border);
-
+        1px solid
+        var(--border);
 }
 
-.subject-statistics h3 {
-
-    margin-bottom:
-        20px;
-
+.subject-statistics > h3,
+.subject-statistics-title {
     font-size:
         16px;
 
     font-weight:
         800;
 
+    margin-bottom:
+        20px;
 }
 
 .subject-statistics-content {
-
     display:
         grid;
 
     grid-template-columns:
-        1fr 1fr;
+        minmax(240px, 0.8fr)
+        minmax(280px, 1.2fr);
 
     gap:
-        30px;
+        32px;
 
     align-items:
         center;
-
 }
 
-.subject-pie-chart {
 
+/* =========================================================
+   17. SUBJECT PIE CHART
+========================================================= */
+
+.subject-pie-chart {
     min-height:
         280px;
 
@@ -1890,135 +1703,9 @@ main {
 
     justify-content:
         center;
-
 }
-
-.subject-pie-chart canvas {
-
-    max-width:
-        280px;
-
-    max-height:
-        280px;
-
-}
-
-.subject-statistics-list {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        9px;
-
-}
-
-.subject-stat-item {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    padding:
-        13px 15px;
-
-    background:
-        var(--card-soft);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        11px;
-
-    transition:
-        var(--transition);
-
-}
-
-.subject-stat-item:hover {
-
-    border-color:
-        #c8c4ff;
-
-    transform:
-        translateY(-1px);
-
-}
-
-.subject-stat-name {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        9px;
-
-    font-size:
-        13px;
-
-    font-weight:
-        700;
-
-}
-
-.subject-stat-color {
-
-    width:
-        11px;
-
-    height:
-        11px;
-
-    flex-shrink:
-        0;
-
-    border-radius:
-        50%;
-
-}
-
-.subject-stat-time {
-
-    color:
-        var(--text);
-
-    font-size:
-        12px;
-
-    font-weight:
-        700;
-
-}
-
-.subject-stat-detail {
-
-    color:
-        var(--sub-text);
-
-    font-size:
-        11px;
-
-}
-
-
-/* =========================================================
-   18. SUBJECT PIE CUSTOM
-========================================================= */
 
 .subject-pie {
-
     position:
         relative;
 
@@ -2042,12 +1729,10 @@ main {
 
     box-shadow:
         0 12px 30px
-        rgba(15, 23, 42, 0.08);
-
+        rgba(15, 23, 42, 0.1);
 }
 
 .subject-pie::before {
-
     content:
         "";
 
@@ -2065,11 +1750,9 @@ main {
 
     background:
         var(--card);
-
 }
 
 .subject-pie-center {
-
     position:
         relative;
 
@@ -2079,22 +1762,20 @@ main {
     display:
         flex;
 
+    flex-direction:
+        column;
+
     align-items:
         center;
 
     justify-content:
         center;
 
-    flex-direction:
-        column;
-
     text-align:
         center;
-
 }
 
 .subject-pie-center strong {
-
     color:
         var(--text);
 
@@ -2103,41 +1784,296 @@ main {
 
     font-weight:
         800;
-
 }
 
 .subject-pie-center span {
-
     margin-top:
-        4px;
+        5px;
 
     color:
         var(--sub-text);
 
     font-size:
         11px;
-
 }
 
 
 /* =========================================================
-   19. EXPORT / PDF
+   18. SUBJECT STATISTICS LIST
 ========================================================= */
 
-.export-section {
+.subject-statistics-list {
+    display:
+        flex;
 
-    margin:
-        12px 0 50px;
+    flex-direction:
+        column;
+
+    gap:
+        10px;
+}
+
+.subject-stat-item {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        12px;
+
+    padding:
+        14px 16px;
+
+    background:
+        var(--card-soft);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        12px;
+
+    transition:
+        var(--transition);
+}
+
+.subject-stat-item:hover {
+    border-color:
+        #cdd2ff;
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        var(--shadow-sm);
+}
+
+.subject-stat-name {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    min-width:
+        0;
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+}
+
+.subject-stat-color {
+    width:
+        11px;
+
+    height:
+        11px;
+
+    flex-shrink:
+        0;
+
+    border-radius:
+        50%;
+}
+
+.subject-stat-time {
+    color:
+        var(--text);
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    white-space:
+        nowrap;
+}
+
+.subject-stat-detail {
+    min-width:
+        45px;
+
+    color:
+        var(--sub-text);
+
+    font-size:
+        12px;
+
+    text-align:
+        right;
+}
+
+
+/* =========================================================
+   19. OLD SUBJECT STAT CARD COMPATIBILITY
+========================================================= */
+
+.subject-stat-card {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        14px;
+
+    padding:
+        20px;
+
+    background:
+        var(--card-soft);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        14px;
+}
+
+.subject-stat-card h3 {
+    color:
+        var(--primary);
+
+    font-size:
+        16px;
+
+    font-weight:
+        800;
+}
+
+.subject-stat-info {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        10px;
+}
+
+.subject-stat-info .subject-stat-item {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        center;
+}
+
+.subject-stat-achievement {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+}
+
+.subject-stat-progress {
+    flex:
+        1;
+
+    height:
+        8px;
+
+    overflow:
+        hidden;
+
+    background:
+        var(--border);
+
+    border-radius:
+        999px;
+}
+
+.subject-stat-progress-bar {
+    height:
+        100%;
+
+    background:
+        var(--primary);
+
+    border-radius:
+        999px;
+}
+
+.subject-stat-percent {
+    min-width:
+        45px;
+
+    color:
+        var(--primary);
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    text-align:
+        right;
+}
+
+.empty-subject-statistics {
+    padding:
+        25px;
+
+    color:
+        var(--sub-text);
 
     text-align:
         center;
 
+    background:
+        var(--card-soft);
+
+    border:
+        1px dashed
+        var(--border);
+
+    border-radius:
+        12px;
+}
+
+
+/* =========================================================
+   20. PDF EXPORT
+========================================================= */
+
+.export-section {
+    text-align:
+        center;
+
+    margin:
+        10px 0 50px;
 }
 
 #pdf-button {
-
     padding:
-        13px 25px;
+        13px 24px;
 
     border-radius:
         12px;
@@ -2149,30 +2085,29 @@ main {
         white;
 
     font-size:
-        14px;
+        13px;
 
     font-weight:
         700;
 
+    box-shadow:
+        var(--shadow-sm);
 }
 
 #pdf-button:hover {
-
-    opacity:
-        0.82;
-
     transform:
         translateY(-2px);
 
+    opacity:
+        0.9;
 }
 
 
 /* =========================================================
-   20. MODAL
+   21. COPY MODAL
 ========================================================= */
 
 .modal {
-
     position:
         fixed;
 
@@ -2198,19 +2133,15 @@ main {
         rgba(15, 23, 42, 0.48);
 
     backdrop-filter:
-        blur(6px);
-
+        blur(7px);
 }
 
 .modal.hidden {
-
     display:
         none;
-
 }
 
 .modal-content {
-
     position:
         relative;
 
@@ -2218,7 +2149,7 @@ main {
         100%;
 
     max-width:
-        410px;
+        420px;
 
     padding:
         30px;
@@ -2230,7 +2161,8 @@ main {
         var(--text);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
         22px;
@@ -2239,45 +2171,41 @@ main {
         var(--shadow-lg);
 
     animation:
-        modalAppear 0.2s ease;
-
+        modalOpen 0.22s ease;
 }
 
-@keyframes modalAppear {
-
+@keyframes modalOpen {
     from {
-
         opacity:
             0;
 
         transform:
-            scale(0.96)
-            translateY(10px);
-
+            translateY(15px)
+            scale(0.97);
     }
 
     to {
-
         opacity:
             1;
 
         transform:
-            scale(1)
-            translateY(0);
-
+            translateY(0)
+            scale(1);
     }
-
 }
 
 .modal-content h2 {
-
     margin-bottom:
         8px;
 
+    font-size:
+        19px;
+
+    font-weight:
+        800;
 }
 
 .modal-content p {
-
     margin-bottom:
         22px;
 
@@ -2286,11 +2214,9 @@ main {
 
     font-size:
         13px;
-
 }
 
 .modal-content label {
-
     display:
         block;
 
@@ -2302,18 +2228,14 @@ main {
 
     font-weight:
         700;
-
 }
 
 .modal-content input {
-
     margin-bottom:
         15px;
-
 }
 
 .modal-close {
-
     position:
         absolute;
 
@@ -2336,22 +2258,18 @@ main {
         var(--card-soft);
 
     color:
-        var(--sub-text);
+        var(--text);
 
+    font-size:
+        15px;
 }
 
 .modal-close:hover {
-
     background:
         var(--border);
-
-    color:
-        var(--text);
-
 }
 
 .confirm-copy-button {
-
     width:
         100%;
 
@@ -2367,537 +2285,562 @@ main {
     color:
         white;
 
+    font-size:
+        13px;
+
     font-weight:
         800;
-
 }
 
 .confirm-copy-button:hover {
-
     background:
         var(--primary-hover);
 
+    transform:
+        translateY(-1px);
 }
 
 
 /* =========================================================
-   21. DARK MODE
+   22. DARK MODE
 ========================================================= */
 
 body.dark {
-
     --bg:
-        #0c0e14;
+        #0b1020;
 
     --card:
-        #151821;
+        #151b2e;
 
     --card-soft:
-        #1a1e29;
+        #1b2238;
 
     --text:
-        #f5f7fb;
+        #f4f6ff;
 
     --sub-text:
-        #969baa;
+        #9ca6bd;
 
     --border:
-        #282d3a;
+        #29324a;
 
     --primary:
-        #8178ff;
+        #818cf8;
 
     --primary-hover:
-        #7067f4;
+        #6366f1;
 
     --primary-soft:
-        #25233f;
+        #252b5a;
+
+    --shadow-sm:
+        0 4px 15px rgba(0, 0, 0, 0.18);
 
     --shadow:
-        0 12px 35px
-        rgba(0, 0, 0, 0.25);
+        0 12px 35px rgba(0, 0, 0, 0.22);
 
     --shadow-lg:
-        0 25px 70px
-        rgba(0, 0, 0, 0.35);
-
+        0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
 body.dark #app-page header {
-
     background:
-        rgba(21, 24, 33, 0.88);
+        rgba(21, 27, 46, 0.9);
 
+    border-bottom-color:
+        rgba(41, 50, 74, 0.8);
 }
 
 body.dark #login-page {
-
     background:
-
         radial-gradient(
-            circle at 10% 10%,
-            rgba(99, 91, 255, 0.18),
-            transparent 32%
+            circle at 15% 15%,
+            rgba(99, 102, 241, 0.15),
+            transparent 30%
         ),
 
         radial-gradient(
-            circle at 90% 90%,
-            rgba(139, 92, 246, 0.15),
-            transparent 32%
+            circle at 85% 85%,
+            rgba(124, 58, 237, 0.12),
+            transparent 30%
         ),
 
         var(--bg);
-
 }
 
 body.dark .login-container {
-
     background:
-        rgba(21, 24, 33, 0.92);
+        rgba(21, 27, 46, 0.88);
 
     border-color:
-        rgba(255, 255, 255, 0.06);
-
+        var(--border);
 }
 
-body.dark #login-form input {
-
-    background:
-        #10131a;
-
-}
-
+body.dark .month-plan,
+body.dark #today-button,
 body.dark #signup-button {
-
-    background:
-        transparent;
-
-}
-
-body.dark #pdf-button {
-
-    background:
-        #f5f7fb;
-
-    color:
-        #111318;
-
-}
-
-body.dark .month-plan {
-
     background:
         var(--primary-soft);
 
     color:
-        #aaa4ff;
-
+        #c7d2fe;
 }
 
-body.dark #today-button {
-
+body.dark .subject-pie::before {
     background:
-        var(--primary-soft);
+        var(--card);
+}
 
-    color:
-        #aaa4ff;
-
+body.dark .dday-delete-button:hover {
+    background:
+        #4c252c;
 }
 
 
 /* =========================================================
-   22. MOBILE
+   23. TABLET
 ========================================================= */
 
-@media (max-width: 768px) {
+@media (
+    min-width: 769px
+) and (
+    max-width: 1100px
+) {
+
+    main {
+        max-width:
+            960px;
+
+        padding:
+            30px 20px 70px;
+    }
 
     #app-page header {
+        padding:
+            0 24px;
+    }
 
+    .plan-card {
+        grid-template-columns:
+            90px 1fr auto;
+
+        gap:
+            15px;
+    }
+
+    .week-grid {
+        gap:
+            6px;
+    }
+
+    .week-day {
+        min-height:
+            160px;
+
+        padding:
+            9px;
+    }
+
+    .week-plan {
+        padding:
+            7px;
+
+        font-size:
+            11px;
+    }
+
+    .month-weekdays,
+    .month-days {
+        gap:
+            5px;
+    }
+
+    .month-day {
+        min-height:
+            90px;
+    }
+
+    .statistics {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   24. MOBILE
+========================================================= */
+
+@media (
+    max-width: 768px
+) {
+
+    #app-page header {
         height:
             64px;
 
         padding:
             0 15px;
-
     }
 
     .header-left h1 {
-
         font-size:
-            16px;
-
+            17px;
     }
 
     .header-right button {
-
         padding:
             0 10px;
+    }
 
+    #dark-mode-button {
+        width:
+            40px;
+
+        padding:
+            0;
     }
 
     main {
-
         padding:
             24px 14px 60px;
+    }
 
+    .date-section {
+        gap:
+            15px;
+    }
+
+    .date-section h2 {
+        font-size:
+            18px;
+    }
+
+    .view-button {
+        min-width:
+            auto;
+
+        padding:
+            8px 14px;
     }
 
     .plan-add-section,
+    .planner-section,
     .dday-section,
     .statistics-section {
-
         padding:
             18px;
 
         border-radius:
             17px;
-
     }
 
     #plan-form {
-
         grid-template-columns:
             1fr;
-
     }
 
     #plan-form button {
-
         grid-column:
             auto;
-
     }
 
     .plan-card {
-
         grid-template-columns:
             1fr;
 
         gap:
-            9px;
-
+            10px;
     }
 
     .plan-actions {
-
         justify-content:
             flex-end;
-
     }
 
     .week-grid {
-
         grid-template-columns:
             1fr;
 
+        gap:
+            8px;
     }
 
     .week-day {
-
         min-height:
             auto;
-
     }
 
     .month-days,
     .month-weekdays {
-
         gap:
             3px;
-
     }
 
     .month-day {
-
         min-height:
             70px;
 
         padding:
             6px;
-
     }
 
     .month-plan {
-
         font-size:
             8px;
-
     }
 
     #dday-form {
-
         grid-template-columns:
             1fr;
-
     }
 
     #dday-form button {
-
         height:
             44px;
-
     }
 
     .statistics {
-
         grid-template-columns:
             repeat(2, 1fr);
-
     }
 
     .stat-card {
-
         padding:
             15px;
-
     }
 
     .stat-card strong {
-
         font-size:
             20px;
+    }
 
+    .chart-container {
+        height:
+            200px;
+
+        padding:
+            15px 8px;
+    }
+
+    .chart-bar {
+        width:
+            28px;
     }
 
     .subject-statistics-content {
-
         grid-template-columns:
             1fr;
 
         gap:
             20px;
-
     }
 
     .subject-pie-chart {
-
         min-height:
             240px;
-
     }
 
     .subject-pie {
-
         width:
             210px;
 
         height:
             210px;
-
     }
 
     .subject-pie::before {
-
         width:
             125px;
 
         height:
             125px;
-
     }
 
     .subject-pie-center strong {
-
         font-size:
             17px;
-
     }
 
-    .chart-container {
-
-        padding:
-            15px 8px;
-
+    .subject-stat-info {
+        grid-template-columns:
+            repeat(2, 1fr);
     }
-
-    .chart-bar {
-
-        width:
-            28px;
-
-    }
-
 }
 
 
 /* =========================================================
-   23. SMALL MOBILE
+   25. SMALL MOBILE
 ========================================================= */
 
-@media (max-width: 420px) {
+@media (
+    max-width: 420px
+) {
 
     .login-container {
-
         padding:
-            34px 22px 28px;
+            32px 22px;
 
         border-radius:
             22px;
-
     }
 
-    .date-section {
-
-        gap:
-            13px;
-
+    .login-container h1 {
+        font-size:
+            24px;
     }
 
     .date-section > button {
-
         width:
             38px;
 
         height:
             38px;
-
-    }
-
-    .date-section > div {
-
-        min-width:
-            140px;
-
     }
 
     .date-section h2 {
-
         font-size:
-            17px;
+            16px;
+    }
 
+    .date-section > div {
+        min-width:
+            140px;
     }
 
     .view-button {
-
-        min-width:
-            auto;
-
         padding:
-            8px 11px;
+            7px 10px;
 
         font-size:
             12px;
-
     }
 
     .statistics {
-
-        gap:
-            8px;
-
+        grid-template-columns:
+            1fr 1fr;
     }
 
     .stat-card {
-
         padding:
             13px;
-
     }
 
     .stat-card strong {
-
         font-size:
             18px;
-
     }
 
     .modal-content {
-
         padding:
             25px 20px;
-
     }
 
-}
-
-
-/* =========================================================
-   24. TABLET
-========================================================= */
-
-@media (min-width: 769px) and (max-width: 1100px) {
-
-    main {
-
-        max-width:
-            950px;
-
-    }
-
-    .statistics {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-    }
-
-    .week-grid {
-
-        gap:
-            5px;
-
-    }
-
-    .week-day {
-
+    .subject-stat-item {
         padding:
-            8px;
-
+            12px;
     }
 
+    .subject-stat-name {
+        font-size:
+            12px;
+    }
+
+    .subject-stat-time {
+        font-size:
+            12px;
+    }
 }
 
 
 /* =========================================================
-   25. TOUCH DEVICE
+   26. TOUCH DEVICE
 ========================================================= */
 
-@media (hover: none) and (pointer: coarse) {
+@media (
+    hover: none
+) and (
+    pointer: coarse
+) {
 
     button {
-
         min-height:
             44px;
+    }
 
+    .date-section > button {
+        width:
+            46px;
+
+        height:
+            46px;
     }
 
     .plan-actions button {
-
         width:
             42px;
 
         height:
             42px;
-
     }
 
     .dday-delete-button {
-
         min-width:
             44px;
 
         min-height:
             44px;
-
     }
 
+    .view-button {
+        min-height:
+            44px;
+    }
 }
 
 
 /* =========================================================
-   26. PRINT / PDF
+   27. MOBILE LANDSCAPE
+========================================================= */
+
+@media (
+    max-width: 768px
+) and (
+    orientation: landscape
+) {
+
+    main {
+        padding-top:
+            20px;
+    }
+
+    .plan-card {
+        grid-template-columns:
+            90px 1fr auto;
+    }
+
+    .week-grid {
+        grid-template-columns:
+            repeat(7, minmax(100px, 1fr));
+
+        overflow-x:
+            auto;
+    }
+}
+
+
+/* =========================================================
+   28. PRINT / PDF
 ========================================================= */
 
 @media print {
 
     body {
-
         background:
             white !important;
 
         color:
             black !important;
-
     }
 
     #login-page,
@@ -2907,25 +2850,20 @@ body.dark #today-button {
     .plan-add-section,
     .dday-section,
     .export-section {
-
         display:
             none !important;
-
     }
 
     main {
-
         max-width:
             100%;
 
         padding:
             0;
-
     }
 
     .planner-section,
     .statistics-section {
-
         box-shadow:
             none !important;
 
@@ -2934,11 +2872,9 @@ body.dark #today-button {
 
         background:
             white !important;
-
     }
 
     .plan-card {
-
         display:
             grid !important;
 
@@ -2968,18 +2904,14 @@ body.dark #today-button {
 
         page-break-inside:
             avoid;
-
     }
 
     .plan-content {
-
         display:
             block !important;
-
     }
 
     .plan-content h3 {
-
         display:
             block !important;
 
@@ -2991,11 +2923,9 @@ body.dark #today-button {
 
         margin-bottom:
             6px !important;
-
     }
 
     .plan-content p {
-
         display:
             block !important;
 
@@ -3016,11 +2946,9 @@ body.dark #today-button {
 
         max-height:
             none !important;
-
     }
 
     .plan-time {
-
         display:
             block !important;
 
@@ -3029,48 +2957,542 @@ body.dark #today-button {
 
         font-size:
             13px !important;
-
     }
 
     .plan-actions {
-
         display:
             none !important;
+    }
+
+    .statistics {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+}
+```css
+/* =====================================================
+   LOGIN SCREEN - MODERN REDESIGN
+   기존 HTML / JS 기능 유지
+===================================================== */
+
+#login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(99, 102, 241, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(139, 92, 246, 0.16),
+            transparent 30%
+        ),
+        var(--bg);
+}
+
+
+/* 로그인 카드 */
+
+#login-page .login-container {
+    position: relative;
+
+    width: 100%;
+    max-width: 430px;
+
+    padding: 46px 40px 40px;
+
+    background:
+        rgba(255, 255, 255, 0.88);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.7);
+
+    border-radius:
+        28px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(15, 23, 42, 0.12);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    text-align:
+        center;
+
+    animation:
+        loginCardAppear 0.5s ease;
+}
+
+
+@keyframes loginCardAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(20px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* 상단 아이콘 느낌 */
+
+#login-page .login-container::before {
+    content: "📚";
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 64px;
+    height: 64px;
+
+    margin:
+        0 auto 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #8b5cf6
+        );
+
+    border-radius:
+        20px;
+
+    font-size:
+        30px;
+
+    box-shadow:
+        0 12px 25px
+        rgba(99, 102, 241, 0.25);
+}
+
+
+/* 제목 */
+
+#login-page .login-container h1 {
+
+    font-size:
+        27px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.7px;
+
+    margin-bottom:
+        10px;
+
+    color:
+        var(--text);
+
+}
+
+
+/* 설명 */
+
+#login-page .login-container > p {
+
+    color:
+        var(--sub-text);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.6;
+
+    margin-bottom:
+        28px;
+
+}
+
+
+/* 로그인 폼 */
+
+#login-page #login-form {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        12px;
+
+}
+
+
+/* 입력창 */
+
+#login-page #login-form input {
+
+    width:
+        100%;
+
+    height:
+        50px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        13px;
+
+    background:
+        rgba(255, 255, 255, 0.8);
+
+    color:
+        var(--text);
+
+    font-size:
+        14px;
+
+    transition:
+        all 0.2s ease;
+
+}
+
+
+/* 입력창 포커스 */
+
+#login-page #login-form input:focus {
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(99, 102, 241, 0.12);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* 로그인 버튼 */
+
+#login-page #login-form button[type="submit"] {
+
+    width:
+        100%;
+
+    height:
+        50px;
+
+    margin-top:
+        6px;
+
+    border-radius:
+        13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #7c3aed
+        );
+
+    color:
+        white;
+
+    font-size:
+        15px;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 10px 22px
+        rgba(99, 102, 241, 0.25);
+
+}
+
+
+/* 로그인 버튼 hover */
+
+#login-page #login-form button[type="submit"]:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 14px 28px
+        rgba(99, 102, 241, 0.32);
+
+}
+
+
+/* 회원가입 버튼 */
+
+#login-page #signup-button {
+
+    width:
+        100%;
+
+    height:
+        48px;
+
+    margin-top:
+        2px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        13px;
+
+    background:
+        transparent;
+
+    color:
+        var(--sub-text);
+
+    font-size:
+        14px;
+
+    font-weight:
+        600;
+
+}
+
+
+/* 회원가입 hover */
+
+#login-page #signup-button:hover {
+
+    background:
+        var(--bg);
+
+    color:
+        var(--primary);
+
+    border-color:
+        #c7d2fe;
+
+}
+
+
+/* 로그인 오류 메시지 */
+
+#login-page #login-message {
+
+    min-height:
+        20px;
+
+    margin-top:
+        16px;
+
+    margin-bottom:
+        0;
+
+    color:
+        var(--danger);
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+
+}
+
+
+/* =====================================================
+   로그인 다크모드
+===================================================== */
+
+body.dark #login-page {
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(99, 102, 241, 0.20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(139, 92, 246, 0.18),
+            transparent 30%
+        ),
+        var(--bg);
+
+}
+
+
+body.dark #login-page .login-container {
+
+    background:
+        rgba(31, 41, 55, 0.88);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0, 0, 0, 0.35);
+
+}
+
+
+body.dark #login-page #login-form input {
+
+    background:
+        rgba(17, 24, 39, 0.7);
+
+    border-color:
+        var(--border);
+
+}
+
+
+body.dark #login-page #signup-button {
+
+    background:
+        transparent;
+
+    color:
+        var(--sub-text);
+
+}
+
+
+body.dark #login-page #signup-button:hover {
+
+    background:
+        rgba(99, 102, 241, 0.12);
+
+    color:
+        #c7d2fe;
+
+    border-color:
+        #4f46e5;
+
+}
+
+
+/* =====================================================
+   모바일
+===================================================== */
+
+@media (max-width: 480px) {
+
+    #login-page {
+
+        padding:
+            16px;
+
+    }
+
+
+    #login-page .login-container {
+
+        padding:
+            36px 24px 30px;
+
+        border-radius:
+            22px;
+
+    }
+
+
+    #login-page .login-container::before {
+
+        width:
+            56px;
+
+        height:
+            56px;
+
+        border-radius:
+            17px;
+
+        font-size:
+            26px;
+
+    }
+
+
+    #login-page .login-container h1 {
+
+        font-size:
+            23px;
+
+    }
+
+
+    #login-page .login-container > p {
+
+        font-size:
+            13px;
 
     }
 
 }
 
 
-/* =========================================================
-   27. LANDSCAPE MOBILE
-========================================================= */
+/* =====================================================
+   아주 작은 화면
+===================================================== */
 
-@media (max-width: 768px) and (orientation: landscape) {
+@media (max-width: 360px) {
 
-    main {
+    #login-page .login-container {
 
-        padding-top:
-            20px;
-
-    }
-
-    .plan-card {
-
-        grid-template-columns:
-            90px 1fr auto;
+        padding:
+            30px 20px 26px;
 
     }
 
-    .week-grid {
 
-        grid-template-columns:
-            repeat(7, minmax(100px, 1fr));
+    #login-page .login-container h1 {
 
-        overflow-x:
-            auto;
+        font-size:
+            21px;
 
     }
 
 }
 ```
+/* =====================================================
+   다크모드 PDF 버튼
+===================================================== */
+
+body.dark #pdf-button {
+    background: #f9fafb !important;
+    color: #000000 !important;
+    border: none !important;
+}
+
+body.dark #pdf-button:hover {
+    background: #e5e7eb !important;
+    color: #000000 !important;
+}
