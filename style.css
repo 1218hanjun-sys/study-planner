@@ -1,11 +1,11 @@
 /* =========================================================
    STUDY PLANNER — MODERN DASHBOARD UI
-   HTML / JS 구조 변경 없이 CSS만 교체
+   HTML / JS 기능 유지용 전체 CSS
 ========================================================= */
 
 
 /* =========================================================
-   1. RESET
+   1. RESET & VARIABLES
 ========================================================= */
 
 * {
@@ -15,44 +15,43 @@
 }
 
 :root {
-    --bg: #f6f7fb;
+    --bg: #f4f6fb;
     --card: #ffffff;
-    --card-soft: #f9fafc;
+    --card-soft: #f8f9fd;
 
-    --text: #171923;
-    --sub-text: #737887;
+    --text: #182033;
+    --sub-text: #7b8498;
 
-    --border: #e8eaf0;
+    --border: #e7eaf1;
 
-    --primary: #6c63ff;
-    --primary-dark: #574fd6;
-    --primary-soft: #efeeff;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-soft: #eef0ff;
 
-    --success: #22c55e;
+    --success: #10b981;
     --danger: #ef4444;
     --warning: #f59e0b;
 
     --shadow-sm:
-        0 2px 8px rgba(15, 23, 42, 0.04);
+        0 4px 15px rgba(15, 23, 42, 0.04);
 
     --shadow:
-        0 10px 35px rgba(15, 23, 42, 0.06);
+        0 12px 35px rgba(15, 23, 42, 0.07);
 
     --shadow-lg:
         0 20px 60px rgba(15, 23, 42, 0.12);
 
     --radius-sm: 10px;
     --radius: 16px;
-    --radius-lg: 22px;
+    --radius-lg: 24px;
 
-    --transition: 0.2s ease;
+    --transition:
+        all 0.22s ease;
 }
-
 
 html {
     scroll-behavior: smooth;
 }
-
 
 body {
     min-height: 100vh;
@@ -75,20 +74,17 @@ body {
         color 0.3s ease;
 }
 
-
 button,
 input,
 textarea {
     font-family: inherit;
 }
 
-
 button {
     border: none;
     cursor: pointer;
-    transition: all var(--transition);
+    transition: var(--transition);
 }
-
 
 input,
 textarea {
@@ -107,7 +103,7 @@ textarea {
         var(--text);
 
     padding:
-        13px 15px;
+        12px 14px;
 
     font-size:
         14px;
@@ -116,17 +112,15 @@ textarea {
         none;
 
     transition:
-        border var(--transition),
-        box-shadow var(--transition),
-        background var(--transition);
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
-
 
 input::placeholder,
 textarea::placeholder {
-    color: #a3a7b2;
+    color: #a5adbd;
 }
-
 
 input:focus,
 textarea:focus {
@@ -135,15 +129,13 @@ textarea:focus {
 
     box-shadow:
         0 0 0 4px
-        rgba(108, 99, 255, 0.10);
+        rgba(99, 102, 241, 0.1);
 }
-
 
 textarea {
-    min-height: 90px;
     resize: vertical;
+    min-height: 90px;
 }
-
 
 .hidden {
     display: none !important;
@@ -171,20 +163,19 @@ textarea {
 
     background:
         radial-gradient(
-            circle at 10% 10%,
-            rgba(108, 99, 255, 0.15),
+            circle at 15% 15%,
+            rgba(99, 102, 241, 0.16),
             transparent 30%
         ),
 
         radial-gradient(
-            circle at 90% 90%,
-            rgba(139, 92, 246, 0.12),
+            circle at 85% 85%,
+            rgba(139, 92, 246, 0.14),
             transparent 30%
         ),
 
         var(--bg);
 }
-
 
 .login-container {
     width: 100%;
@@ -194,7 +185,7 @@ textarea {
         44px 38px;
 
     background:
-        rgba(255, 255, 255, 0.92);
+        rgba(255, 255, 255, 0.88);
 
     border:
         1px solid
@@ -207,16 +198,15 @@ textarea {
         var(--shadow-lg);
 
     backdrop-filter:
-        blur(20px);
+        blur(18px);
 
     text-align:
         center;
 }
 
-
 .login-container h1 {
     font-size:
-        30px;
+        28px;
 
     font-weight:
         800;
@@ -228,7 +218,6 @@ textarea {
         10px;
 }
 
-
 .login-container > p {
     color:
         var(--sub-text);
@@ -237,9 +226,8 @@ textarea {
         14px;
 
     margin-bottom:
-        30px;
+        28px;
 }
-
 
 #login-form {
     display:
@@ -252,16 +240,14 @@ textarea {
         12px;
 }
 
-
 #login-form input {
     height:
         50px;
 }
 
-
 #login-form button {
     height:
-        50px;
+        48px;
 
     border-radius:
         12px;
@@ -273,16 +259,15 @@ textarea {
         700;
 }
 
-
 #login-form button[type="submit"] {
     margin-top:
-        6px;
+        4px;
 
     background:
         linear-gradient(
             135deg,
-            var(--primary),
-            #8b7cff
+            #6366f1,
+            #7c3aed
         );
 
     color:
@@ -290,26 +275,17 @@ textarea {
 
     box-shadow:
         0 8px 18px
-        rgba(108, 99, 255, 0.25);
+        rgba(99, 102, 241, 0.25);
 }
 
-
 #login-form button[type="submit"]:hover {
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary-dark),
-            #7568e8
-        );
-
     transform:
         translateY(-2px);
 
     box-shadow:
         0 12px 24px
-        rgba(108, 99, 255, 0.3);
+        rgba(99, 102, 241, 0.3);
 }
-
 
 #signup-button {
     background:
@@ -319,22 +295,17 @@ textarea {
         var(--primary);
 }
 
-
 #signup-button:hover {
     background:
-        #e5e3ff;
-
-    transform:
-        translateY(-1px);
+        #e1e5ff;
 }
-
 
 #login-message {
     min-height:
         18px;
 
     margin-top:
-        15px;
+        16px;
 
     color:
         var(--danger);
@@ -345,13 +316,10 @@ textarea {
 
 
 /* =========================================================
-   3. HEADER
+   3. APP HEADER
 ========================================================= */
 
 #app-page header {
-    height:
-        72px;
-
     position:
         sticky;
 
@@ -360,6 +328,9 @@ textarea {
 
     z-index:
         100;
+
+    height:
+        72px;
 
     display:
         flex;
@@ -371,19 +342,18 @@ textarea {
         space-between;
 
     padding:
-        0 36px;
+        0 32px;
 
     background:
         rgba(255, 255, 255, 0.88);
 
     border-bottom:
         1px solid
-        rgba(232, 234, 240, 0.8);
+        rgba(231, 234, 241, 0.8);
 
     backdrop-filter:
-        blur(16px);
+        blur(18px);
 }
-
 
 .header-left h1 {
     font-size:
@@ -396,7 +366,6 @@ textarea {
         -0.5px;
 }
 
-
 .header-right {
     display:
         flex;
@@ -407,7 +376,6 @@ textarea {
     gap:
         8px;
 }
-
 
 .header-right button {
     height:
@@ -436,7 +404,6 @@ textarea {
         var(--border);
 }
 
-
 .header-right button:hover {
     background:
         var(--primary-soft);
@@ -445,9 +412,8 @@ textarea {
         var(--primary);
 
     border-color:
-        #dcd9ff;
+        #d9ddff;
 }
-
 
 #dark-mode-button {
     width:
@@ -470,13 +436,13 @@ main {
         100%;
 
     max-width:
-        1180px;
+        1120px;
 
     margin:
         0 auto;
 
     padding:
-        40px 24px 90px;
+        34px 24px 80px;
 }
 
 
@@ -501,7 +467,6 @@ main {
         22px;
 }
 
-
 .date-section > button {
     width:
         44px;
@@ -515,27 +480,26 @@ main {
     background:
         var(--card);
 
+    color:
+        var(--text);
+
     border:
         1px solid
         var(--border);
 
-    color:
-        var(--text);
-
-    font-size:
-        15px;
-
     box-shadow:
         var(--shadow-sm);
+
+    font-size:
+        16px;
 }
 
-
 .date-section > button:hover {
-    background:
-        var(--primary);
-
     color:
         white;
+
+    background:
+        var(--primary);
 
     border-color:
         var(--primary);
@@ -543,7 +507,6 @@ main {
     transform:
         translateY(-2px);
 }
-
 
 .date-section > div {
     min-width:
@@ -553,10 +516,9 @@ main {
         center;
 }
 
-
 .date-section h2 {
     font-size:
-        23px;
+        22px;
 
     font-weight:
         800;
@@ -568,13 +530,12 @@ main {
         8px;
 }
 
-
 #today-button {
     padding:
         6px 14px;
 
     border-radius:
-        20px;
+        999px;
 
     background:
         var(--primary-soft);
@@ -583,12 +544,11 @@ main {
         var(--primary);
 
     font-size:
-        11px;
+        12px;
 
     font-weight:
-        800;
+        700;
 }
-
 
 #today-button:hover {
     background:
@@ -600,21 +560,21 @@ main {
 
 
 /* =========================================================
-   6. VIEW SWITCH
+   6. VIEW SWITCHER
 ========================================================= */
 
 .view-section {
+    width:
+        fit-content;
+
     display:
         flex;
 
     gap:
         4px;
 
-    width:
-        fit-content;
-
     margin:
-        0 auto 34px;
+        0 auto 30px;
 
     padding:
         5px;
@@ -627,22 +587,21 @@ main {
         var(--border);
 
     border-radius:
-        13px;
+        12px;
 
     box-shadow:
         var(--shadow-sm);
 }
-
 
 .view-button {
     min-width:
         72px;
 
     padding:
-        9px 17px;
+        9px 16px;
 
     border-radius:
-        9px;
+        8px;
 
     background:
         transparent;
@@ -657,15 +616,10 @@ main {
         700;
 }
 
-
 .view-button:hover {
     color:
         var(--text);
-
-    background:
-        var(--card-soft);
 }
-
 
 .view-button.active {
     background:
@@ -675,13 +629,13 @@ main {
         white;
 
     box-shadow:
-        0 5px 12px
-        rgba(108, 99, 255, 0.22);
+        0 4px 12px
+        rgba(99, 102, 241, 0.22);
 }
 
 
 /* =========================================================
-   7. COMMON SECTION CARD
+   7. COMMON SECTIONS
 ========================================================= */
 
 .plan-add-section,
@@ -708,10 +662,18 @@ main {
         var(--shadow);
 }
 
-
 .plan-add-section h2,
 .dday-section h2,
 .statistics-section > h2 {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
     font-size:
         18px;
 
@@ -727,7 +689,7 @@ main {
 
 
 /* =========================================================
-   8. ADD PLAN
+   8. PLAN FORM
 ========================================================= */
 
 #plan-form {
@@ -735,12 +697,11 @@ main {
         grid;
 
     grid-template-columns:
-        1fr 1.5fr;
+        1fr 1fr;
 
     gap:
-        17px;
+        16px;
 }
-
 
 #plan-form > div {
     display:
@@ -753,24 +714,29 @@ main {
         7px;
 }
 
-
 #plan-form label {
     font-size:
         12px;
 
     font-weight:
-        800;
+        700;
 
     color:
         var(--sub-text);
 }
 
+#plan-form input {
+    height:
+        46px;
+}
 
 #plan-form textarea {
     min-height:
-        50px;
-}
+        46px;
 
+    height:
+        46px;
+}
 
 #plan-form button {
     grid-column:
@@ -789,7 +755,7 @@ main {
         linear-gradient(
             135deg,
             var(--primary),
-            #8277ff
+            #7c3aed
         );
 
     color:
@@ -802,23 +768,22 @@ main {
         800;
 
     box-shadow:
-        0 7px 16px
-        rgba(108, 99, 255, 0.18);
+        0 8px 18px
+        rgba(99, 102, 241, 0.2);
 }
-
 
 #plan-form button:hover {
     transform:
         translateY(-2px);
 
     box-shadow:
-        0 11px 22px
-        rgba(108, 99, 255, 0.25);
+        0 12px 25px
+        rgba(99, 102, 241, 0.27);
 }
 
 
 /* =========================================================
-   9. PLANNER
+   9. PLANNER / PLAN CARD
 ========================================================= */
 
 .planner-section {
@@ -829,16 +794,15 @@ main {
         column;
 
     gap:
-        10px;
+        12px;
 }
-
 
 .plan-card {
     display:
         grid;
 
     grid-template-columns:
-        90px 1fr auto;
+        105px 1fr auto;
 
     align-items:
         center;
@@ -847,7 +811,7 @@ main {
         20px;
 
     padding:
-        18px 20px;
+        20px;
 
     background:
         var(--card);
@@ -857,29 +821,27 @@ main {
         var(--border);
 
     border-radius:
-        14px;
+        16px;
 
     transition:
-        all var(--transition);
+        var(--transition);
 }
-
 
 .plan-card:hover {
     border-color:
-        #d8d5ff;
+        #cdd2ff;
 
     transform:
         translateY(-2px);
 
     box-shadow:
-        0 8px 24px
-        rgba(108, 99, 255, 0.08);
+        0 10px 25px
+        rgba(99, 102, 241, 0.08);
 }
-
 
 .plan-time {
     font-size:
-        12px;
+        13px;
 
     font-weight:
         800;
@@ -888,10 +850,9 @@ main {
         var(--primary);
 }
 
-
 .plan-content h3 {
     font-size:
-        15px;
+        16px;
 
     font-weight:
         800;
@@ -900,34 +861,31 @@ main {
         5px;
 }
 
-
 .plan-content p {
+    color:
+        var(--sub-text);
+
     font-size:
         13px;
 
     line-height:
-        1.5;
-
-    color:
-        var(--sub-text);
+        1.6;
 }
-
 
 .plan-actions {
     display:
         flex;
 
     gap:
-        5px;
+        6px;
 }
-
 
 .plan-actions button {
     width:
-        34px;
+        36px;
 
     height:
-        34px;
+        36px;
 
     border-radius:
         9px;
@@ -935,42 +893,38 @@ main {
     background:
         var(--card-soft);
 
+    color:
+        var(--text);
+
     border:
         1px solid
         var(--border);
-
-    font-size:
-        14px;
 }
-
 
 .plan-actions button:hover {
     background:
         var(--primary-soft);
 
-    border-color:
-        #d8d5ff;
-
     color:
         var(--primary);
-}
 
+    border-color:
+        #d9ddff;
+}
 
 .plan-card.completed {
     opacity:
-        0.5;
+        0.55;
 }
-
 
 .plan-card.completed .plan-content h3 {
     text-decoration:
         line-through;
 }
 
-
 .empty-plan {
     padding:
-        55px 20px;
+        60px 20px;
 
     text-align:
         center;
@@ -979,15 +933,13 @@ main {
         var(--sub-text);
 }
 
-
 .empty-icon {
     font-size:
-        38px;
+        42px;
 
     margin-bottom:
         12px;
 }
-
 
 .empty-plan h3 {
     color:
@@ -1002,7 +954,7 @@ main {
 
 
 /* =========================================================
-   10. WEEK
+   10. WEEK VIEW
 ========================================================= */
 
 .week-grid {
@@ -1014,15 +966,17 @@ main {
 
     gap:
         10px;
-}
 
+    width:
+        100%;
+}
 
 .week-day {
     min-height:
-        190px;
+        180px;
 
     padding:
-        12px;
+        13px;
 
     background:
         var(--card-soft);
@@ -1032,13 +986,12 @@ main {
         var(--border);
 
     border-radius:
-        13px;
+        14px;
 }
-
 
 .week-day-header {
     font-size:
-        11px;
+        12px;
 
     font-weight:
         800;
@@ -1047,19 +1000,18 @@ main {
         var(--primary);
 
     margin-bottom:
-        10px;
+        12px;
 }
-
 
 .week-plan {
     padding:
-        8px;
+        9px;
 
     margin-bottom:
-        6px;
+        7px;
 
     border-radius:
-        8px;
+        9px;
 
     background:
         var(--card);
@@ -1075,9 +1027,8 @@ main {
         pointer;
 
     transition:
-        all var(--transition);
+        var(--transition);
 }
-
 
 .week-plan:hover {
     border-color:
@@ -1087,34 +1038,31 @@ main {
         translateY(-1px);
 }
 
-
 .week-plan.completed {
-    text-decoration:
-        line-through;
-
     opacity:
         0.5;
+
+    text-decoration:
+        line-through;
 }
 
-
 .no-plan {
-    font-size:
-        11px;
-
     color:
         var(--sub-text);
+
+    font-size:
+        11px;
 }
 
 
 /* =========================================================
-   11. MONTH
+   11. MONTH VIEW
 ========================================================= */
 
 .month-calendar {
     width:
         100%;
 }
-
 
 .month-weekdays,
 .month-days {
@@ -1125,40 +1073,37 @@ main {
         repeat(7, 1fr);
 
     gap:
-        7px;
+        8px;
 }
-
 
 .month-weekdays {
     margin-bottom:
-        7px;
+        8px;
 }
-
 
 .month-weekdays span {
     padding:
-        6px;
+        8px 0;
 
     text-align:
         center;
 
-    font-size:
-        11px;
-
     color:
         var(--sub-text);
+
+    font-size:
+        12px;
 
     font-weight:
         800;
 }
-
 
 .month-day {
     min-height:
         105px;
 
     padding:
-        9px;
+        10px;
 
     background:
         var(--card-soft);
@@ -1168,15 +1113,14 @@ main {
         var(--border);
 
     border-radius:
-        10px;
+        12px;
 
     cursor:
         pointer;
 
     transition:
-        all var(--transition);
+        var(--transition);
 }
-
 
 .month-day:hover {
     border-color:
@@ -1186,34 +1130,34 @@ main {
         translateY(-1px);
 }
 
-
 .empty-day {
     opacity:
-        0.3;
+        0.35;
 }
-
 
 .month-day-number {
     font-size:
-        12px;
+        13px;
 
     font-weight:
         800;
 
     margin-bottom:
-        7px;
+        8px;
 }
 
-
 .month-plan {
+    overflow:
+        hidden;
+
     padding:
-        4px 6px;
+        5px 7px;
 
     margin-bottom:
         4px;
 
     border-radius:
-        5px;
+        6px;
 
     background:
         var(--primary-soft);
@@ -1222,10 +1166,7 @@ main {
         var(--primary);
 
     font-size:
-        9px;
-
-    overflow:
-        hidden;
+        10px;
 
     white-space:
         nowrap;
@@ -1247,16 +1188,15 @@ main {
         1fr 180px auto;
 
     gap:
-        9px;
+        10px;
 
     margin-bottom:
         18px;
 }
 
-
 #dday-form button {
     padding:
-        0 18px;
+        0 20px;
 
     border-radius:
         10px;
@@ -1274,15 +1214,13 @@ main {
         800;
 }
 
-
 #dday-form button:hover {
     background:
-        var(--primary-dark);
+        var(--primary-hover);
 
     transform:
         translateY(-1px);
 }
-
 
 #dday-list {
     display:
@@ -1295,7 +1233,6 @@ main {
         8px;
 }
 
-
 .dday-item {
     display:
         flex;
@@ -1307,25 +1244,23 @@ main {
         space-between;
 
     padding:
-        14px 16px;
+        16px;
+
+    background:
+        var(--card-soft);
 
     border:
         1px solid
         var(--border);
 
     border-radius:
-        12px;
-
-    background:
-        var(--card-soft);
+        13px;
 }
-
 
 .dday-item strong {
     font-size:
         14px;
 }
-
 
 .dday-item > strong {
     color:
@@ -1335,18 +1270,19 @@ main {
         18px;
 }
 
-
 .dday-item small {
     display:
         block;
 
     margin-top:
-        3px;
+        4px;
 
     color:
         var(--sub-text);
-}
 
+    font-size:
+        12px;
+}
 
 .dday-actions {
     display:
@@ -1359,7 +1295,6 @@ main {
         8px;
 }
 
-
 .dday-delete-button {
     width:
         34px;
@@ -1367,31 +1302,30 @@ main {
     height:
         34px;
 
+    padding:
+        0;
+
     border-radius:
-        9px;
+        8px;
 
     background:
         transparent;
-
-    color:
-        var(--sub-text);
 
     font-size:
         15px;
 }
 
-
 .dday-delete-button:hover {
     background:
         #fee2e2;
 
-    color:
-        var(--danger);
+    transform:
+        scale(1.05);
 }
 
 
 /* =========================================================
-   13. STATISTICS CARDS
+   13. STATISTICS SUMMARY
 ========================================================= */
 
 .statistics {
@@ -1405,7 +1339,6 @@ main {
         12px;
 }
 
-
 .stat-card {
     position:
         relative;
@@ -1417,7 +1350,11 @@ main {
         20px;
 
     background:
-        var(--card-soft);
+        linear-gradient(
+            145deg,
+            var(--card-soft),
+            var(--card)
+        );
 
     border:
         1px solid
@@ -1427,59 +1364,73 @@ main {
         15px;
 
     transition:
-        all var(--transition);
+        var(--transition);
 }
 
-
-.stat-card:hover {
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        var(--shadow-sm);
-}
-
-
-.stat-card::before {
+.stat-card::after {
     content:
         "";
 
     position:
         absolute;
 
-    left:
-        0;
-
-    top:
-        0;
-
     width:
-        4px;
+        60px;
 
     height:
-        100%;
+        60px;
+
+    right:
+        -20px;
+
+    bottom:
+        -20px;
+
+    border-radius:
+        50%;
 
     background:
-        var(--primary);
+        var(--primary-soft);
+
+    opacity:
+        0.7;
 }
 
+.stat-card:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        var(--shadow);
+}
 
 .stat-card h3 {
-    font-size:
-        11px;
+    position:
+        relative;
+
+    z-index:
+        1;
 
     color:
         var(--sub-text);
 
-    margin-bottom:
-        10px;
+    font-size:
+        12px;
 
     font-weight:
         700;
+
+    margin-bottom:
+        10px;
 }
 
-
 .stat-card strong {
+    position:
+        relative;
+
+    z-index:
+        1;
+
     font-size:
         25px;
 
@@ -1492,14 +1443,75 @@ main {
 
 
 /* =========================================================
-   14. STUDY TIME CHART
+   14. PERIOD BUTTONS
+========================================================= */
+
+.statistics-period {
+    display:
+        flex;
+
+    gap:
+        7px;
+
+    margin-bottom:
+        20px;
+}
+
+.statistics-period-button {
+    padding:
+        8px 15px;
+
+    border-radius:
+        9px;
+
+    background:
+        var(--card-soft);
+
+    color:
+        var(--sub-text);
+
+    border:
+        1px solid
+        var(--border);
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+}
+
+.statistics-period-button:hover {
+    color:
+        var(--primary);
+
+    border-color:
+        #cdd2ff;
+}
+
+.statistics-period-button.active {
+    background:
+        var(--primary);
+
+    color:
+        white;
+
+    border-color:
+        var(--primary);
+
+    font-weight:
+        800;
+}
+
+
+/* =========================================================
+   15. STUDY TIME CHART
 ========================================================= */
 
 #statistics-chart {
     margin-top:
-        28px;
+        30px;
 }
-
 
 #statistics-chart h3 {
     font-size:
@@ -1511,7 +1523,6 @@ main {
     margin-bottom:
         16px;
 }
-
 
 .chart-container {
     height:
@@ -1527,10 +1538,13 @@ main {
         space-around;
 
     gap:
-        8px;
+        10px;
 
     padding:
         20px 15px;
+
+    overflow-x:
+        auto;
 
     background:
         var(--card-soft);
@@ -1541,37 +1555,23 @@ main {
 
     border-radius:
         15px;
-
-    overflow:
-        hidden;
 }
-
 
 .chart-bar {
     position:
         relative;
 
     width:
-        38px;
+        40px;
 
     min-height:
         8px;
 
-    border-radius:
-        8px 8px 3px 3px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #8b7cff,
-            var(--primary)
-        );
+    flex-shrink:
+        0;
 
     display:
         flex;
-
-    flex-direction:
-        column;
 
     align-items:
         center;
@@ -1579,116 +1579,67 @@ main {
     justify-content:
         flex-end;
 
+    flex-direction:
+        column;
+
     padding-bottom:
         6px;
 
-    color:
-        white;
+    border-radius:
+        9px 9px 4px 4px;
+
+    background:
+        linear-gradient(
+            to top,
+            var(--primary),
+            #8b5cf6
+        );
 
     transition:
         height 0.4s ease,
-        transform var(--transition);
+        transform 0.2s ease;
 }
-
 
 .chart-bar:hover {
     transform:
-        translateY(-4px);
-}
+        translateY(-3px);
 
+    filter:
+        brightness(1.05);
+}
 
 .chart-bar span {
     position:
         absolute;
 
+    bottom:
+        -25px;
+
     transform:
-        translateY(28px);
+        none;
 
     color:
         var(--sub-text);
 
     font-size:
         10px;
-}
 
+    white-space:
+        nowrap;
+}
 
 .chart-bar small {
-    font-size:
-        9px;
-}
-
-
-/* =========================================================
-   15. STATISTICS PERIOD
-========================================================= */
-
-.statistics-period {
-    display:
-        flex;
-
-    gap:
-        6px;
-
-    margin-bottom:
-        20px;
-
-    padding:
-        4px;
-
-    width:
-        fit-content;
-
-    background:
-        var(--card-soft);
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:
-        10px;
-}
-
-
-.statistics-period-button {
-    padding:
-        7px 14px;
-
-    border-radius:
-        7px;
-
-    background:
-        transparent;
-
-    color:
-        var(--sub-text);
-
-    font-size:
-        12px;
-
-    font-weight:
-        700;
-}
-
-
-.statistics-period-button:hover {
-    color:
-        var(--text);
-
-    background:
-        var(--card);
-}
-
-
-.statistics-period-button.active {
-    background:
-        var(--primary);
-
     color:
         white;
 
+    font-size:
+        9px;
+
     font-weight:
-        800;
+        700;
+
+    white-space:
+        nowrap;
 }
 
 
@@ -1698,7 +1649,7 @@ main {
 
 .subject-statistics {
     margin-top:
-        30px;
+        32px;
 
     padding-top:
         28px;
@@ -1707,7 +1658,6 @@ main {
         1px solid
         var(--border);
 }
-
 
 .subject-statistics > h3,
 .subject-statistics-title {
@@ -1721,17 +1671,16 @@ main {
         20px;
 }
 
-
 .subject-statistics-content {
     display:
         grid;
 
     grid-template-columns:
         minmax(240px, 0.8fr)
-        minmax(300px, 1.2fr);
+        minmax(280px, 1.2fr);
 
     gap:
-        35px;
+        32px;
 
     align-items:
         center;
@@ -1739,7 +1688,7 @@ main {
 
 
 /* =========================================================
-   17. SUBJECT PIE
+   17. SUBJECT PIE CHART
 ========================================================= */
 
 .subject-pie-chart {
@@ -1756,7 +1705,6 @@ main {
         center;
 }
 
-
 .subject-pie {
     position:
         relative;
@@ -1767,9 +1715,6 @@ main {
     height:
         240px;
 
-    border-radius:
-        50%;
-
     display:
         flex;
 
@@ -1779,11 +1724,13 @@ main {
     justify-content:
         center;
 
+    border-radius:
+        50%;
+
     box-shadow:
         0 12px 30px
-        rgba(15, 23, 42, 0.10);
+        rgba(15, 23, 42, 0.1);
 }
-
 
 .subject-pie::before {
     content:
@@ -1804,7 +1751,6 @@ main {
     background:
         var(--card);
 }
-
 
 .subject-pie-center {
     position:
@@ -1829,33 +1775,31 @@ main {
         center;
 }
 
-
 .subject-pie-center strong {
+    color:
+        var(--text);
+
     font-size:
         20px;
 
     font-weight:
         800;
-
-    color:
-        var(--text);
 }
-
 
 .subject-pie-center span {
     margin-top:
         5px;
 
-    font-size:
-        11px;
-
     color:
         var(--sub-text);
+
+    font-size:
+        11px;
 }
 
 
 /* =========================================================
-   18. SUBJECT LIST
+   18. SUBJECT STATISTICS LIST
 ========================================================= */
 
 .subject-statistics-list {
@@ -1866,9 +1810,8 @@ main {
         column;
 
     gap:
-        9px;
+        10px;
 }
-
 
 .subject-stat-item {
     display:
@@ -1880,8 +1823,11 @@ main {
     justify-content:
         space-between;
 
+    gap:
+        12px;
+
     padding:
-        13px 15px;
+        14px 16px;
 
     background:
         var(--card-soft);
@@ -1891,21 +1837,22 @@ main {
         var(--border);
 
     border-radius:
-        11px;
+        12px;
 
     transition:
-        all var(--transition);
+        var(--transition);
 }
-
 
 .subject-stat-item:hover {
     border-color:
-        #d8d5ff;
+        #cdd2ff;
 
     transform:
-        translateX(2px);
-}
+        translateY(-1px);
 
+    box-shadow:
+        var(--shadow-sm);
+}
 
 .subject-stat-name {
     display:
@@ -1917,13 +1864,15 @@ main {
     gap:
         9px;
 
+    min-width:
+        0;
+
     font-size:
         13px;
 
     font-weight:
         800;
 }
-
 
 .subject-stat-color {
     width:
@@ -1932,52 +1881,45 @@ main {
     height:
         11px;
 
-    border-radius:
-        50%;
-
     flex-shrink:
         0;
-}
 
+    border-radius:
+        50%;
+}
 
 .subject-stat-time {
     color:
         var(--text);
 
     font-size:
-        12px;
+        13px;
 
     font-weight:
         800;
-}
 
+    white-space:
+        nowrap;
+}
 
 .subject-stat-detail {
     min-width:
         45px;
 
-    text-align:
-        right;
-
     color:
         var(--sub-text);
 
     font-size:
-        11px;
+        12px;
+
+    text-align:
+        right;
 }
 
 
-.subject-stat-info {
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap:
-        10px;
-}
-
+/* =========================================================
+   19. OLD SUBJECT STAT CARD COMPATIBILITY
+========================================================= */
 
 .subject-stat-card {
     display:
@@ -1990,7 +1932,7 @@ main {
         14px;
 
     padding:
-        18px;
+        20px;
 
     background:
         var(--card-soft);
@@ -2003,36 +1945,41 @@ main {
         14px;
 }
 
-
 .subject-stat-card h3 {
-    font-size:
-        16px;
-
     color:
         var(--primary);
+
+    font-size:
+        16px;
 
     font-weight:
         800;
 }
 
+.subject-stat-info {
+    display:
+        grid;
 
-.subject-stat-item span {
-    font-size:
-        11px;
+    grid-template-columns:
+        repeat(4, 1fr);
 
-    color:
-        var(--sub-text);
+    gap:
+        10px;
 }
 
+.subject-stat-info .subject-stat-item {
+    display:
+        flex;
 
-.subject-stat-item strong {
-    font-size:
-        14px;
+    flex-direction:
+        column;
 
-    color:
-        var(--text);
+    align-items:
+        flex-start;
+
+    justify-content:
+        center;
 }
-
 
 .subject-stat-achievement {
     display:
@@ -2045,90 +1992,88 @@ main {
         10px;
 }
 
-
 .subject-stat-progress {
     flex:
         1;
 
     height:
-        7px;
+        8px;
+
+    overflow:
+        hidden;
 
     background:
         var(--border);
 
     border-radius:
         999px;
-
-    overflow:
-        hidden;
 }
-
 
 .subject-stat-progress-bar {
     height:
         100%;
 
     background:
-        linear-gradient(
-            90deg,
-            var(--primary),
-            #8b7cff
-        );
+        var(--primary);
 
     border-radius:
         999px;
 }
 
-
 .subject-stat-percent {
     min-width:
         45px;
 
-    text-align:
-        right;
+    color:
+        var(--primary);
 
     font-size:
-        12px;
+        13px;
 
     font-weight:
         800;
 
-    color:
-        var(--primary);
+    text-align:
+        right;
 }
-
 
 .empty-subject-statistics {
     padding:
         25px;
 
+    color:
+        var(--sub-text);
+
     text-align:
         center;
 
-    color:
-        var(--sub-text);
+    background:
+        var(--card-soft);
+
+    border:
+        1px dashed
+        var(--border);
+
+    border-radius:
+        12px;
 }
 
 
 /* =========================================================
-   19. PDF EXPORT
+   20. PDF EXPORT
 ========================================================= */
 
 .export-section {
     text-align:
         center;
 
-    margin-top:
-        12px;
-
-    margin-bottom:
-        50px;
+    margin:
+        10px 0 50px;
 }
-
 
 #pdf-button {
     padding:
-        13px 25px;
+        13px 24px;
 
     border-radius:
         12px;
@@ -2143,24 +2088,23 @@ main {
         13px;
 
     font-weight:
-        800;
+        700;
 
     box-shadow:
         var(--shadow-sm);
 }
 
-
 #pdf-button:hover {
     transform:
         translateY(-2px);
 
-    box-shadow:
-        var(--shadow);
+    opacity:
+        0.9;
 }
 
 
 /* =========================================================
-   20. MODAL
+   21. COPY MODAL
 ========================================================= */
 
 .modal {
@@ -2186,18 +2130,16 @@ main {
         20px;
 
     background:
-        rgba(15, 23, 42, 0.45);
+        rgba(15, 23, 42, 0.48);
 
     backdrop-filter:
         blur(7px);
 }
 
-
 .modal.hidden {
     display:
         none;
 }
-
 
 .modal-content {
     position:
@@ -2229,9 +2171,8 @@ main {
         var(--shadow-lg);
 
     animation:
-        modalOpen 0.2s ease;
+        modalOpen 0.22s ease;
 }
-
 
 @keyframes modalOpen {
     from {
@@ -2253,30 +2194,27 @@ main {
     }
 }
 
-
 .modal-content h2 {
+    margin-bottom:
+        8px;
+
     font-size:
         19px;
 
     font-weight:
         800;
-
-    margin-bottom:
-        8px;
 }
 
-
 .modal-content p {
+    margin-bottom:
+        22px;
+
     color:
         var(--sub-text);
 
     font-size:
         13px;
-
-    margin-bottom:
-        22px;
 }
-
 
 .modal-content label {
     display:
@@ -2289,15 +2227,13 @@ main {
         12px;
 
     font-weight:
-        800;
+        700;
 }
-
 
 .modal-content input {
     margin-bottom:
         15px;
 }
-
 
 .modal-close {
     position:
@@ -2328,12 +2264,10 @@ main {
         15px;
 }
 
-
 .modal-close:hover {
     background:
         var(--border);
 }
-
 
 .confirm-copy-button {
     width:
@@ -2351,219 +2285,265 @@ main {
     color:
         white;
 
+    font-size:
+        13px;
+
     font-weight:
         800;
 }
 
-
 .confirm-copy-button:hover {
     background:
-        var(--primary-dark);
+        var(--primary-hover);
+
+    transform:
+        translateY(-1px);
 }
 
 
 /* =========================================================
-   21. DARK MODE
+   22. DARK MODE
 ========================================================= */
 
 body.dark {
-    --bg: #0d111c;
-    --card: #171c29;
-    --card-soft: #1c2231;
+    --bg:
+        #0b1020;
 
-    --text: #f5f7ff;
-    --sub-text: #9da5b7;
+    --card:
+        #151b2e;
 
-    --border: #2a3142;
+    --card-soft:
+        #1b2238;
 
-    --primary: #8278ff;
-    --primary-dark: #6c63e8;
-    --primary-soft: #25223f;
+    --text:
+        #f4f6ff;
+
+    --sub-text:
+        #9ca6bd;
+
+    --border:
+        #29324a;
+
+    --primary:
+        #818cf8;
+
+    --primary-hover:
+        #6366f1;
+
+    --primary-soft:
+        #252b5a;
 
     --shadow-sm:
-        0 2px 8px rgba(0, 0, 0, 0.18);
+        0 4px 15px rgba(0, 0, 0, 0.18);
 
     --shadow:
-        0 10px 35px rgba(0, 0, 0, 0.22);
+        0 12px 35px rgba(0, 0, 0, 0.22);
 
     --shadow-lg:
         0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
-
 body.dark #app-page header {
     background:
-        rgba(23, 28, 41, 0.9);
+        rgba(21, 27, 46, 0.9);
 
     border-bottom-color:
-        var(--border);
+        rgba(41, 50, 74, 0.8);
 }
-
 
 body.dark #login-page {
     background:
         radial-gradient(
-            circle at 10% 10%,
-            rgba(108, 99, 255, 0.15),
+            circle at 15% 15%,
+            rgba(99, 102, 241, 0.15),
             transparent 30%
         ),
 
         radial-gradient(
-            circle at 90% 90%,
-            rgba(139, 92, 246, 0.1),
+            circle at 85% 85%,
+            rgba(124, 58, 237, 0.12),
             transparent 30%
         ),
 
         var(--bg);
 }
 
-
 body.dark .login-container {
     background:
-        rgba(23, 28, 41, 0.95);
+        rgba(21, 27, 46, 0.88);
 
     border-color:
         var(--border);
 }
 
-
-body.dark #signup-button,
-body.dark #today-button {
+body.dark .month-plan,
+body.dark #today-button,
+body.dark #signup-button {
     background:
         var(--primary-soft);
 
     color:
-        #aaa4ff;
+        #c7d2fe;
 }
-
-
-body.dark .month-plan {
-    background:
-        var(--primary-soft);
-
-    color:
-        #aaa4ff;
-}
-
-
-body.dark #pdf-button {
-    background:
-        #f3f4f6;
-
-    color:
-        #111827;
-}
-
 
 body.dark .subject-pie::before {
     background:
         var(--card);
 }
 
+body.dark .dday-delete-button:hover {
+    background:
+        #4c252c;
+}
+
 
 /* =========================================================
-   22. TABLET
+   23. TABLET
 ========================================================= */
 
-@media (max-width: 1100px) {
+@media (
+    min-width: 769px
+) and (
+    max-width: 1100px
+) {
 
     main {
         max-width:
             960px;
+
+        padding:
+            30px 20px 70px;
     }
 
+    #app-page header {
+        padding:
+            0 24px;
+    }
+
+    .plan-card {
+        grid-template-columns:
+            90px 1fr auto;
+
+        gap:
+            15px;
+    }
+
+    .week-grid {
+        gap:
+            6px;
+    }
+
+    .week-day {
+        min-height:
+            160px;
+
+        padding:
+            9px;
+    }
+
+    .week-plan {
+        padding:
+            7px;
+
+        font-size:
+            11px;
+    }
+
+    .month-weekdays,
+    .month-days {
+        gap:
+            5px;
+    }
+
+    .month-day {
+        min-height:
+            90px;
+    }
 
     .statistics {
         grid-template-columns:
             repeat(2, 1fr);
     }
-
-
-    .subject-statistics-content {
-        grid-template-columns:
-            1fr;
-    }
-
-
-    .subject-pie-chart {
-        min-height:
-            240px;
-    }
-
 }
 
 
 /* =========================================================
-   23. MOBILE
+   24. MOBILE
 ========================================================= */
 
-@media (max-width: 768px) {
+@media (
+    max-width: 768px
+) {
 
     #app-page header {
-        padding:
-            0 16px;
-    }
+        height:
+            64px;
 
+        padding:
+            0 15px;
+    }
 
     .header-left h1 {
         font-size:
             17px;
     }
 
-
     .header-right button {
         padding:
             0 10px;
     }
 
+    #dark-mode-button {
+        width:
+            40px;
+
+        padding:
+            0;
+    }
 
     main {
         padding:
-            25px 14px 60px;
+            24px 14px 60px;
     }
-
 
     .date-section {
         gap:
-            14px;
+            15px;
     }
-
-
-    .date-section > div {
-        min-width:
-            150px;
-    }
-
 
     .date-section h2 {
         font-size:
-            19px;
+            18px;
     }
 
+    .view-button {
+        min-width:
+            auto;
+
+        padding:
+            8px 14px;
+    }
 
     .plan-add-section,
     .planner-section,
     .dday-section,
     .statistics-section {
         padding:
-            19px;
+            18px;
 
         border-radius:
             17px;
     }
-
 
     #plan-form {
         grid-template-columns:
             1fr;
     }
 
-
     #plan-form button {
         grid-column:
             auto;
     }
-
 
     .plan-card {
         grid-template-columns:
@@ -2573,31 +2553,29 @@ body.dark .subject-pie::before {
             10px;
     }
 
-
     .plan-actions {
         justify-content:
             flex-end;
     }
 
-
     .week-grid {
         grid-template-columns:
             1fr;
-    }
 
+        gap:
+            8px;
+    }
 
     .week-day {
         min-height:
             auto;
     }
 
-
-    .month-weekdays,
-    .month-days {
+    .month-days,
+    .month-weekdays {
         gap:
             3px;
     }
-
 
     .month-day {
         min-height:
@@ -2607,63 +2585,61 @@ body.dark .subject-pie::before {
             6px;
     }
 
-
     .month-plan {
         font-size:
             8px;
     }
-
 
     #dday-form {
         grid-template-columns:
             1fr;
     }
 
-
     #dday-form button {
         height:
             44px;
     }
-
 
     .statistics {
         grid-template-columns:
             repeat(2, 1fr);
     }
 
-
     .stat-card {
         padding:
             15px;
     }
-
 
     .stat-card strong {
         font-size:
             20px;
     }
 
-
     .chart-container {
         height:
-            190px;
+            200px;
 
         padding:
             15px 8px;
     }
 
-
     .chart-bar {
         width:
-            26px;
+            28px;
     }
-
 
     .subject-statistics-content {
         grid-template-columns:
             1fr;
+
+        gap:
+            20px;
     }
 
+    .subject-pie-chart {
+        min-height:
+            240px;
+    }
 
     .subject-pie {
         width:
@@ -2673,7 +2649,6 @@ body.dark .subject-pie::before {
             210px;
     }
 
-
     .subject-pie::before {
         width:
             125px;
@@ -2682,38 +2657,38 @@ body.dark .subject-pie::before {
             125px;
     }
 
-
     .subject-pie-center strong {
         font-size:
             17px;
     }
 
-
     .subject-stat-info {
         grid-template-columns:
             repeat(2, 1fr);
     }
-
 }
 
 
 /* =========================================================
-   24. SMALL MOBILE
+   25. SMALL MOBILE
 ========================================================= */
 
-@media (max-width: 420px) {
+@media (
+    max-width: 420px
+) {
 
     .login-container {
         padding:
             32px 22px;
-    }
 
+        border-radius:
+            22px;
+    }
 
     .login-container h1 {
         font-size:
-            25px;
+            24px;
     }
-
 
     .date-section > button {
         width:
@@ -2722,57 +2697,76 @@ body.dark .subject-pie::before {
         height:
             38px;
     }
-
 
     .date-section h2 {
         font-size:
             16px;
     }
 
+    .date-section > div {
+        min-width:
+            140px;
+    }
 
     .view-button {
-        min-width:
-            auto;
-
         padding:
-            7px 11px;
+            7px 10px;
 
         font-size:
             12px;
     }
-
 
     .statistics {
         grid-template-columns:
             1fr 1fr;
     }
 
-
-    .subject-stat-info {
-        gap:
-            8px;
+    .stat-card {
+        padding:
+            13px;
     }
 
+    .stat-card strong {
+        font-size:
+            18px;
+    }
+
+    .modal-content {
+        padding:
+            25px 20px;
+    }
 
     .subject-stat-item {
         padding:
-            10px;
+            12px;
     }
 
+    .subject-stat-name {
+        font-size:
+            12px;
+    }
+
+    .subject-stat-time {
+        font-size:
+            12px;
+    }
 }
 
 
 /* =========================================================
-   25. TOUCH DEVICE
+   26. TOUCH DEVICE
 ========================================================= */
 
-@media (hover: none) and (pointer: coarse) {
+@media (
+    hover: none
+) and (
+    pointer: coarse
+) {
 
     button {
         min-height:
             44px;
     }
-
 
     .date-section > button {
         width:
@@ -2781,7 +2775,6 @@ body.dark .subject-pie::before {
         height:
             46px;
     }
-
 
     .plan-actions button {
         width:
@@ -2791,7 +2784,6 @@ body.dark .subject-pie::before {
             42px;
     }
 
-
     .dday-delete-button {
         min-width:
             44px;
@@ -2800,17 +2792,45 @@ body.dark .subject-pie::before {
             44px;
     }
 
-
     .view-button {
         min-height:
             44px;
     }
-
 }
 
 
 /* =========================================================
-   26. PRINT / PDF
+   27. MOBILE LANDSCAPE
+========================================================= */
+
+@media (
+    max-width: 768px
+) and (
+    orientation: landscape
+) {
+
+    main {
+        padding-top:
+            20px;
+    }
+
+    .plan-card {
+        grid-template-columns:
+            90px 1fr auto;
+    }
+
+    .week-grid {
+        grid-template-columns:
+            repeat(7, minmax(100px, 1fr));
+
+        overflow-x:
+            auto;
+    }
+}
+
+
+/* =========================================================
+   28. PRINT / PDF
 ========================================================= */
 
 @media print {
@@ -2823,7 +2843,6 @@ body.dark .subject-pie::before {
             black !important;
     }
 
-
     #login-page,
     header,
     .date-section,
@@ -2835,7 +2854,6 @@ body.dark .subject-pie::before {
             none !important;
     }
 
-
     main {
         max-width:
             100%;
@@ -2844,19 +2862,17 @@ body.dark .subject-pie::before {
             0;
     }
 
-
     .planner-section,
     .statistics-section {
         box-shadow:
-            none;
+            none !important;
 
         border:
-            none;
+            none !important;
 
         background:
-            white;
+            white !important;
     }
-
 
     .plan-card {
         display:
@@ -2890,12 +2906,10 @@ body.dark .subject-pie::before {
             avoid;
     }
 
-
     .plan-content {
         display:
             block !important;
     }
-
 
     .plan-content h3 {
         display:
@@ -2910,7 +2924,6 @@ body.dark .subject-pie::before {
         margin-bottom:
             6px !important;
     }
-
 
     .plan-content p {
         display:
@@ -2935,7 +2948,6 @@ body.dark .subject-pie::before {
             none !important;
     }
 
-
     .plan-time {
         display:
             block !important;
@@ -2947,108 +2959,540 @@ body.dark .subject-pie::before {
             13px !important;
     }
 
-
     .plan-actions {
         display:
             none !important;
     }
 
+    .statistics {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
 }
+```css
 /* =====================================================
-   공부 계획 영역 강제 스타일
+   LOGIN SCREEN - MODERN REDESIGN
+   기존 HTML / JS 기능 유지
 ===================================================== */
 
-#planner {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 16px !important;
-    width: 100% !important;
-    margin-top: 20px !important;
+#login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(99, 102, 241, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(139, 92, 246, 0.16),
+            transparent 30%
+        ),
+        var(--bg);
 }
 
-/* 공부 계획이 들어가는 상위 영역 */
-.planner-section {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 16px !important;
-    width: 100% !important;
-    padding: 24px !important;
-    background: var(--card) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 20px !important;
-    box-shadow: var(--shadow) !important;
+
+/* 로그인 카드 */
+
+#login-page .login-container {
+    position: relative;
+
+    width: 100%;
+    max-width: 430px;
+
+    padding: 46px 40px 40px;
+
+    background:
+        rgba(255, 255, 255, 0.88);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.7);
+
+    border-radius:
+        28px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(15, 23, 42, 0.12);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    text-align:
+        center;
+
+    animation:
+        loginCardAppear 0.5s ease;
 }
 
-/* 계획 카드 */
-.plan-card {
-    display: grid !important;
-    grid-template-columns: 100px 1fr auto !important;
-    align-items: center !important;
-    gap: 20px !important;
-    width: 100% !important;
-    padding: 20px !important;
-    background: var(--card) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 16px !important;
-}
 
-/* 계획 카드 내용 */
-.plan-content {
-    display: block !important;
-    min-width: 0 !important;
-}
+@keyframes loginCardAppear {
 
-.plan-content h3 {
-    display: block !important;
-    margin: 0 0 6px !important;
-    font-size: 16px !important;
-    color: var(--text) !important;
-}
-
-.plan-content p {
-    display: block !important;
-    margin: 0 !important;
-    color: var(--sub-text) !important;
-    font-size: 13px !important;
-}
-
-/* 시간 */
-.plan-time {
-    color: var(--primary) !important;
-    font-weight: 700 !important;
-}
-
-/* 버튼 */
-.plan-actions {
-    display: flex !important;
-    gap: 6px !important;
-}
-
-/* 빈 계획 */
-.empty-plan {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    min-height: 200px !important;
-    text-align: center !important;
-    color: var(--sub-text) !important;
-}
-
-/* 모바일 */
-@media (max-width: 768px) {
-
-    .planner-section {
-        padding: 16px !important;
+    from {
+        opacity: 0;
+        transform:
+            translateY(20px)
+            scale(0.97);
     }
 
-    .plan-card {
-        grid-template-columns: 1fr !important;
-        gap: 12px !important;
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
     }
 
-    .plan-actions {
-        justify-content: flex-end !important;
+}
+
+
+/* 상단 아이콘 느낌 */
+
+#login-page .login-container::before {
+    content: "📚";
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 64px;
+    height: 64px;
+
+    margin:
+        0 auto 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #8b5cf6
+        );
+
+    border-radius:
+        20px;
+
+    font-size:
+        30px;
+
+    box-shadow:
+        0 12px 25px
+        rgba(99, 102, 241, 0.25);
+}
+
+
+/* 제목 */
+
+#login-page .login-container h1 {
+
+    font-size:
+        27px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.7px;
+
+    margin-bottom:
+        10px;
+
+    color:
+        var(--text);
+
+}
+
+
+/* 설명 */
+
+#login-page .login-container > p {
+
+    color:
+        var(--sub-text);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.6;
+
+    margin-bottom:
+        28px;
+
+}
+
+
+/* 로그인 폼 */
+
+#login-page #login-form {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        12px;
+
+}
+
+
+/* 입력창 */
+
+#login-page #login-form input {
+
+    width:
+        100%;
+
+    height:
+        50px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        13px;
+
+    background:
+        rgba(255, 255, 255, 0.8);
+
+    color:
+        var(--text);
+
+    font-size:
+        14px;
+
+    transition:
+        all 0.2s ease;
+
+}
+
+
+/* 입력창 포커스 */
+
+#login-page #login-form input:focus {
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(99, 102, 241, 0.12);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* 로그인 버튼 */
+
+#login-page #login-form button[type="submit"] {
+
+    width:
+        100%;
+
+    height:
+        50px;
+
+    margin-top:
+        6px;
+
+    border-radius:
+        13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #7c3aed
+        );
+
+    color:
+        white;
+
+    font-size:
+        15px;
+
+    font-weight:
+        700;
+
+    box-shadow:
+        0 10px 22px
+        rgba(99, 102, 241, 0.25);
+
+}
+
+
+/* 로그인 버튼 hover */
+
+#login-page #login-form button[type="submit"]:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 14px 28px
+        rgba(99, 102, 241, 0.32);
+
+}
+
+
+/* 회원가입 버튼 */
+
+#login-page #signup-button {
+
+    width:
+        100%;
+
+    height:
+        48px;
+
+    margin-top:
+        2px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:
+        13px;
+
+    background:
+        transparent;
+
+    color:
+        var(--sub-text);
+
+    font-size:
+        14px;
+
+    font-weight:
+        600;
+
+}
+
+
+/* 회원가입 hover */
+
+#login-page #signup-button:hover {
+
+    background:
+        var(--bg);
+
+    color:
+        var(--primary);
+
+    border-color:
+        #c7d2fe;
+
+}
+
+
+/* 로그인 오류 메시지 */
+
+#login-page #login-message {
+
+    min-height:
+        20px;
+
+    margin-top:
+        16px;
+
+    margin-bottom:
+        0;
+
+    color:
+        var(--danger);
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+
+}
+
+
+/* =====================================================
+   로그인 다크모드
+===================================================== */
+
+body.dark #login-page {
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(99, 102, 241, 0.20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(139, 92, 246, 0.18),
+            transparent 30%
+        ),
+        var(--bg);
+
+}
+
+
+body.dark #login-page .login-container {
+
+    background:
+        rgba(31, 41, 55, 0.88);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0, 0, 0, 0.35);
+
+}
+
+
+body.dark #login-page #login-form input {
+
+    background:
+        rgba(17, 24, 39, 0.7);
+
+    border-color:
+        var(--border);
+
+}
+
+
+body.dark #login-page #signup-button {
+
+    background:
+        transparent;
+
+    color:
+        var(--sub-text);
+
+}
+
+
+body.dark #login-page #signup-button:hover {
+
+    background:
+        rgba(99, 102, 241, 0.12);
+
+    color:
+        #c7d2fe;
+
+    border-color:
+        #4f46e5;
+
+}
+
+
+/* =====================================================
+   모바일
+===================================================== */
+
+@media (max-width: 480px) {
+
+    #login-page {
+
+        padding:
+            16px;
+
     }
 
+
+    #login-page .login-container {
+
+        padding:
+            36px 24px 30px;
+
+        border-radius:
+            22px;
+
+    }
+
+
+    #login-page .login-container::before {
+
+        width:
+            56px;
+
+        height:
+            56px;
+
+        border-radius:
+            17px;
+
+        font-size:
+            26px;
+
+    }
+
+
+    #login-page .login-container h1 {
+
+        font-size:
+            23px;
+
+    }
+
+
+    #login-page .login-container > p {
+
+        font-size:
+            13px;
+
+    }
+
+}
+
+
+/* =====================================================
+   아주 작은 화면
+===================================================== */
+
+@media (max-width: 360px) {
+
+    #login-page .login-container {
+
+        padding:
+            30px 20px 26px;
+
+    }
+
+
+    #login-page .login-container h1 {
+
+        font-size:
+            21px;
+
+    }
+
+}
+```
+/* =====================================================
+   다크모드 PDF 버튼
+===================================================== */
+
+body.dark #pdf-button {
+    background: #f9fafb !important;
+    color: #000000 !important;
+    border: none !important;
+}
+
+body.dark #pdf-button:hover {
+    background: #e5e7eb !important;
+    color: #000000 !important;
 }
