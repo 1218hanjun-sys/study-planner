@@ -3482,7 +3482,17 @@ body.dark #login-page #signup-button:hover {
 
 }
 ```
-/* 다크모드 PDF 버튼 글자색 */
+/* =====================================================
+   다크모드 PDF 버튼
+===================================================== */
+
 body.dark #pdf-button {
-    color: #000000;
+    background: #f9fafb !important;
+    color: #000000 !important;
+    border: none !important;
+}
+
+body.dark #pdf-button:hover {
+    background: #e5e7eb !important;
+    color: #000000 !important;
 }
