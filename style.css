@@ -1,5 +1,6 @@
 /* =====================================================
-   Study Planner - Modern UI
+   Study Planner - Modern Dashboard UI
+   기존 HTML / JS 호환 디자인 리뉴얼
 ===================================================== */
 
 
@@ -16,29 +17,49 @@
 
 :root {
 
-    --bg: #f5f7fb;
+    --bg: #f6f7fb;
 
     --card: #ffffff;
 
-    --text: #1f2937;
+    --card-soft: #f9fafc;
 
-    --sub-text: #6b7280;
+    --text: #1e2433;
 
-    --border: #e5e7eb;
+    --sub-text: #7b8190;
 
-    --primary: #6366f1;
+    --border: #e8eaf0;
 
-    --primary-hover: #4f46e5;
+    --primary: #6c63ff;
 
-    --danger: #ef4444;
+    --primary-hover: #574fe8;
 
-    --success: #10b981;
+    --primary-soft: #efedff;
+
+    --danger: #ef5b6d;
+
+    --success: #22b889;
+
+    --warning: #f4a340;
 
     --shadow:
-        0 8px 30px
-        rgba(15, 23, 42, 0.06);
+        0 10px 35px
+        rgba(30, 36, 51, 0.06);
 
-    --radius: 18px;
+    --shadow-hover:
+        0 15px 40px
+        rgba(30, 36, 51, 0.10);
+
+    --radius: 20px;
+
+    --small-radius: 12px;
+
+}
+
+
+html {
+
+    scroll-behavior:
+        smooth;
 
 }
 
@@ -112,7 +133,7 @@ textarea {
         var(--text);
 
     border-radius:
-        12px;
+        var(--small-radius);
 
     padding:
         12px 14px;
@@ -124,8 +145,18 @@ textarea {
         none;
 
     transition:
-        border 0.2s,
-        box-shadow 0.2s;
+        border 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+input::placeholder,
+textarea::placeholder {
+
+    color:
+        #a5a9b4;
 
 }
 
@@ -137,8 +168,8 @@ textarea:focus {
         var(--primary);
 
     box-shadow:
-        0 0 0 3px
-        rgba(99, 102, 241, 0.12);
+        0 0 0 4px
+        rgba(108, 99, 255, 0.10);
 
 }
 
@@ -181,20 +212,20 @@ textarea {
         center;
 
     padding:
-        20px;
+        24px;
 
     background:
 
         radial-gradient(
-            circle at top left,
-            rgba(99, 102, 241, 0.12),
-            transparent 35%
+            circle at 10% 10%,
+            rgba(108, 99, 255, 0.16),
+            transparent 32%
         ),
 
         radial-gradient(
-            circle at bottom right,
-            rgba(139, 92, 246, 0.12),
-            transparent 35%
+            circle at 90% 90%,
+            rgba(34, 184, 137, 0.10),
+            transparent 30%
         ),
 
         var(--bg);
@@ -210,23 +241,27 @@ textarea {
     max-width:
         420px;
 
+    padding:
+        46px 38px;
+
     background:
-        var(--card);
+        rgba(255, 255, 255, 0.90);
 
     border:
-        1px solid var(--border);
+        1px solid rgba(255, 255, 255, 0.8);
 
     border-radius:
-        24px;
-
-    padding:
-        42px 36px;
+        28px;
 
     box-shadow:
-        var(--shadow);
+        0 25px 70px
+        rgba(30, 36, 51, 0.10);
 
     text-align:
         center;
+
+    backdrop-filter:
+        blur(12px);
 
 }
 
@@ -234,7 +269,13 @@ textarea {
 .login-container h1 {
 
     font-size:
-        28px;
+        29px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -1px;
 
     margin-bottom:
         10px;
@@ -247,8 +288,11 @@ textarea {
     color:
         var(--sub-text);
 
+    font-size:
+        14px;
+
     margin-bottom:
-        28px;
+        30px;
 
 }
 
@@ -267,6 +311,14 @@ textarea {
 }
 
 
+#login-form input {
+
+    height:
+        48px;
+
+}
+
+
 #login-form button {
 
     height:
@@ -276,21 +328,28 @@ textarea {
         12px;
 
     font-size:
-        15px;
+        14px;
 
     font-weight:
-        600;
+        700;
 
 }
 
 
 #login-form button[type="submit"] {
 
+    margin-top:
+        5px;
+
     background:
         var(--primary);
 
     color:
         white;
+
+    box-shadow:
+        0 8px 20px
+        rgba(108, 99, 255, 0.25);
 
 }
 
@@ -301,7 +360,11 @@ textarea {
         var(--primary-hover);
 
     transform:
-        translateY(-1px);
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(108, 99, 255, 0.30);
 
 }
 
@@ -309,7 +372,7 @@ textarea {
 #signup-button {
 
     background:
-        #eef2ff;
+        var(--primary-soft);
 
     color:
         var(--primary);
@@ -320,7 +383,7 @@ textarea {
 #signup-button:hover {
 
     background:
-        #e0e7ff;
+        #e5e1ff;
 
 }
 
@@ -346,10 +409,10 @@ textarea {
 #app-page header {
 
     height:
-        72px;
+        76px;
 
     background:
-        var(--card);
+        rgba(255, 255, 255, 0.90);
 
     border-bottom:
         1px solid var(--border);
@@ -364,7 +427,7 @@ textarea {
         space-between;
 
     padding:
-        0 32px;
+        0 36px;
 
     position:
         sticky;
@@ -375,16 +438,36 @@ textarea {
     z-index:
         100;
 
+    backdrop-filter:
+        blur(12px);
+
+}
+
+
+.header-left {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
 }
 
 
 .header-left h1 {
 
     font-size:
-        20px;
+        21px;
 
     font-weight:
-        700;
+        800;
+
+    letter-spacing:
+        -0.5px;
 
 }
 
@@ -394,8 +477,11 @@ textarea {
     display:
         flex;
 
+    align-items:
+        center;
+
     gap:
-        10px;
+        8px;
 
 }
 
@@ -406,7 +492,7 @@ textarea {
         40px;
 
     padding:
-        0 16px;
+        0 15px;
 
     border-radius:
         10px;
@@ -417,8 +503,11 @@ textarea {
     color:
         var(--text);
 
+    font-size:
+        13px;
+
     font-weight:
-        600;
+        700;
 
 }
 
@@ -426,7 +515,10 @@ textarea {
 .header-right button:hover {
 
     background:
-        var(--border);
+        var(--primary-soft);
+
+    color:
+        var(--primary);
 
 }
 
@@ -440,7 +532,7 @@ textarea {
         0;
 
     font-size:
-        18px;
+        17px;
 
 }
 
@@ -455,19 +547,19 @@ main {
         100%;
 
     max-width:
-        1100px;
+        1120px;
 
     margin:
         0 auto;
 
     padding:
-        36px 24px 80px;
+        38px 24px 80px;
 
 }
 
 
 /* =====================================================
-   6. 날짜 네비게이션
+   6. 날짜 영역
 ===================================================== */
 
 .date-section {
@@ -482,10 +574,10 @@ main {
         center;
 
     gap:
-        28px;
+        24px;
 
     margin-bottom:
-        24px;
+        22px;
 
 }
 
@@ -499,7 +591,7 @@ main {
         44px;
 
     border-radius:
-        12px;
+        50%;
 
     background:
         var(--card);
@@ -511,7 +603,11 @@ main {
         var(--text);
 
     font-size:
-        18px;
+        15px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(30, 36, 51, 0.04);
 
 }
 
@@ -527,10 +623,16 @@ main {
     border-color:
         var(--primary);
 
+    transform:
+        scale(1.05);
+
 }
 
 
 .date-section > div {
+
+    min-width:
+        190px;
 
     text-align:
         center;
@@ -541,7 +643,13 @@ main {
 .date-section h2 {
 
     font-size:
-        22px;
+        25px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.8px;
 
     margin-bottom:
         8px;
@@ -555,19 +663,30 @@ main {
         6px 14px;
 
     border-radius:
-        20px;
+        999px;
 
     background:
-        #eef2ff;
+        var(--primary-soft);
 
     color:
         var(--primary);
 
     font-size:
-        12px;
+        11px;
 
     font-weight:
-        600;
+        800;
+
+}
+
+
+#today-button:hover {
+
+    background:
+        var(--primary);
+
+    color:
+        white;
 
 }
 
@@ -585,6 +704,9 @@ main {
         center;
 
     gap:
+        4px;
+
+    padding:
         5px;
 
     background:
@@ -593,17 +715,18 @@ main {
     border:
         1px solid var(--border);
 
-    padding:
-        5px;
-
     border-radius:
-        12px;
+        14px;
 
     width:
         fit-content;
 
     margin:
-        0 auto 30px;
+        0 auto 32px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(30, 36, 51, 0.04);
 
 }
 
@@ -611,10 +734,10 @@ main {
 .view-button {
 
     padding:
-        9px 20px;
+        9px 22px;
 
     border-radius:
-        8px;
+        10px;
 
     background:
         transparent;
@@ -622,8 +745,11 @@ main {
     color:
         var(--sub-text);
 
+    font-size:
+        13px;
+
     font-weight:
-        600;
+        700;
 
 }
 
@@ -644,11 +770,15 @@ main {
     color:
         white;
 
+    box-shadow:
+        0 5px 12px
+        rgba(108, 99, 255, 0.20);
+
 }
 
 
 /* =====================================================
-   8. 카드 공통
+   8. 공통 카드
 ===================================================== */
 
 .plan-add-section,
@@ -666,7 +796,7 @@ main {
         var(--radius);
 
     padding:
-        26px;
+        28px;
 
     margin-bottom:
         24px;
@@ -679,10 +809,16 @@ main {
 
 .plan-add-section h2,
 .dday-section h2,
-.statistics-section h2 {
+.statistics-section > h2 {
 
     font-size:
         18px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.4px;
 
     margin-bottom:
         22px;
@@ -725,10 +861,10 @@ main {
 #plan-form label {
 
     font-size:
-        13px;
+        12px;
 
     font-weight:
-        600;
+        700;
 
     color:
         var(--sub-text);
@@ -736,10 +872,18 @@ main {
 }
 
 
+#plan-form input {
+
+    height:
+        46px;
+
+}
+
+
 #plan-form textarea {
 
     min-height:
-        48px;
+        46px;
 
 }
 
@@ -752,6 +896,9 @@ main {
     height:
         48px;
 
+    margin-top:
+        2px;
+
     background:
         var(--primary);
 
@@ -762,10 +909,14 @@ main {
         12px;
 
     font-weight:
-        700;
+        800;
 
     font-size:
-        15px;
+        14px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(108, 99, 255, 0.20);
 
 }
 
@@ -776,7 +927,11 @@ main {
         var(--primary-hover);
 
     transform:
-        translateY(-1px);
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(108, 99, 255, 0.28);
 
 }
 
@@ -816,14 +971,14 @@ main {
     padding:
         20px;
 
+    background:
+        var(--card);
+
     border:
         1px solid var(--border);
 
     border-radius:
-        14px;
-
-    background:
-        var(--card);
+        15px;
 
     transition:
         all 0.2s ease;
@@ -834,14 +989,13 @@ main {
 .plan-card:hover {
 
     border-color:
-        #c7d2fe;
+        #d8d4ff;
 
     transform:
         translateY(-2px);
 
     box-shadow:
-        0 8px 20px
-        rgba(99, 102, 241, 0.08);
+        var(--shadow-hover);
 
 }
 
@@ -849,10 +1003,10 @@ main {
 .plan-time {
 
     font-size:
-        13px;
+        12px;
 
     font-weight:
-        700;
+        800;
 
     color:
         var(--primary);
@@ -865,6 +1019,9 @@ main {
     font-size:
         16px;
 
+    font-weight:
+        800;
+
     margin-bottom:
         5px;
 
@@ -875,6 +1032,9 @@ main {
 
     font-size:
         13px;
+
+    line-height:
+        1.5;
 
     color:
         var(--sub-text);
@@ -896,10 +1056,10 @@ main {
 .plan-actions button {
 
     width:
-        36px;
+        35px;
 
     height:
-        36px;
+        35px;
 
     border-radius:
         9px;
@@ -907,8 +1067,11 @@ main {
     background:
         var(--bg);
 
+    color:
+        var(--sub-text);
+
     font-size:
-        15px;
+        14px;
 
 }
 
@@ -916,7 +1079,10 @@ main {
 .plan-actions button:hover {
 
     background:
-        var(--border);
+        var(--primary-soft);
+
+    color:
+        var(--primary);
 
 }
 
@@ -943,7 +1109,7 @@ main {
         center;
 
     padding:
-        50px 20px;
+        55px 20px;
 
     color:
         var(--sub-text);
@@ -954,7 +1120,7 @@ main {
 .empty-icon {
 
     font-size:
-        40px;
+        42px;
 
     margin-bottom:
         12px;
@@ -967,6 +1133,9 @@ main {
     color:
         var(--text);
 
+    font-size:
+        16px;
+
     margin-bottom:
         8px;
 
@@ -974,7 +1143,7 @@ main {
 
 
 /* =====================================================
-   11. 주간
+   11. 주간 보기
 ===================================================== */
 
 .week-grid {
@@ -997,10 +1166,10 @@ main {
 .week-day {
 
     min-height:
-        180px;
+        190px;
 
     padding:
-        12px;
+        13px;
 
     background:
         var(--bg);
@@ -1009,7 +1178,7 @@ main {
         1px solid var(--border);
 
     border-radius:
-        12px;
+        14px;
 
 }
 
@@ -1020,7 +1189,7 @@ main {
         12px;
 
     font-weight:
-        700;
+        800;
 
     margin-bottom:
         12px;
@@ -1034,13 +1203,13 @@ main {
 .week-plan {
 
     padding:
-        8px;
+        9px;
 
     margin-bottom:
         6px;
 
     border-radius:
-        8px;
+        9px;
 
     background:
         var(--card);
@@ -1049,10 +1218,13 @@ main {
         1px solid var(--border);
 
     font-size:
-        12px;
+        11px;
 
     cursor:
         pointer;
+
+    transition:
+        all 0.2s ease;
 
 }
 
@@ -1061,6 +1233,9 @@ main {
 
     border-color:
         var(--primary);
+
+    transform:
+        translateY(-1px);
 
 }
 
@@ -1088,7 +1263,7 @@ main {
 
 
 /* =====================================================
-   12. 월간
+   12. 월간 보기
 ===================================================== */
 
 .month-calendar {
@@ -1128,13 +1303,13 @@ main {
         center;
 
     font-size:
-        12px;
+        11px;
 
     color:
         var(--sub-text);
 
     font-weight:
-        700;
+        800;
 
 }
 
@@ -1142,7 +1317,7 @@ main {
 .month-day {
 
     min-height:
-        100px;
+        105px;
 
     padding:
         10px;
@@ -1154,10 +1329,13 @@ main {
         1px solid var(--border);
 
     border-radius:
-        10px;
+        11px;
 
     cursor:
         pointer;
+
+    transition:
+        all 0.2s ease;
 
 }
 
@@ -1166,6 +1344,9 @@ main {
 
     border-color:
         var(--primary);
+
+    background:
+        var(--primary-soft);
 
 }
 
@@ -1181,10 +1362,10 @@ main {
 .month-day-number {
 
     font-size:
-        13px;
+        12px;
 
     font-weight:
-        700;
+        800;
 
     margin-bottom:
         7px;
@@ -1198,16 +1379,16 @@ main {
         10px;
 
     padding:
-        4px 6px;
+        5px 6px;
 
     margin-bottom:
         4px;
 
     border-radius:
-        5px;
+        6px;
 
     background:
-        #eef2ff;
+        var(--primary-soft);
 
     color:
         var(--primary);
@@ -1248,7 +1429,7 @@ main {
 #dday-form button {
 
     padding:
-        0 18px;
+        0 20px;
 
     border-radius:
         10px;
@@ -1260,7 +1441,18 @@ main {
         white;
 
     font-weight:
-        600;
+        700;
+
+}
+
+
+#dday-form button:hover {
+
+    background:
+        var(--primary-hover);
+
+    transform:
+        translateY(-1px);
 
 }
 
@@ -1291,7 +1483,10 @@ main {
         center;
 
     padding:
-        14px 16px;
+        15px 17px;
+
+    background:
+        var(--bg);
 
     border:
         1px solid var(--border);
@@ -1335,8 +1530,59 @@ main {
 }
 
 
+.dday-actions {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+}
+
+
+.dday-delete-button {
+
+    width:
+        34px;
+
+    height:
+        34px;
+
+    border-radius:
+        9px;
+
+    background:
+        transparent;
+
+    color:
+        var(--sub-text);
+
+    font-size:
+        15px;
+
+}
+
+
+.dday-delete-button:hover {
+
+    background:
+        #ffe9ec;
+
+    color:
+        var(--danger);
+
+    transform:
+        scale(1.05);
+
+}
+
+
 /* =====================================================
-   14. 통계
+   14. 통계 카드
 ===================================================== */
 
 .statistics {
@@ -1355,6 +1601,9 @@ main {
 
 .stat-card {
 
+    position:
+        relative;
+
     padding:
         20px;
 
@@ -1365,7 +1614,50 @@ main {
         1px solid var(--border);
 
     border-radius:
-        14px;
+        15px;
+
+    overflow:
+        hidden;
+
+    transition:
+        all 0.2s ease;
+
+}
+
+
+.stat-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        4px;
+
+    height:
+        100%;
+
+    background:
+        var(--primary);
+
+}
+
+
+.stat-card:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        var(--shadow);
 
 }
 
@@ -1373,7 +1665,7 @@ main {
 .stat-card h3 {
 
     font-size:
-        12px;
+        11px;
 
     color:
         var(--sub-text);
@@ -1387,13 +1679,91 @@ main {
 .stat-card strong {
 
     font-size:
-        24px;
+        25px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.5px;
 
 }
 
 
 /* =====================================================
-   15. 공부 시간 그래프
+   15. 통계 기간 버튼
+===================================================== */
+
+.statistics-period {
+
+    display:
+        flex;
+
+    gap:
+        6px;
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.statistics-period-button {
+
+    padding:
+        8px 15px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        9px;
+
+    background:
+        var(--bg);
+
+    color:
+        var(--sub-text);
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+}
+
+
+.statistics-period-button:hover {
+
+    color:
+        var(--primary);
+
+    border-color:
+        #d8d4ff;
+
+}
+
+
+.statistics-period-button.active {
+
+    background:
+        var(--primary);
+
+    border-color:
+        var(--primary);
+
+    color:
+        white;
+
+    font-weight:
+        800;
+
+}
+
+
+/* =====================================================
+   16. 공부 시간 그래프
 ===================================================== */
 
 #statistics-chart {
@@ -1409,8 +1779,11 @@ main {
     font-size:
         15px;
 
+    font-weight:
+        800;
+
     margin-bottom:
-        20px;
+        18px;
 
 }
 
@@ -1418,7 +1791,7 @@ main {
 .chart-container {
 
     height:
-        200px;
+        220px;
 
     display:
         flex;
@@ -1438,13 +1811,22 @@ main {
     background:
         var(--bg);
 
+    border:
+        1px solid var(--border);
+
     border-radius:
-        14px;
+        15px;
+
+    overflow:
+        hidden;
 
 }
 
 
 .chart-bar {
+
+    position:
+        relative;
 
     width:
         40px;
@@ -1453,10 +1835,14 @@ main {
         10px;
 
     background:
-        var(--primary);
+        linear-gradient(
+            180deg,
+            #817aff,
+            var(--primary)
+        );
 
     border-radius:
-        8px 8px 3px 3px;
+        9px 9px 4px 4px;
 
     display:
         flex;
@@ -1471,13 +1857,22 @@ main {
         flex-end;
 
     padding-bottom:
-        6px;
+        7px;
 
     color:
         white;
 
     transition:
-        height 0.4s ease;
+        height 0.4s ease,
+        opacity 0.2s ease;
+
+}
+
+
+.chart-bar:hover {
+
+    opacity:
+        0.8;
 
 }
 
@@ -1494,7 +1889,7 @@ main {
         var(--sub-text);
 
     font-size:
-        11px;
+        10px;
 
 }
 
@@ -1504,11 +1899,522 @@ main {
     font-size:
         9px;
 
+    font-weight:
+        700;
+
 }
 
 
 /* =====================================================
-   16. PDF
+   17. 과목별 통계
+===================================================== */
+
+.subject-statistics {
+
+    margin-top:
+        30px;
+
+    padding-top:
+        28px;
+
+    border-top:
+        1px solid var(--border);
+
+}
+
+
+.subject-statistics h3 {
+
+    font-size:
+        16px;
+
+    font-weight:
+        800;
+
+    margin-bottom:
+        20px;
+
+}
+
+
+.subject-statistics-content {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        30px;
+
+    align-items:
+        center;
+
+}
+
+
+/* =====================================================
+   18. 과목별 원형 그래프
+===================================================== */
+
+.subject-pie-chart {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    min-height:
+        280px;
+
+}
+
+
+.subject-pie {
+
+    position:
+        relative;
+
+    width:
+        240px;
+
+    height:
+        240px;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    box-shadow:
+        0 12px 35px
+        rgba(30, 36, 51, 0.10);
+
+}
+
+
+.subject-pie::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        145px;
+
+    height:
+        145px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--card);
+
+}
+
+
+.subject-pie-center {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+}
+
+
+.subject-pie-center strong {
+
+    font-size:
+        21px;
+
+    font-weight:
+        800;
+
+    color:
+        var(--text);
+
+}
+
+
+.subject-pie-center span {
+
+    margin-top:
+        5px;
+
+    font-size:
+        11px;
+
+    color:
+        var(--sub-text);
+
+}
+
+
+/* =====================================================
+   19. 과목별 통계 목록
+===================================================== */
+
+.subject-statistics-list {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        10px;
+
+}
+
+
+.subject-stat-item {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    padding:
+        14px 16px;
+
+    background:
+        var(--bg);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        12px;
+
+    transition:
+        all 0.2s ease;
+
+}
+
+
+.subject-stat-item:hover {
+
+    border-color:
+        #d8d4ff;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.subject-stat-name {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    font-size:
+        14px;
+
+    font-weight:
+        800;
+
+}
+
+
+.subject-stat-color {
+
+    width:
+        11px;
+
+    height:
+        11px;
+
+    border-radius:
+        50%;
+
+    flex-shrink:
+        0;
+
+}
+
+
+.subject-stat-time {
+
+    color:
+        var(--text);
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+
+}
+
+
+.subject-stat-detail {
+
+    min-width:
+        45px;
+
+    text-align:
+        right;
+
+    color:
+        var(--sub-text);
+
+    font-size:
+        12px;
+
+}
+
+
+/* =====================================================
+   20. 과목별 통계 카드 호환
+===================================================== */
+
+.subject-stat-card {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        14px;
+
+    padding:
+        20px;
+
+    background:
+        var(--bg);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        14px;
+
+    transition:
+        all 0.2s ease;
+
+}
+
+
+.subject-stat-card:hover {
+
+    border-color:
+        #d8d4ff;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        var(--shadow);
+
+}
+
+
+.subject-stat-card h3 {
+
+    font-size:
+        17px;
+
+    font-weight:
+        800;
+
+    color:
+        var(--primary);
+
+}
+
+
+.subject-stat-info {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        10px;
+
+}
+
+
+.subject-stat-info .subject-stat-item {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-start;
+
+    gap:
+        5px;
+
+    padding:
+        12px;
+
+    background:
+        var(--card);
+
+}
+
+
+.subject-stat-info .subject-stat-item span {
+
+    font-size:
+        11px;
+
+    color:
+        var(--sub-text);
+
+}
+
+
+.subject-stat-info .subject-stat-item strong {
+
+    font-size:
+        14px;
+
+    color:
+        var(--text);
+
+}
+
+
+.subject-stat-achievement {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+}
+
+
+.subject-stat-progress {
+
+    flex:
+        1;
+
+    height:
+        8px;
+
+    background:
+        var(--border);
+
+    border-radius:
+        999px;
+
+    overflow:
+        hidden;
+
+}
+
+
+.subject-stat-progress-bar {
+
+    height:
+        100%;
+
+    background:
+        var(--primary);
+
+    border-radius:
+        999px;
+
+    transition:
+        width 0.4s ease;
+
+}
+
+
+.subject-stat-percent {
+
+    min-width:
+        45px;
+
+    text-align:
+        right;
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
+
+    color:
+        var(--primary);
+
+}
+
+
+.empty-subject-statistics {
+
+    padding:
+        25px;
+
+    text-align:
+        center;
+
+    color:
+        var(--sub-text);
+
+}
+
+
+/* =====================================================
+   21. PDF
 ===================================================== */
 
 .export-section {
@@ -1528,7 +2434,7 @@ main {
 #pdf-button {
 
     padding:
-        13px 24px;
+        13px 25px;
 
     border-radius:
         12px;
@@ -1539,8 +2445,11 @@ main {
     color:
         white;
 
+    font-size:
+        13px;
+
     font-weight:
-        600;
+        700;
 
 }
 
@@ -1550,33 +2459,296 @@ main {
     opacity:
         0.85;
 
+    transform:
+        translateY(-1px);
+
 }
 
 
 /* =====================================================
-   17. 다크모드
+   22. 날짜 복사 모달
+===================================================== */
+
+.modal {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        1000;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        20px;
+
+    background:
+        rgba(20, 24, 35, 0.45);
+
+    backdrop-filter:
+        blur(6px);
+
+}
+
+
+.modal.hidden {
+
+    display:
+        none;
+
+}
+
+
+.modal-content {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    max-width:
+        400px;
+
+    padding:
+        30px;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        22px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0, 0, 0, 0.20);
+
+    animation:
+        modalOpen 0.2s ease;
+
+}
+
+
+@keyframes modalOpen {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(15px)
+            scale(0.97);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+.modal-content h2 {
+
+    font-size:
+        19px;
+
+    margin-bottom:
+        8px;
+
+}
+
+
+.modal-content p {
+
+    color:
+        var(--sub-text);
+
+    font-size:
+        13px;
+
+    margin-bottom:
+        24px;
+
+}
+
+
+.modal-content label {
+
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+}
+
+
+.modal-content input {
+
+    margin-bottom:
+        15px;
+
+}
+
+
+.modal-close {
+
+    position:
+        absolute;
+
+    top:
+        15px;
+
+    right:
+        15px;
+
+    width:
+        32px;
+
+    height:
+        32px;
+
+    border-radius:
+        9px;
+
+    background:
+        var(--bg);
+
+    color:
+        var(--text);
+
+    font-size:
+        14px;
+
+}
+
+
+.modal-close:hover {
+
+    background:
+        var(--border);
+
+}
+
+
+.confirm-copy-button {
+
+    width:
+        100%;
+
+    height:
+        46px;
+
+    border-radius:
+        11px;
+
+    background:
+        var(--primary);
+
+    color:
+        white;
+
+    font-weight:
+        800;
+
+}
+
+
+.confirm-copy-button:hover {
+
+    background:
+        var(--primary-hover);
+
+}
+
+
+/* =====================================================
+   23. 다크모드
 ===================================================== */
 
 body.dark {
 
     --bg:
-        #111827;
+        #11131a;
 
     --card:
-        #1f2937;
+        #1b1e27;
+
+    --card-soft:
+        #20232d;
 
     --text:
-        #f9fafb;
+        #f4f5f8;
 
     --sub-text:
-        #9ca3af;
+        #9ca1af;
 
     --border:
-        #374151;
+        #2d313d;
+
+    --primary:
+        #8b83ff;
+
+    --primary-hover:
+        #756cff;
+
+    --primary-soft:
+        #29264d;
 
     --shadow:
-        0 8px 30px
-        rgba(0, 0, 0, 0.25);
+        0 10px 35px
+        rgba(0, 0, 0, 0.20);
+
+    --shadow-hover:
+        0 15px 40px
+        rgba(0, 0, 0, 0.30);
+
+}
+
+
+body.dark #app-page header {
+
+    background:
+        rgba(27, 30, 39, 0.90);
+
+}
+
+
+body.dark .login-container {
+
+    background:
+        rgba(27, 30, 39, 0.90);
 
 }
 
@@ -1584,10 +2756,10 @@ body.dark {
 body.dark #signup-button {
 
     background:
-        #312e81;
+        var(--primary-soft);
 
     color:
-        #c7d2fe;
+        #c7c2ff;
 
 }
 
@@ -1595,10 +2767,10 @@ body.dark #signup-button {
 body.dark .month-plan {
 
     background:
-        #312e81;
+        var(--primary-soft);
 
     color:
-        #c7d2fe;
+        #c7c2ff;
 
 }
 
@@ -1606,16 +2778,24 @@ body.dark .month-plan {
 body.dark #today-button {
 
     background:
-        #312e81;
+        var(--primary-soft);
 
     color:
-        #c7d2fe;
+        #c7c2ff;
+
+}
+
+
+body.dark .subject-pie::before {
+
+    background:
+        var(--card);
 
 }
 
 
 /* =====================================================
-   18. 모바일
+   24. 모바일
 ===================================================== */
 
 @media (
@@ -1623,6 +2803,9 @@ body.dark #today-button {
 ) {
 
     #app-page header {
+
+        height:
+            68px;
 
         padding:
             0 16px;
@@ -1649,7 +2832,7 @@ body.dark #today-button {
     main {
 
         padding:
-            24px 14px 60px;
+            26px 14px 60px;
 
     }
 
@@ -1657,7 +2840,15 @@ body.dark #today-button {
     .date-section {
 
         gap:
-            16px;
+            14px;
+
+    }
+
+
+    .date-section > div {
+
+        min-width:
+            150px;
 
     }
 
@@ -1665,7 +2856,7 @@ body.dark #today-button {
     .date-section h2 {
 
         font-size:
-            18px;
+            20px;
 
     }
 
@@ -1673,7 +2864,7 @@ body.dark #today-button {
     .view-button {
 
         padding:
-            8px 14px;
+            8px 15px;
 
     }
 
@@ -1687,7 +2878,7 @@ body.dark #today-button {
             18px;
 
         border-radius:
-            15px;
+            16px;
 
     }
 
@@ -1750,7 +2941,7 @@ body.dark #today-button {
     .month-weekdays {
 
         gap:
-            3px;
+            4px;
 
     }
 
@@ -1801,7 +2992,7 @@ body.dark #today-button {
     .stat-card {
 
         padding:
-            15px;
+            16px;
 
     }
 
@@ -1809,12 +3000,15 @@ body.dark #today-button {
     .stat-card strong {
 
         font-size:
-            20px;
+            21px;
 
     }
 
 
     .chart-container {
+
+        height:
+            200px;
 
         padding:
             15px 8px;
@@ -1829,11 +3023,68 @@ body.dark #today-button {
 
     }
 
+
+    .subject-statistics-content {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            20px;
+
+    }
+
+
+    .subject-pie-chart {
+
+        min-height:
+            240px;
+
+    }
+
+
+    .subject-pie {
+
+        width:
+            210px;
+
+        height:
+            210px;
+
+    }
+
+
+    .subject-pie::before {
+
+        width:
+            125px;
+
+        height:
+            125px;
+
+    }
+
+
+    .subject-pie-center strong {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .subject-stat-info {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
 }
 
 
 /* =====================================================
-   19. 작은 모바일
+   25. 작은 모바일
 ===================================================== */
 
 @media (
@@ -1843,7 +3094,7 @@ body.dark #today-button {
     .login-container {
 
         padding:
-            32px 22px;
+            34px 22px;
 
     }
 
@@ -1859,10 +3110,18 @@ body.dark #today-button {
     }
 
 
+    .date-section > div {
+
+        min-width:
+            125px;
+
+    }
+
+
     .date-section h2 {
 
         font-size:
-            16px;
+            17px;
 
     }
 
@@ -1873,7 +3132,7 @@ body.dark #today-button {
             7px 10px;
 
         font-size:
-            12px;
+            11px;
 
     }
 
@@ -1885,11 +3144,334 @@ body.dark #today-button {
 
     }
 
+
+    .stat-card {
+
+        padding:
+            13px;
+
+    }
+
+
+    .stat-card strong {
+
+        font-size:
+            18px;
+
+    }
+
+
+    .subject-stat-card {
+
+        padding:
+            14px;
+
+    }
+
+
+    .subject-stat-info {
+
+        gap:
+            8px;
+
+    }
+
+
+    .subject-stat-item {
+
+        padding:
+            10px;
+
+    }
+
+
+    .subject-stat-item strong {
+
+        font-size:
+            13px;
+
+    }
+
+
+    .modal-content {
+
+        padding:
+            25px 20px;
+
+    }
+
 }
 
 
 /* =====================================================
-   20. 인쇄 / PDF
+   26. 태블릿
+===================================================== */
+
+@media (
+    min-width: 769px
+) and (max-width: 1100px)
+{
+
+    main {
+
+        max-width:
+            950px;
+
+        padding:
+            30px 20px 70px;
+
+    }
+
+
+    #app-page header {
+
+        padding:
+            0 24px;
+
+    }
+
+
+    .plan-card {
+
+        grid-template-columns:
+            90px 1fr auto;
+
+        gap:
+            15px;
+
+    }
+
+
+    .week-grid {
+
+        gap:
+            6px;
+
+    }
+
+
+    .week-day {
+
+        min-height:
+            160px;
+
+        padding:
+            9px;
+
+    }
+
+
+    .week-plan {
+
+        padding:
+            7px;
+
+        font-size:
+            11px;
+
+    }
+
+
+    .month-weekdays,
+    .month-days {
+
+        gap:
+            5px;
+
+    }
+
+
+    .month-day {
+
+        min-height:
+            90px;
+
+        padding:
+            8px;
+
+    }
+
+
+    .statistics {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+/* =====================================================
+   27. 터치 기기
+===================================================== */
+
+@media (
+    hover: none
+) and (
+    pointer: coarse
+) {
+
+    button {
+
+        min-height:
+            44px;
+
+    }
+
+
+    .date-section > button {
+
+        width:
+            46px;
+
+        height:
+            46px;
+
+    }
+
+
+    .plan-actions button {
+
+        width:
+            42px;
+
+        height:
+            42px;
+
+    }
+
+
+    .dday-delete-button {
+
+        min-width:
+            44px;
+
+        min-height:
+            44px;
+
+    }
+
+
+    .view-button {
+
+        min-height:
+            44px;
+
+    }
+
+}
+
+
+/* =====================================================
+   28. 모바일 가로
+===================================================== */
+
+@media (
+    max-width: 768px
+) and (
+    orientation: landscape
+) {
+
+    main {
+
+        padding-top:
+            20px;
+
+    }
+
+
+    .plan-card {
+
+        grid-template-columns:
+            90px 1fr auto;
+
+    }
+
+
+    .week-grid {
+
+        grid-template-columns:
+            repeat(7, minmax(100px, 1fr));
+
+        overflow-x:
+            auto;
+
+    }
+
+}
+
+
+/* =====================================================
+   29. 태블릿 세로
+===================================================== */
+
+@media (
+    min-width: 600px
+) and (
+    max-width: 900px
+) and (
+    orientation: portrait
+) {
+
+    main {
+
+        padding-left:
+            20px;
+
+        padding-right:
+            20px;
+
+    }
+
+
+    #plan-form {
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+
+    #dday-form {
+
+        grid-template-columns:
+            1fr 180px;
+
+    }
+
+
+    #dday-form button {
+
+        grid-column:
+            1 / -1;
+
+        height:
+            46px;
+
+    }
+
+
+    .week-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .week-day {
+
+        min-height:
+            auto;
+
+    }
+
+}
+
+
+/* =====================================================
+   30. 인쇄 / PDF
 ===================================================== */
 
 @media print {
@@ -1898,6 +3480,9 @@ body.dark #today-button {
 
         background:
             white;
+
+        color:
+            black;
 
     }
 
@@ -1938,1141 +3523,111 @@ body.dark #today-button {
 
     }
 
-}
-
-/* =====================================================
-   날짜 복사 모달
-===================================================== */
-
-.modal {
-
-    position:
-        fixed;
-
-    inset:
-        0;
-
-    z-index:
-        1000;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    padding:
-        20px;
-
-    background:
-        rgba(0, 0, 0, 0.45);
-
-    backdrop-filter:
-        blur(5px);
-
-}
-
-
-.modal.hidden {
-
-    display:
-        none;
-
-}
-
-
-.modal-content {
-
-    position:
-        relative;
-
-    width:
-        100%;
-
-    max-width:
-        400px;
-
-    padding:
-        30px;
-
-    background:
-        var(--card);
-
-    color:
-        var(--text);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        20px;
-
-    box-shadow:
-        0 20px 60px
-        rgba(0, 0, 0, 0.2);
-
-    animation:
-        modalOpen 0.2s ease;
-
-}
-
-
-@keyframes modalOpen {
-
-    from {
-
-        opacity:
-            0;
-
-        transform:
-            translateY(15px)
-            scale(0.97);
-
-    }
-
-    to {
-
-        opacity:
-            1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
-}
-
-
-.modal-content h2 {
-
-    margin-bottom:
-        8px;
-
-}
-
-
-.modal-content p {
-
-    color:
-        var(--sub-text);
-
-    font-size:
-        14px;
-
-    margin-bottom:
-        24px;
-
-}
-
-
-.modal-content label {
-
-    display:
-        block;
-
-    margin-bottom:
-        8px;
-
-    font-size:
-        13px;
-
-    font-weight:
-        600;
-
-}
-
-
-.modal-content input {
-
-    margin-bottom:
-        15px;
-
-}
-
-
-.modal-close {
-
-    position:
-        absolute;
-
-    top:
-        15px;
-
-    right:
-        15px;
-
-    width:
-        32px;
-
-    height:
-        32px;
-
-    border-radius:
-        8px;
-
-    background:
-        var(--bg);
-
-    color:
-        var(--text);
-
-    font-size:
-        16px;
-
-}
-
-
-.modal-close:hover {
-
-    background:
-        var(--border);
-
-}
-
-
-.confirm-copy-button {
-
-    width:
-        100%;
-
-    height:
-        46px;
-
-    border-radius:
-        10px;
-
-    background:
-        var(--primary);
-
-    color:
-        white;
-
-    font-weight:
-        700;
-
-}
-
-
-.confirm-copy-button:hover {
-
-    background:
-        var(--primary-hover);
-
-}
-
-
-@media (
-    max-width: 420px
-) {
-
-    .modal-content {
-
-        padding:
-            25px 20px;
-
-    }
-
-}
-
-/* =====================================================
-   PDF 저장 시 계획 세부 내용 표시
-===================================================== */
-
-@media print {
-
-    /* 계획 카드 전체 */
-    .plan-card {
-        display: grid !important;
-        grid-template-columns: 100px 1fr auto !important;
-        gap: 20px !important;
-
-        padding: 15px !important;
-        margin-bottom: 10px !important;
-
-        background: white !important;
-        color: black !important;
-
-        border: 1px solid #ddd !important;
-        border-radius: 8px !important;
-
-        page-break-inside: avoid;
-    }
-
-
-    /* 과목 + 세부 내용 */
-    .plan-content {
-        display: block !important;
-    }
-
-
-    /* 과목 */
-    .plan-content h3 {
-        display: block !important;
-
-        color: black !important;
-
-        font-size: 16px !important;
-
-        margin-bottom: 6px !important;
-    }
-
-
-    /* 세부 내용 */
-    .plan-content p {
-        display: block !important;
-
-        color: #555 !important;
-
-        font-size: 13px !important;
-
-        white-space: normal !important;
-
-        overflow: visible !important;
-
-        height: auto !important;
-
-        max-height: none !important;
-    }
-
-
-    /* 시간 */
-    .plan-time {
-        display: block !important;
-
-        color: black !important;
-
-        font-size: 13px !important;
-    }
-
-
-    /* 수정/완료/복사/삭제 버튼 숨기기 */
-    .plan-actions {
-        display: none !important;
-    }
-
-}
-
-.dday-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.dday-delete-button {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 5px;
-}
-
-.dday-delete-button:hover {
-    transform: scale(1.1);
-}
-
-/* =====================================================
-   21. 태블릿 / 패드 대응
-===================================================== */
-
-/* 태블릿 가로·세로 화면 */
-@media (min-width: 769px) and (max-width: 1100px) {
-
-    main {
-        max-width: 950px;
-        padding: 30px 20px 70px;
-    }
-
-    #app-page header {
-        padding: 0 24px;
-    }
-
-    /* 계획 카드 */
-    .plan-card {
-        grid-template-columns: 90px 1fr auto;
-        gap: 15px;
-    }
-
-    /* 주간 보기 */
-    .week-grid {
-        grid-template-columns: repeat(7, minmax(0, 1fr));
-        gap: 6px;
-    }
-
-    .week-day {
-        min-height: 160px;
-        padding: 9px;
-    }
-
-    .week-plan {
-        padding: 7px;
-        font-size: 11px;
-    }
-
-    /* 월간 보기 */
-    .month-weekdays,
-    .month-days {
-        gap: 5px;
-    }
-
-    .month-day {
-        min-height: 90px;
-        padding: 8px;
-    }
-
-    /* 통계 */
-    .statistics {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-
-/* =====================================================
-   22. 터치 기기 대응
-===================================================== */
-
-@media (hover: none) and (pointer: coarse) {
-
-    button {
-        min-height: 44px;
-    }
-
-    .date-section > button {
-        width: 46px;
-        height: 46px;
-    }
-
-    .plan-actions button {
-        width: 42px;
-        height: 42px;
-    }
-
-    .dday-delete-button {
-        min-width: 44px;
-        min-height: 44px;
-    }
-
-    .view-button {
-        min-height: 44px;
-    }
-
-    .month-day {
-        cursor: pointer;
-    }
-
-}
-
-
-/* =====================================================
-   23. 태블릿 세로 모드
-===================================================== */
-
-@media (min-width: 600px) and (max-width: 900px) and (orientation: portrait) {
-
-    main {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    #plan-form {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    #dday-form {
-        grid-template-columns: 1fr 180px;
-    }
-
-    #dday-form button {
-        grid-column: 1 / -1;
-        height: 46px;
-    }
-
-    .week-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .week-day {
-        min-height: auto;
-    }
-
-}
-
-
-/* =====================================================
-   24. 가로 모드 최적화
-===================================================== */
-
-@media (min-width: 769px) and (orientation: landscape) {
-
-    main {
-        max-width: 1100px;
-    }
-
-}
-
-
-/* =====================================================
-   25. 모바일 가로 모드
-===================================================== */
-
-@media (max-width: 768px) and (orientation: landscape) {
-
-    main {
-        padding-top: 20px;
-    }
 
     .plan-card {
-        grid-template-columns: 90px 1fr auto;
-    }
 
-    .week-grid {
-        grid-template-columns: repeat(7, minmax(100px, 1fr));
-        overflow-x: auto;
-    }
-
-}
-.statistics-period {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 20px;
-}
-
-.statistics-period-button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.statistics-period-button.active {
-    font-weight: bold;
-}
-
-.subject-statistics {
-    margin-top: 25px;
-}
-
-.subject-statistics h3 {
-    margin-bottom: 15px;
-}
-
-.subject-stat-item {
-    margin-bottom: 15px;
-}
-
-.subject-stat-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 6px;
-}
-
-.subject-stat-info span {
-    font-size: 13px;
-    opacity: 0.7;
-}
-
-.subject-bar-background {
-    width: 100%;
-    height: 10px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.subject-bar {
-    height: 100%;
-    border-radius: 10px;
-    transition: width 0.3s ease;
-}
-
-.empty-subject-statistics {
-    padding: 20px;
-    text-align: center;
-    opacity: 0.6;
-}
-/* =====================================================
-   26. 과목별 통계
-===================================================== */
-
-.subject-statistics {
-
-    margin-top: 30px;
-
-    padding-top: 25px;
-
-    border-top: 1px solid var(--border);
-
-}
-
-
-/* 제목 */
-
-.subject-statistics h3 {
-
-    font-size: 16px;
-
-    font-weight: 700;
-
-    margin-bottom: 20px;
-
-}
-
-
-/* 원형 그래프 + 목록 */
-
-.subject-statistics-content {
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 30px;
-
-    align-items: center;
-
-}
-
-
-/* =====================================================
-   원형 그래프
-===================================================== */
-
-.subject-pie-chart {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    min-height: 280px;
-
-    padding: 20px;
-
-    background: var(--bg);
-
-    border: 1px solid var(--border);
-
-    border-radius: 16px;
-
-}
-
-
-.subject-pie-chart canvas {
-
-    width: 260px !important;
-
-    height: 260px !important;
-
-    max-width: 100%;
-
-}
-
-
-/* =====================================================
-   과목별 목록
-===================================================== */
-
-.subject-statistics-list {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 10px;
-
-}
-
-
-/* 개별 과목 */
-
-.subject-stat-item {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    padding: 14px 16px;
-
-    background: var(--bg);
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-
-    transition: all 0.2s ease;
-
-}
-
-
-.subject-stat-item:hover {
-
-    border-color: #c7d2fe;
-
-    transform: translateY(-1px);
-
-}
-
-
-/* 왼쪽 영역 */
-
-.subject-stat-name {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    min-width: 0;
-
-}
-
-
-/* 색상 점 */
-
-.subject-stat-color {
-
-    width: 11px;
-
-    height: 11px;
-
-    flex-shrink: 0;
-
-    border-radius: 50%;
-
-}
-
-
-/* 과목명 */
-
-.subject-stat-name strong {
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    color: var(--text);
-
-}
-
-
-/* 오른쪽 영역 */
-
-.subject-stat-time {
-
-    text-align: right;
-
-    white-space: nowrap;
-
-    color: var(--text);
-
-    font-size: 13px;
-
-    font-weight: 700;
-
-}
-
-
-/* 세부 정보 */
-
-.subject-stat-detail {
-
-    margin-top: 4px;
-
-    color: var(--sub-text);
-
-    font-size: 11px;
-
-    font-weight: 400;
-
-}
-
-
-/* =====================================================
-   과목별 통계 - 모바일
-===================================================== */
-
-@media (max-width: 768px) {
-
-    .subject-statistics-content {
-
-        grid-template-columns: 1fr;
-
-        gap: 20px;
-
-    }
-
-
-    .subject-pie-chart {
-
-        min-height: 240px;
-
-    }
-
-
-    .subject-pie-chart canvas {
-
-        width: 220px !important;
-
-        height: 220px !important;
-
-    }
-
-}
-
-
-/* =====================================================
-   과목별 통계 - 작은 모바일
-===================================================== */
-
-@media (max-width: 420px) {
-
-    .subject-statistics {
-
-        margin-top: 24px;
-
-        padding-top: 20px;
-
-    }
-
-
-    .subject-pie-chart {
-
-        min-height: 210px;
-
-        padding: 15px;
-
-    }
-
-
-    .subject-pie-chart canvas {
-
-        width: 190px !important;
-
-        height: 190px !important;
-
-    }
-
-
-    .subject-stat-item {
-
-        padding: 12px;
-
-    }
-
-
-    .subject-stat-name strong {
-
-        font-size: 13px;
-
-    }
-
-
-    .subject-stat-time {
-
-        font-size: 12px;
-
-    }
-
-}
-
-/* =====================================================
-   과목별 공부 시간 원형 그래프
-===================================================== */
-
-.subject-pie {
-
-    position:
-        relative;
-
-    width:
-        240px;
-
-    height:
-        240px;
-
-    border-radius:
-        50%;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    box-shadow:
-        0 8px 25px
-        rgba(15, 23, 42, 0.08);
-
-}
-
-
-/* 원형 그래프 중앙 구멍 */
-
-.subject-pie::before {
-
-    content:
-        "";
-
-    position:
-        absolute;
-
-    width:
-        145px;
-
-    height:
-        145px;
-
-    border-radius:
-        50%;
-
-    background:
-        var(--card);
-
-}
-
-
-/* 중앙 텍스트 */
-
-.subject-pie-center {
-
-    position:
-        relative;
-
-    z-index:
-        2;
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    text-align:
-        center;
-
-}
-
-
-.subject-pie-center strong {
-
-    font-size:
-        20px;
-
-    font-weight:
-        800;
-
-    color:
-        var(--text);
-
-}
-
-
-.subject-pie-center span {
-
-    margin-top:
-        5px;
-
-    font-size:
-        11px;
-
-    color:
-        var(--sub-text);
-
-}
-
-
-/* 과목별 통계 항목 */
-
-.subject-statistics-list {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        10px;
-
-}
-
-
-/* 과목별 한 줄 */
-
-.subject-stat-item {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    padding:
-        13px 15px;
-
-    background:
-        var(--bg);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        12px;
-
-    transition:
-        all 0.2s ease;
-
-}
-
-
-.subject-stat-item:hover {
-
-    border-color:
-        #c7d2fe;
-
-    transform:
-        translateY(-1px);
-
-}
-
-
-/* 과목명 */
-
-.subject-stat-name {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        9px;
-
-    font-size:
-        14px;
-
-    font-weight:
-        700;
-
-}
-
-
-/* 원형 그래프 색상 */
-
-.subject-stat-color {
-
-    width:
-        11px;
-
-    height:
-        11px;
-
-    border-radius:
-        50%;
-
-    flex-shrink:
-        0;
-
-}
-
-
-/* 시간 + 퍼센트 */
-
-.subject-stat-time {
-
-    color:
-        var(--text);
-
-    font-size:
-        13px;
-
-    font-weight:
-        700;
-
-}
-
-
-.subject-stat-detail {
-
-    min-width:
-        45px;
-
-    text-align:
-        right;
-
-    color:
-        var(--sub-text);
-
-    font-size:
-        12px;
-
-}
-
-
-/* =====================================================
-   과목별 통계 모바일
-===================================================== */
-
-@media (
-    max-width: 768px
-) {
-
-    .subject-statistics-content {
+        display:
+            grid !important;
 
         grid-template-columns:
-            1fr;
+            100px 1fr auto !important;
+
+        gap:
+            20px !important;
+
+        padding:
+            15px !important;
+
+        margin-bottom:
+            10px !important;
+
+        background:
+            white !important;
+
+        color:
+            black !important;
+
+        border:
+            1px solid #ddd !important;
+
+        border-radius:
+            8px !important;
+
+        page-break-inside:
+            avoid;
 
     }
 
 
-    .subject-pie {
+    .plan-content {
 
-        width:
-            210px;
-
-        height:
-            210px;
+        display:
+            block !important;
 
     }
 
 
-    .subject-pie::before {
+    .plan-content h3 {
 
-        width:
-            125px;
+        display:
+            block !important;
 
-        height:
-            125px;
-
-    }
-
-
-    .subject-pie-center strong {
+        color:
+            black !important;
 
         font-size:
-            17px;
+            16px !important;
+
+        margin-bottom:
+            6px !important;
+
+    }
+
+
+    .plan-content p {
+
+        display:
+            block !important;
+
+        color:
+            #555 !important;
+
+        font-size:
+            13px !important;
+
+        white-space:
+            normal !important;
+
+        overflow:
+            visible !important;
+
+        height:
+            auto !important;
+
+        max-height:
+            none !important;
+
+    }
+
+
+    .plan-time {
+
+        display:
+            block !important;
+
+        color:
+            black !important;
+
+        font-size:
+            13px !important;
+
+    }
+
+
+    .plan-actions {
+
+        display:
+            none !important;
 
     }
 
