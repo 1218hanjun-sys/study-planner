@@ -2954,3 +2954,101 @@ body.dark .subject-pie::before {
     }
 
 }
+/* =====================================================
+   공부 계획 영역 강제 스타일
+===================================================== */
+
+#planner {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+}
+
+/* 공부 계획이 들어가는 상위 영역 */
+.planner-section {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+    padding: 24px !important;
+    background: var(--card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 20px !important;
+    box-shadow: var(--shadow) !important;
+}
+
+/* 계획 카드 */
+.plan-card {
+    display: grid !important;
+    grid-template-columns: 100px 1fr auto !important;
+    align-items: center !important;
+    gap: 20px !important;
+    width: 100% !important;
+    padding: 20px !important;
+    background: var(--card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 16px !important;
+}
+
+/* 계획 카드 내용 */
+.plan-content {
+    display: block !important;
+    min-width: 0 !important;
+}
+
+.plan-content h3 {
+    display: block !important;
+    margin: 0 0 6px !important;
+    font-size: 16px !important;
+    color: var(--text) !important;
+}
+
+.plan-content p {
+    display: block !important;
+    margin: 0 !important;
+    color: var(--sub-text) !important;
+    font-size: 13px !important;
+}
+
+/* 시간 */
+.plan-time {
+    color: var(--primary) !important;
+    font-weight: 700 !important;
+}
+
+/* 버튼 */
+.plan-actions {
+    display: flex !important;
+    gap: 6px !important;
+}
+
+/* 빈 계획 */
+.empty-plan {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 200px !important;
+    text-align: center !important;
+    color: var(--sub-text) !important;
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+
+    .planner-section {
+        padding: 16px !important;
+    }
+
+    .plan-card {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    .plan-actions {
+        justify-content: flex-end !important;
+    }
+
+}
