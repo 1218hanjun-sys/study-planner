@@ -1,12 +1,12 @@
 /* =========================================================
-   STUDY PLANNER
-   Modern Dashboard UI
-   ========================================================= */
+   STUDY PLANNER — MODERN DASHBOARD UI
+   HTML / JS 기능 유지용 전체 CSS
+========================================================= */
 
 
 /* =========================================================
-   01. RESET & VARIABLES
-   ========================================================= */
+   1. RESET & VARIABLES
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -15,81 +15,46 @@
 }
 
 :root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --card-soft: #f8f9fd;
 
-    --bg:
-        #f6f7fb;
+    --text: #182033;
+    --sub-text: #7b8498;
 
-    --card:
-        #ffffff;
+    --border: #e7eaf1;
 
-    --card-soft:
-        #f9fafc;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-soft: #eef0ff;
 
-    --text:
-        #171a2b;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
 
-    --sub-text:
-        #7b8194;
-
-    --border:
-        #e8eaf0;
-
-    --primary:
-        #6c63ff;
-
-    --primary-hover:
-        #584ff0;
-
-    --primary-soft:
-        #efedff;
-
-    --success:
-        #20b486;
-
-    --success-soft:
-        #e8faf4;
-
-    --danger:
-        #ef5b67;
-
-    --danger-soft:
-        #fff0f1;
-
-    --warning:
-        #f59f00;
-
-    --warning-soft:
-        #fff8e7;
+    --shadow-sm:
+        0 4px 15px rgba(15, 23, 42, 0.04);
 
     --shadow:
-        0 10px 35px
-        rgba(31, 35, 55, 0.06);
+        0 12px 35px rgba(15, 23, 42, 0.07);
 
-    --shadow-hover:
-        0 16px 40px
-        rgba(31, 35, 55, 0.10);
+    --shadow-lg:
+        0 20px 60px rgba(15, 23, 42, 0.12);
 
-    --radius:
-        20px;
-
-    --radius-small:
-        12px;
+    --radius-sm: 10px;
+    --radius: 16px;
+    --radius-lg: 24px;
 
     --transition:
-        all 0.2s ease;
-
+        all 0.22s ease;
 }
-
 
 html {
-
-    scroll-behavior:
-        smooth;
-
+    scroll-behavior: smooth;
 }
 
-
 body {
+    min-height: 100vh;
 
     font-family:
         -apple-system,
@@ -104,51 +69,32 @@ body {
     color:
         var(--text);
 
-    min-height:
-        100vh;
-
-    line-height:
-        1.5;
-
     transition:
         background 0.3s ease,
         color 0.3s ease;
-
 }
-
 
 button,
 input,
 textarea {
-
-    font-family:
-        inherit;
-
+    font-family: inherit;
 }
-
 
 button {
-
-    border:
-        none;
-
-    cursor:
-        pointer;
-
-    transition:
-        var(--transition);
-
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
 }
-
 
 input,
 textarea {
-
-    width:
-        100%;
+    width: 100%;
 
     border:
         1px solid var(--border);
+
+    border-radius:
+        var(--radius-sm);
 
     background:
         var(--card);
@@ -156,11 +102,8 @@ textarea {
     color:
         var(--text);
 
-    border-radius:
-        var(--radius-small);
-
     padding:
-        13px 15px;
+        12px 14px;
 
     font-size:
         14px;
@@ -169,200 +112,42 @@ textarea {
         none;
 
     transition:
-        var(--transition);
-
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
-
 
 input::placeholder,
 textarea::placeholder {
-
-    color:
-        #a4a9b8;
-
+    color: #a5adbd;
 }
-
 
 input:focus,
 textarea:focus {
-
     border-color:
         var(--primary);
 
     box-shadow:
         0 0 0 4px
-        rgba(108, 99, 255, 0.10);
-
+        rgba(99, 102, 241, 0.1);
 }
-
 
 textarea {
-
-    resize:
-        vertical;
-
-    min-height:
-        90px;
-
+    resize: vertical;
+    min-height: 90px;
 }
-
 
 .hidden {
-
-    display:
-        none !important;
-
+    display: none !important;
 }
 
 
 /* =========================================================
-   02. COMMON FORM
-   ========================================================= */
-
-.form-group {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        7px;
-
-}
-
-
-.form-group label {
-
-    font-size:
-        12px;
-
-    font-weight:
-        700;
-
-    color:
-        var(--sub-text);
-
-}
-
-
-.primary-button {
-
-    background:
-        var(--primary);
-
-    color:
-        white;
-
-    font-weight:
-        700;
-
-    border-radius:
-        12px;
-
-}
-
-
-.primary-button:hover {
-
-    background:
-        var(--primary-hover);
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 8px 20px
-        rgba(108, 99, 255, 0.22);
-
-}
-
-
-.secondary-button {
-
-    background:
-        var(--primary-soft);
-
-    color:
-        var(--primary);
-
-    font-weight:
-        700;
-
-    border-radius:
-        12px;
-
-}
-
-
-.secondary-button:hover {
-
-    background:
-        #e4e1ff;
-
-}
-
-
-.section-header {
-
-    display:
-        flex;
-
-    justify-content:
-        space-between;
-
-    align-items:
-        center;
-
-    margin-bottom:
-        22px;
-
-}
-
-
-.section-eyebrow {
-
-    display:
-        block;
-
-    font-size:
-        10px;
-
-    font-weight:
-        800;
-
-    letter-spacing:
-        1.5px;
-
-    color:
-        var(--primary);
-
-    margin-bottom:
-        4px;
-
-}
-
-
-.section-header h2 {
-
-    font-size:
-        19px;
-
-    font-weight:
-        800;
-
-}
-
-
-/* =========================================================
-   03. LOGIN
-   ========================================================= */
+   2. LOGIN
+========================================================= */
 
 #login-page {
-
-    min-height:
-        100vh;
+    min-height: 100vh;
 
     display:
         flex;
@@ -377,135 +162,74 @@ textarea {
         24px;
 
     background:
-
         radial-gradient(
-            circle at 10% 10%,
-            rgba(108, 99, 255, 0.14),
-            transparent 32%
+            circle at 15% 15%,
+            rgba(99, 102, 241, 0.16),
+            transparent 30%
         ),
 
         radial-gradient(
-            circle at 90% 90%,
-            rgba(126, 87, 194, 0.10),
+            circle at 85% 85%,
+            rgba(139, 92, 246, 0.14),
             transparent 30%
         ),
 
         var(--bg);
-
 }
 
-
 .login-container {
-
-    width:
-        100%;
-
-    max-width:
-        430px;
+    width: 100%;
+    max-width: 430px;
 
     padding:
-        42px;
+        44px 38px;
 
     background:
         rgba(255, 255, 255, 0.88);
 
-    backdrop-filter:
-        blur(20px);
-
     border:
-        1px solid rgba(255, 255, 255, 0.8);
+        1px solid
+        rgba(255, 255, 255, 0.8);
 
     border-radius:
         28px;
 
     box-shadow:
-        0 25px 70px
-        rgba(31, 35, 55, 0.12);
+        var(--shadow-lg);
 
-}
-
-
-.login-brand {
+    backdrop-filter:
+        blur(18px);
 
     text-align:
         center;
-
-    margin-bottom:
-        32px;
-
 }
 
-
-.login-logo {
-
-    width:
-        64px;
-
-    height:
-        64px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    margin:
-        0 auto 18px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #756cff,
-            #9b8cff
-        );
-
-    border-radius:
-        20px;
-
-    font-size:
-        30px;
-
-    box-shadow:
-        0 12px 30px
-        rgba(108, 99, 255, 0.25);
-
-}
-
-
-.login-brand h1 {
-
+.login-container h1 {
     font-size:
         28px;
 
     font-weight:
-        850;
+        800;
 
     letter-spacing:
-        -1px;
+        -0.8px;
 
     margin-bottom:
-        8px;
-
+        10px;
 }
 
-
-.login-brand p {
-
+.login-container > p {
     color:
         var(--sub-text);
 
     font-size:
         14px;
 
+    margin-bottom:
+        28px;
 }
 
-
 #login-form {
-
     display:
         flex;
 
@@ -513,90 +237,89 @@ textarea {
         column;
 
     gap:
-        16px;
-
+        12px;
 }
 
+#login-form input {
+    height:
+        50px;
+}
 
 #login-form button {
-
     height:
         48px;
-
-    font-size:
-        14px;
-
-}
-
-
-#login-form button[type="submit"] {
-
-    margin-top:
-        4px;
-
-    background:
-        var(--primary);
-
-    color:
-        white;
-
-    font-weight:
-        700;
 
     border-radius:
         12px;
 
+    font-size:
+        14px;
+
+    font-weight:
+        700;
 }
 
-
-#login-form button[type="submit"]:hover {
+#login-form button[type="submit"] {
+    margin-top:
+        4px;
 
     background:
-        var(--primary-hover);
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #7c3aed
+        );
 
+    color:
+        white;
+
+    box-shadow:
+        0 8px 18px
+        rgba(99, 102, 241, 0.25);
+}
+
+#login-form button[type="submit"]:hover {
     transform:
         translateY(-2px);
 
+    box-shadow:
+        0 12px 24px
+        rgba(99, 102, 241, 0.3);
 }
 
-
 #signup-button {
-
     background:
         var(--primary-soft);
 
     color:
         var(--primary);
-
 }
 
+#signup-button:hover {
+    background:
+        #e1e5ff;
+}
 
 #login-message {
+    min-height:
+        18px;
 
     margin-top:
         16px;
-
-    text-align:
-        center;
 
     color:
         var(--danger);
 
     font-size:
         13px;
-
 }
 
 
 /* =========================================================
-   04. HEADER
-   ========================================================= */
+   3. APP HEADER
+========================================================= */
 
 #app-page header {
-
-    height:
-        74px;
-
     position:
         sticky;
 
@@ -606,6 +329,9 @@ textarea {
     z-index:
         100;
 
+    height:
+        72px;
+
     display:
         flex;
 
@@ -616,96 +342,31 @@ textarea {
         space-between;
 
     padding:
-        0 36px;
+        0 32px;
 
     background:
-        rgba(255, 255, 255, 0.86);
+        rgba(255, 255, 255, 0.88);
+
+    border-bottom:
+        1px solid
+        rgba(231, 234, 241, 0.8);
 
     backdrop-filter:
         blur(18px);
-
-    border-bottom:
-        1px solid var(--border);
-
 }
-
-
-.header-left {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        12px;
-
-}
-
-
-.header-brand-icon {
-
-    width:
-        42px;
-
-    height:
-        42px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    background:
-        var(--primary-soft);
-
-    border-radius:
-        12px;
-
-    font-size:
-        20px;
-
-}
-
 
 .header-left h1 {
-
     font-size:
-        18px;
+        20px;
 
     font-weight:
         800;
 
-    line-height:
-        1.2;
-
+    letter-spacing:
+        -0.5px;
 }
-
-
-.header-subtitle {
-
-    display:
-        block;
-
-    margin-top:
-        1px;
-
-    color:
-        var(--sub-text);
-
-    font-size:
-        11px;
-
-}
-
 
 .header-right {
-
     display:
         flex;
 
@@ -714,66 +375,23 @@ textarea {
 
     gap:
         8px;
-
 }
 
-
-.icon-button {
-
-    width:
-        42px;
-
+.header-right button {
     height:
-        42px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    border-radius:
-        12px;
-
-    background:
-        var(--bg);
-
-    font-size:
-        17px;
-
-}
-
-
-.icon-button:hover {
-
-    background:
-        var(--primary-soft);
-
-    transform:
-        rotate(8deg);
-
-}
-
-
-.logout-button {
-
-    height:
-        42px;
+        40px;
 
     padding:
-        0 16px;
+        0 15px;
+
+    border-radius:
+        10px;
 
     background:
-        var(--bg);
+        var(--card-soft);
 
     color:
         var(--text);
-
-    border-radius:
-        12px;
 
     font-size:
         13px;
@@ -781,47 +399,58 @@ textarea {
     font-weight:
         700;
 
+    border:
+        1px solid
+        var(--border);
 }
 
-
-.logout-button:hover {
-
+.header-right button:hover {
     background:
-        var(--danger-soft);
+        var(--primary-soft);
 
     color:
-        var(--danger);
+        var(--primary);
 
+    border-color:
+        #d9ddff;
+}
+
+#dark-mode-button {
+    width:
+        40px;
+
+    padding:
+        0;
+
+    font-size:
+        17px;
 }
 
 
 /* =========================================================
-   05. MAIN
-   ========================================================= */
+   4. MAIN
+========================================================= */
 
 main {
-
     width:
         100%;
 
     max-width:
-        1160px;
+        1120px;
 
     margin:
         0 auto;
 
     padding:
-        38px 24px 80px;
-
+        34px 24px 80px;
 }
 
 
 /* =========================================================
-   06. DATE NAVIGATION
-   ========================================================= */
+   5. DATE NAVIGATION
+========================================================= */
 
 .date-section {
-
     display:
         flex;
 
@@ -832,52 +461,21 @@ main {
         center;
 
     gap:
-        26px;
+        28px;
 
     margin-bottom:
-        20px;
-
+        22px;
 }
 
-
-.date-center {
-
-    min-width:
-        230px;
-
-    text-align:
-        center;
-
-}
-
-
-.date-section h2 {
-
-    font-size:
-        24px;
-
-    font-weight:
-        850;
-
-    letter-spacing:
-        -0.7px;
-
-    margin-bottom:
-        8px;
-
-}
-
-
-.date-nav-button {
-
+.date-section > button {
     width:
         44px;
 
     height:
         44px;
 
-    border:
-        1px solid var(--border);
+    border-radius:
+        12px;
 
     background:
         var(--card);
@@ -885,42 +483,59 @@ main {
     color:
         var(--text);
 
-    border-radius:
-        13px;
-
-    font-size:
-        15px;
+    border:
+        1px solid
+        var(--border);
 
     box-shadow:
-        var(--shadow);
+        var(--shadow-sm);
 
+    font-size:
+        16px;
 }
 
-
-.date-nav-button:hover {
+.date-section > button:hover {
+    color:
+        white;
 
     background:
         var(--primary);
-
-    color:
-        white;
 
     border-color:
         var(--primary);
 
     transform:
         translateY(-2px);
-
 }
 
+.date-section > div {
+    min-width:
+        180px;
+
+    text-align:
+        center;
+}
+
+.date-section h2 {
+    font-size:
+        22px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.5px;
+
+    margin-bottom:
+        8px;
+}
 
 #today-button {
-
     padding:
-        5px 13px;
+        6px 14px;
 
     border-radius:
-        20px;
+        999px;
 
     background:
         var(--primary-soft);
@@ -929,39 +544,37 @@ main {
         var(--primary);
 
     font-size:
-        11px;
+        12px;
 
     font-weight:
-        800;
-
+        700;
 }
 
-
 #today-button:hover {
-
     background:
         var(--primary);
 
     color:
         white;
-
 }
 
 
 /* =========================================================
-   07. VIEW SWITCH
-   ========================================================= */
+   6. VIEW SWITCHER
+========================================================= */
 
 .view-section {
+    width:
+        fit-content;
 
     display:
         flex;
 
-    width:
-        fit-content;
+    gap:
+        4px;
 
     margin:
-        0 auto 32px;
+        0 auto 30px;
 
     padding:
         5px;
@@ -970,27 +583,25 @@ main {
         var(--card);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
-        14px;
+        12px;
 
     box-shadow:
-        var(--shadow);
-
+        var(--shadow-sm);
 }
 
-
 .view-button {
-
     min-width:
-        82px;
+        72px;
 
     padding:
         9px 16px;
 
     border-radius:
-        10px;
+        8px;
 
     background:
         transparent;
@@ -1003,20 +614,14 @@ main {
 
     font-weight:
         700;
-
 }
-
 
 .view-button:hover {
-
     color:
         var(--text);
-
 }
 
-
 .view-button.active {
-
     background:
         var(--primary);
 
@@ -1024,48 +629,70 @@ main {
         white;
 
     box-shadow:
-        0 5px 15px
-        rgba(108, 99, 255, 0.22);
-
+        0 4px 12px
+        rgba(99, 102, 241, 0.22);
 }
 
 
 /* =========================================================
-   08. COMMON CARD
-   ========================================================= */
+   7. COMMON SECTIONS
+========================================================= */
 
 .plan-add-section,
 .planner-section,
 .dday-section,
 .statistics-section {
-
     background:
         var(--card);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
-        var(--radius);
+        var(--radius-lg);
 
     padding:
         28px;
 
     margin-bottom:
-        22px;
+        24px;
 
     box-shadow:
         var(--shadow);
+}
 
+.plan-add-section h2,
+.dday-section h2,
+.statistics-section > h2 {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    font-size:
+        18px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.4px;
+
+    margin-bottom:
+        22px;
 }
 
 
 /* =========================================================
-   09. PLAN ADD
-   ========================================================= */
+   8. PLAN FORM
+========================================================= */
 
 #plan-form {
-
     display:
         grid;
 
@@ -1073,56 +700,10 @@ main {
         1fr 1fr;
 
     gap:
-        18px;
-
+        16px;
 }
 
-
-#plan-form textarea {
-
-    min-height:
-        48px;
-
-}
-
-
-#plan-form > button {
-
-    grid-column:
-        1 / -1;
-
-    height:
-        48px;
-
-    background:
-        var(--primary);
-
-    color:
-        white;
-
-    border-radius:
-        12px;
-
-    font-weight:
-        750;
-
-}
-
-
-#plan-form > button:hover {
-
-    background:
-        var(--primary-hover);
-
-}
-
-
-/* =========================================================
-   10. PLAN CARDS
-   ========================================================= */
-
-.planner-section {
-
+#plan-form > div {
     display:
         flex;
 
@@ -1130,18 +711,98 @@ main {
         column;
 
     gap:
-        10px;
+        7px;
+}
 
+#plan-form label {
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+    color:
+        var(--sub-text);
+}
+
+#plan-form input {
+    height:
+        46px;
+}
+
+#plan-form textarea {
+    min-height:
+        46px;
+
+    height:
+        46px;
+}
+
+#plan-form button {
+    grid-column:
+        1 / -1;
+
+    height:
+        48px;
+
+    margin-top:
+        2px;
+
+    border-radius:
+        12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #7c3aed
+        );
+
+    color:
+        white;
+
+    font-size:
+        14px;
+
+    font-weight:
+        800;
+
+    box-shadow:
+        0 8px 18px
+        rgba(99, 102, 241, 0.2);
+}
+
+#plan-form button:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(99, 102, 241, 0.27);
 }
 
 
-.plan-card {
+/* =========================================================
+   9. PLANNER / PLAN CARD
+========================================================= */
 
+.planner-section {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        12px;
+}
+
+.plan-card {
     display:
         grid;
 
     grid-template-columns:
-        100px 1fr auto;
+        105px 1fr auto;
 
     align-items:
         center;
@@ -1150,256 +811,214 @@ main {
         20px;
 
     padding:
-        18px 20px;
+        20px;
 
     background:
         var(--card);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
-        15px;
+        16px;
 
     transition:
         var(--transition);
-
 }
 
-
 .plan-card:hover {
-
     border-color:
-        #d5d1ff;
+        #cdd2ff;
 
     transform:
         translateY(-2px);
 
     box-shadow:
-        var(--shadow-hover);
-
+        0 10px 25px
+        rgba(99, 102, 241, 0.08);
 }
 
-
 .plan-time {
-
-    color:
-        var(--primary);
-
     font-size:
-        12px;
+        13px;
 
     font-weight:
         800;
 
+    color:
+        var(--primary);
 }
 
-
 .plan-content h3 {
-
     font-size:
-        15px;
+        16px;
 
     font-weight:
         800;
 
     margin-bottom:
-        4px;
-
+        5px;
 }
 
-
 .plan-content p {
-
     color:
         var(--sub-text);
 
     font-size:
-        12px;
+        13px;
 
+    line-height:
+        1.6;
 }
 
-
 .plan-actions {
-
     display:
         flex;
 
     gap:
-        5px;
-
+        6px;
 }
 
-
 .plan-actions button {
-
     width:
-        34px;
+        36px;
 
     height:
-        34px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    background:
-        var(--bg);
+        36px;
 
     border-radius:
         9px;
 
-    font-size:
-        14px;
+    background:
+        var(--card-soft);
 
+    color:
+        var(--text);
+
+    border:
+        1px solid
+        var(--border);
 }
 
-
 .plan-actions button:hover {
-
     background:
         var(--primary-soft);
 
     color:
         var(--primary);
 
+    border-color:
+        #d9ddff;
 }
-
 
 .plan-card.completed {
-
     opacity:
-        0.52;
-
+        0.55;
 }
-
 
 .plan-card.completed .plan-content h3 {
-
     text-decoration:
         line-through;
-
 }
 
-
 .empty-plan {
+    padding:
+        60px 20px;
 
     text-align:
         center;
 
-    padding:
-        50px 20px;
-
     color:
         var(--sub-text);
-
 }
-
 
 .empty-icon {
-
     font-size:
-        40px;
+        42px;
 
     margin-bottom:
-        10px;
-
+        12px;
 }
 
-
 .empty-plan h3 {
-
     color:
         var(--text);
 
-    margin-bottom:
-        5px;
+    font-size:
+        16px;
 
+    margin-bottom:
+        7px;
 }
 
 
 /* =========================================================
-   11. WEEK
-   ========================================================= */
+   10. WEEK VIEW
+========================================================= */
 
 .week-grid {
-
     display:
         grid;
 
     grid-template-columns:
-        repeat(7, minmax(0, 1fr));
+        repeat(7, 1fr);
 
     gap:
         10px;
 
+    width:
+        100%;
 }
 
-
 .week-day {
-
     min-height:
-        190px;
+        180px;
 
     padding:
-        12px;
+        13px;
 
     background:
         var(--card-soft);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
         14px;
-
 }
 
-
 .week-day-header {
-
-    padding-bottom:
-        10px;
-
-    margin-bottom:
-        10px;
-
-    border-bottom:
-        1px solid var(--border);
-
-    color:
-        var(--primary);
-
     font-size:
-        11px;
+        12px;
 
     font-weight:
         800;
 
+    color:
+        var(--primary);
+
+    margin-bottom:
+        12px;
 }
 
-
 .week-plan {
-
     padding:
         9px;
 
     margin-bottom:
-        6px;
+        7px;
+
+    border-radius:
+        9px;
 
     background:
         var(--card);
 
     border:
-        1px solid var(--border);
-
-    border-radius:
-        9px;
+        1px solid
+        var(--border);
 
     font-size:
         11px;
@@ -1409,82 +1028,62 @@ main {
 
     transition:
         var(--transition);
-
 }
 
-
 .week-plan:hover {
-
     border-color:
         var(--primary);
 
     transform:
         translateY(-1px);
-
 }
 
-
 .week-plan.completed {
-
     opacity:
         0.5;
 
     text-decoration:
         line-through;
-
 }
 
-
 .no-plan {
-
     color:
         var(--sub-text);
 
     font-size:
-        10px;
-
+        11px;
 }
 
 
 /* =========================================================
-   12. MONTH
-   ========================================================= */
+   11. MONTH VIEW
+========================================================= */
 
 .month-calendar {
-
     width:
         100%;
-
 }
-
 
 .month-weekdays,
 .month-days {
-
     display:
         grid;
 
     grid-template-columns:
-        repeat(7, minmax(0, 1fr));
+        repeat(7, 1fr);
 
     gap:
-        7px;
-
+        8px;
 }
-
 
 .month-weekdays {
-
     margin-bottom:
-        7px;
-
+        8px;
 }
 
-
 .month-weekdays span {
-
     padding:
-        8px;
+        8px 0;
 
     text-align:
         center;
@@ -1493,16 +1092,13 @@ main {
         var(--sub-text);
 
     font-size:
-        11px;
+        12px;
 
     font-weight:
         800;
-
 }
 
-
 .month-day {
-
     min-height:
         105px;
 
@@ -1513,52 +1109,55 @@ main {
         var(--card-soft);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
-        11px;
+        12px;
 
     cursor:
         pointer;
 
     transition:
         var(--transition);
-
 }
 
-
 .month-day:hover {
-
     border-color:
         var(--primary);
 
     transform:
-        translateY(-2px);
-
+        translateY(-1px);
 }
 
+.empty-day {
+    opacity:
+        0.35;
+}
 
 .month-day-number {
-
-    margin-bottom:
-        7px;
-
     font-size:
-        12px;
+        13px;
 
     font-weight:
         800;
 
+    margin-bottom:
+        8px;
 }
 
-
 .month-plan {
+    overflow:
+        hidden;
 
     padding:
-        4px 6px;
+        5px 7px;
 
     margin-bottom:
         4px;
+
+    border-radius:
+        6px;
 
     background:
         var(--primary-soft);
@@ -1566,38 +1165,22 @@ main {
     color:
         var(--primary);
 
-    border-radius:
-        5px;
-
     font-size:
-        9px;
-
-    overflow:
-        hidden;
+        10px;
 
     white-space:
         nowrap;
 
     text-overflow:
         ellipsis;
-
-}
-
-
-.empty-day {
-
-    opacity:
-        0.25;
-
 }
 
 
 /* =========================================================
-   13. D-DAY
-   ========================================================= */
+   12. D-DAY
+========================================================= */
 
 #dday-form {
-
     display:
         grid;
 
@@ -1605,24 +1188,41 @@ main {
         1fr 180px auto;
 
     gap:
-        12px;
+        10px;
 
     margin-bottom:
         18px;
-
 }
-
 
 #dday-form button {
+    padding:
+        0 20px;
 
-    min-width:
-        120px;
+    border-radius:
+        10px;
 
+    background:
+        var(--primary);
+
+    color:
+        white;
+
+    font-size:
+        13px;
+
+    font-weight:
+        800;
 }
 
+#dday-form button:hover {
+    background:
+        var(--primary-hover);
+
+    transform:
+        translateY(-1px);
+}
 
 #dday-list {
-
     display:
         flex;
 
@@ -1631,12 +1231,9 @@ main {
 
     gap:
         8px;
-
 }
 
-
 .dday-item {
-
     display:
         flex;
 
@@ -1647,72 +1244,47 @@ main {
         space-between;
 
     padding:
-        16px 18px;
+        16px;
 
     background:
         var(--card-soft);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
         13px;
-
-    transition:
-        var(--transition);
-
 }
-
-
-.dday-item:hover {
-
-    border-color:
-        #d5d1ff;
-
-    transform:
-        translateY(-1px);
-
-}
-
 
 .dday-item strong {
-
     font-size:
         14px;
-
 }
 
-
 .dday-item > strong {
-
     color:
         var(--primary);
 
     font-size:
-        20px;
-
+        18px;
 }
 
-
 .dday-item small {
-
     display:
         block;
 
     margin-top:
-        3px;
+        4px;
 
     color:
         var(--sub-text);
 
     font-size:
-        11px;
-
+        12px;
 }
 
-
 .dday-actions {
-
     display:
         flex;
 
@@ -1721,47 +1293,42 @@ main {
 
     gap:
         8px;
-
 }
 
-
 .dday-delete-button {
-
     width:
         34px;
 
     height:
         34px;
 
+    padding:
+        0;
+
     border-radius:
-        9px;
+        8px;
 
     background:
         transparent;
 
-    color:
-        var(--sub-text);
-
+    font-size:
+        15px;
 }
 
-
 .dday-delete-button:hover {
-
     background:
-        var(--danger-soft);
+        #fee2e2;
 
-    color:
-        var(--danger);
-
+    transform:
+        scale(1.05);
 }
 
 
 /* =========================================================
-   14. STATISTICS
-   ========================================================= */
+   13. STATISTICS SUMMARY
+========================================================= */
 
 .statistics {
-
     display:
         grid;
 
@@ -1770,144 +1337,82 @@ main {
 
     gap:
         12px;
-
 }
 
-
 .stat-card {
-
     position:
         relative;
+
+    overflow:
+        hidden;
 
     padding:
         20px;
 
     background:
-        var(--card-soft);
+        linear-gradient(
+            145deg,
+            var(--card-soft),
+            var(--card)
+        );
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
-        16px;
-
-    overflow:
-        hidden;
+        15px;
 
     transition:
         var(--transition);
-
 }
 
+.stat-card::after {
+    content:
+        "";
 
-.stat-card:hover {
-
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        var(--shadow-hover);
-
-}
-
-
-.stat-card-icon {
+    position:
+        absolute;
 
     width:
-        34px;
+        60px;
 
     height:
-        34px;
+        60px;
 
-    display:
-        flex;
+    right:
+        -20px;
 
-    align-items:
-        center;
+    bottom:
+        -20px;
 
-    justify-content:
-        center;
-
-    margin-bottom:
-        14px;
+    border-radius:
+        50%;
 
     background:
         var(--primary-soft);
 
-    border-radius:
-        10px;
-
-    font-size:
-        15px;
-
+    opacity:
+        0.7;
 }
 
+.stat-card:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        var(--shadow);
+}
 
 .stat-card h3 {
+    position:
+        relative;
 
-    margin-bottom:
-        7px;
-
-    color:
-        var(--sub-text);
-
-    font-size:
-        11px;
-
-    font-weight:
-        700;
-
-}
-
-
-.stat-card strong {
-
-    font-size:
-        25px;
-
-    font-weight:
-        850;
-
-    letter-spacing:
-        -1px;
-
-}
-
-
-/* =========================================================
-   15. STATISTICS PERIOD
-   ========================================================= */
-
-.statistics-period {
-
-    display:
-        flex;
-
-    gap:
-        6px;
-
-    margin-bottom:
-        18px;
-
-}
-
-
-.statistics-period-button {
-
-    padding:
-        7px 14px;
-
-    background:
-        var(--bg);
+    z-index:
+        1;
 
     color:
         var(--sub-text);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        9px;
 
     font-size:
         12px;
@@ -1915,22 +1420,76 @@ main {
     font-weight:
         700;
 
+    margin-bottom:
+        10px;
+}
+
+.stat-card strong {
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    font-size:
+        25px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.5px;
 }
 
 
-.statistics-period-button:hover {
+/* =========================================================
+   14. PERIOD BUTTONS
+========================================================= */
 
+.statistics-period {
+    display:
+        flex;
+
+    gap:
+        7px;
+
+    margin-bottom:
+        20px;
+}
+
+.statistics-period-button {
+    padding:
+        8px 15px;
+
+    border-radius:
+        9px;
+
+    background:
+        var(--card-soft);
+
+    color:
+        var(--sub-text);
+
+    border:
+        1px solid
+        var(--border);
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+}
+
+.statistics-period-button:hover {
     color:
         var(--primary);
 
     border-color:
-        #d5d1ff;
-
+        #cdd2ff;
 }
 
-
 .statistics-period-button.active {
-
     background:
         var(--primary);
 
@@ -1940,43 +1499,32 @@ main {
     border-color:
         var(--primary);
 
+    font-weight:
+        800;
 }
 
 
 /* =========================================================
-   16. STUDY TIME CHART
-   ========================================================= */
+   15. STUDY TIME CHART
+========================================================= */
 
 #statistics-chart {
-
     margin-top:
         30px;
-
-    padding-top:
-        25px;
-
-    border-top:
-        1px solid var(--border);
-
 }
 
-
 #statistics-chart h3 {
-
-    margin-bottom:
-        18px;
-
     font-size:
         15px;
 
     font-weight:
         800;
 
+    margin-bottom:
+        16px;
 }
 
-
 .chart-container {
-
     height:
         220px;
 
@@ -1990,55 +1538,40 @@ main {
         space-around;
 
     gap:
-        8px;
+        10px;
 
     padding:
         20px 15px;
+
+    overflow-x:
+        auto;
 
     background:
         var(--card-soft);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
         15px;
-
-    overflow-x:
-        auto;
-
 }
 
-
 .chart-bar {
-
     position:
         relative;
 
     width:
-        38px;
-
-    min-width:
-        20px;
+        40px;
 
     min-height:
         8px;
 
-    background:
-        linear-gradient(
-            to top,
-            var(--primary),
-            #958dff
-        );
-
-    border-radius:
-        8px 8px 4px 4px;
+    flex-shrink:
+        0;
 
     display:
         flex;
-
-    flex-direction:
-        column;
 
     align-items:
         center;
@@ -2046,34 +1579,44 @@ main {
     justify-content:
         flex-end;
 
+    flex-direction:
+        column;
+
     padding-bottom:
         6px;
+
+    border-radius:
+        9px 9px 4px 4px;
+
+    background:
+        linear-gradient(
+            to top,
+            var(--primary),
+            #8b5cf6
+        );
 
     transition:
         height 0.4s ease,
         transform 0.2s ease;
-
 }
-
 
 .chart-bar:hover {
-
     transform:
-        translateY(-4px);
+        translateY(-3px);
 
+    filter:
+        brightness(1.05);
 }
 
-
 .chart-bar span {
-
     position:
         absolute;
 
-    top:
-        100%;
+    bottom:
+        -25px;
 
-    margin-top:
-        8px;
+    transform:
+        none;
 
     color:
         var(--sub-text);
@@ -2083,12 +1626,9 @@ main {
 
     white-space:
         nowrap;
-
 }
 
-
 .chart-bar small {
-
     color:
         white;
 
@@ -2098,60 +1638,60 @@ main {
     font-weight:
         700;
 
+    white-space:
+        nowrap;
 }
 
 
 /* =========================================================
-   17. SUBJECT STATISTICS
-   ========================================================= */
+   16. SUBJECT STATISTICS
+========================================================= */
 
 .subject-statistics {
-
     margin-top:
-        30px;
+        32px;
 
     padding-top:
-        25px;
+        28px;
 
     border-top:
-        1px solid var(--border);
-
+        1px solid
+        var(--border);
 }
 
-
-.subject-statistics h3 {
-
-    margin-bottom:
-        20px;
-
+.subject-statistics > h3,
+.subject-statistics-title {
     font-size:
         16px;
 
     font-weight:
         800;
 
+    margin-bottom:
+        20px;
 }
 
-
 .subject-statistics-content {
-
     display:
         grid;
 
     grid-template-columns:
-        1fr 1fr;
+        minmax(240px, 0.8fr)
+        minmax(280px, 1.2fr);
 
     gap:
-        35px;
+        32px;
 
     align-items:
         center;
-
 }
 
 
-.subject-pie-chart {
+/* =========================================================
+   17. SUBJECT PIE CHART
+========================================================= */
 
+.subject-pie-chart {
     min-height:
         280px;
 
@@ -2163,25 +1703,9 @@ main {
 
     justify-content:
         center;
-
 }
-
-
-.subject-pie-chart canvas {
-
-    max-width:
-        280px;
-
-    max-height:
-        280px;
-
-}
-
-
-/* JS에서 사용하는 CSS 원형 그래프 */
 
 .subject-pie {
-
     position:
         relative;
 
@@ -2204,14 +1728,11 @@ main {
         50%;
 
     box-shadow:
-        0 12px 35px
-        rgba(31, 35, 55, 0.10);
-
+        0 12px 30px
+        rgba(15, 23, 42, 0.1);
 }
 
-
 .subject-pie::before {
-
     content:
         "";
 
@@ -2229,12 +1750,9 @@ main {
 
     background:
         var(--card);
-
 }
 
-
 .subject-pie-center {
-
     position:
         relative;
 
@@ -2255,37 +1773,36 @@ main {
 
     text-align:
         center;
-
 }
 
-
 .subject-pie-center strong {
+    color:
+        var(--text);
 
     font-size:
         20px;
 
     font-weight:
-        850;
-
+        800;
 }
 
-
 .subject-pie-center span {
-
     margin-top:
-        4px;
+        5px;
 
     color:
         var(--sub-text);
 
     font-size:
         11px;
-
 }
 
 
-.subject-statistics-list {
+/* =========================================================
+   18. SUBJECT STATISTICS LIST
+========================================================= */
 
+.subject-statistics-list {
     display:
         flex;
 
@@ -2293,13 +1810,10 @@ main {
         column;
 
     gap:
-        9px;
-
+        10px;
 }
 
-
 .subject-stat-item {
-
     display:
         flex;
 
@@ -2309,37 +1823,38 @@ main {
     justify-content:
         space-between;
 
+    gap:
+        12px;
+
     padding:
-        13px 15px;
+        14px 16px;
 
     background:
         var(--card-soft);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
         12px;
 
     transition:
         var(--transition);
-
 }
-
 
 .subject-stat-item:hover {
-
     border-color:
-        #d5d1ff;
+        #cdd2ff;
 
     transform:
-        translateX(3px);
+        translateY(-1px);
 
+    box-shadow:
+        var(--shadow-sm);
 }
 
-
 .subject-stat-name {
-
     display:
         flex;
 
@@ -2349,17 +1864,17 @@ main {
     gap:
         9px;
 
+    min-width:
+        0;
+
     font-size:
         13px;
 
     font-weight:
-        750;
-
+        800;
 }
 
-
 .subject-stat-color {
-
     width:
         11px;
 
@@ -2371,67 +1886,77 @@ main {
 
     border-radius:
         50%;
-
 }
 
-
 .subject-stat-time {
-
     color:
         var(--text);
 
     font-size:
-        12px;
+        13px;
 
     font-weight:
-        750;
+        800;
 
+    white-space:
+        nowrap;
 }
 
-
 .subject-stat-detail {
-
     min-width:
         45px;
-
-    margin-left:
-        8px;
-
-    text-align:
-        right;
 
     color:
         var(--sub-text);
 
     font-size:
-        11px;
+        12px;
 
+    text-align:
+        right;
 }
 
 
 /* =========================================================
-   18. OLD SUBJECT STAT COMPATIBILITY
-   ========================================================= */
+   19. OLD SUBJECT STAT CARD COMPATIBILITY
+========================================================= */
 
 .subject-stat-card {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        14px;
 
     padding:
-        18px;
+        20px;
 
     background:
         var(--card-soft);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
         14px;
-
 }
 
+.subject-stat-card h3 {
+    color:
+        var(--primary);
+
+    font-size:
+        16px;
+
+    font-weight:
+        800;
+}
 
 .subject-stat-info {
-
     display:
         grid;
 
@@ -2439,32 +1964,24 @@ main {
         repeat(4, 1fr);
 
     gap:
-        8px;
-
+        10px;
 }
 
+.subject-stat-info .subject-stat-item {
+    display:
+        flex;
 
-.subject-stat-info span {
+    flex-direction:
+        column;
 
-    color:
-        var(--sub-text);
+    align-items:
+        flex-start;
 
-    font-size:
-        11px;
-
+    justify-content:
+        center;
 }
-
-
-.subject-stat-info strong {
-
-    font-size:
-        14px;
-
-}
-
 
 .subject-stat-achievement {
-
     display:
         flex;
 
@@ -2473,32 +1990,26 @@ main {
 
     gap:
         10px;
-
 }
 
-
 .subject-stat-progress {
-
     flex:
         1;
 
     height:
         8px;
 
+    overflow:
+        hidden;
+
     background:
         var(--border);
 
     border-radius:
-        99px;
-
-    overflow:
-        hidden;
-
+        999px;
 }
 
-
 .subject-stat-progress-bar {
-
     height:
         100%;
 
@@ -2506,67 +2017,66 @@ main {
         var(--primary);
 
     border-radius:
-        99px;
-
+        999px;
 }
 
-
 .subject-stat-percent {
-
     min-width:
         45px;
-
-    text-align:
-        right;
 
     color:
         var(--primary);
 
     font-size:
-        12px;
+        13px;
 
     font-weight:
         800;
 
+    text-align:
+        right;
 }
 
-
 .empty-subject-statistics {
-
     padding:
-        30px;
-
-    text-align:
-        center;
+        25px;
 
     color:
         var(--sub-text);
 
+    text-align:
+        center;
+
+    background:
+        var(--card-soft);
+
+    border:
+        1px dashed
+        var(--border);
+
+    border-radius:
+        12px;
 }
 
 
 /* =========================================================
-   19. PDF
-   ========================================================= */
+   20. PDF EXPORT
+========================================================= */
 
 .export-section {
-
     text-align:
         center;
 
-    margin-top:
-        10px;
-
-    padding:
-        10px 0 30px;
-
+    margin:
+        10px 0 50px;
 }
 
-
 #pdf-button {
-
     padding:
         13px 24px;
+
+    border-radius:
+        12px;
 
     background:
         var(--text);
@@ -2574,35 +2084,30 @@ main {
     color:
         white;
 
-    border-radius:
-        12px;
-
     font-size:
         13px;
 
     font-weight:
         700;
 
+    box-shadow:
+        var(--shadow-sm);
 }
 
-
 #pdf-button:hover {
-
     transform:
         translateY(-2px);
 
     opacity:
-        0.88;
-
+        0.9;
 }
 
 
 /* =========================================================
-   20. MODAL
-   ========================================================= */
+   21. COPY MODAL
+========================================================= */
 
 .modal {
-
     position:
         fixed;
 
@@ -2625,24 +2130,18 @@ main {
         20px;
 
     background:
-        rgba(15, 18, 30, 0.48);
+        rgba(15, 23, 42, 0.48);
 
     backdrop-filter:
         blur(7px);
-
 }
-
 
 .modal.hidden {
-
     display:
         none;
-
 }
 
-
 .modal-content {
-
     position:
         relative;
 
@@ -2650,10 +2149,10 @@ main {
         100%;
 
     max-width:
-        410px;
+        420px;
 
     padding:
-        32px;
+        30px;
 
     background:
         var(--card);
@@ -2662,90 +2161,51 @@ main {
         var(--text);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     border-radius:
         22px;
 
     box-shadow:
-        0 25px 70px
-        rgba(0, 0, 0, 0.20);
+        var(--shadow-lg);
 
     animation:
-        modalOpen 0.2s ease;
-
+        modalOpen 0.22s ease;
 }
 
-
 @keyframes modalOpen {
-
     from {
-
         opacity:
             0;
 
         transform:
             translateY(15px)
             scale(0.97);
-
     }
 
     to {
-
         opacity:
             1;
 
         transform:
             translateY(0)
             scale(1);
-
     }
-
 }
-
-
-.modal-icon {
-
-    width:
-        45px;
-
-    height:
-        45px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    margin-bottom:
-        14px;
-
-    background:
-        var(--primary-soft);
-
-    border-radius:
-        12px;
-
-}
-
 
 .modal-content h2 {
-
     margin-bottom:
-        7px;
+        8px;
 
     font-size:
-        20px;
+        19px;
 
+    font-weight:
+        800;
 }
 
-
-.modal-content > p {
-
+.modal-content p {
     margin-bottom:
         22px;
 
@@ -2754,12 +2214,28 @@ main {
 
     font-size:
         13px;
-
 }
 
+.modal-content label {
+    display:
+        block;
+
+    margin-bottom:
+        7px;
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+}
+
+.modal-content input {
+    margin-bottom:
+        15px;
+}
 
 .modal-close {
-
     position:
         absolute;
 
@@ -2770,44 +2246,38 @@ main {
         14px;
 
     width:
-        34px;
+        32px;
 
     height:
-        34px;
+        32px;
+
+    border-radius:
+        8px;
 
     background:
-        var(--bg);
+        var(--card-soft);
 
     color:
         var(--text);
 
-    border-radius:
-        9px;
-
+    font-size:
+        15px;
 }
-
 
 .modal-close:hover {
-
     background:
-        var(--danger-soft);
-
-    color:
-        var(--danger);
-
+        var(--border);
 }
 
-
 .confirm-copy-button {
-
     width:
         100%;
 
     height:
         46px;
 
-    margin-top:
-        15px;
+    border-radius:
+        10px;
 
     background:
         var(--primary);
@@ -2815,142 +2285,121 @@ main {
     color:
         white;
 
-    border-radius:
-        11px;
+    font-size:
+        13px;
 
     font-weight:
-        750;
-
+        800;
 }
 
-
 .confirm-copy-button:hover {
-
     background:
         var(--primary-hover);
 
+    transform:
+        translateY(-1px);
 }
 
 
 /* =========================================================
-   21. DARK MODE
-   ========================================================= */
+   22. DARK MODE
+========================================================= */
 
 body.dark {
-
     --bg:
-        #10121a;
+        #0b1020;
 
     --card:
-        #191c27;
+        #151b2e;
 
     --card-soft:
-        #151822;
+        #1b2238;
 
     --text:
-        #f4f5f8;
+        #f4f6ff;
 
     --sub-text:
-        #959bad;
+        #9ca6bd;
 
     --border:
-        #2a2e3b;
+        #29324a;
 
     --primary:
-        #8178ff;
+        #818cf8;
 
     --primary-hover:
-        #7167f5;
+        #6366f1;
 
     --primary-soft:
-        #29264e;
+        #252b5a;
+
+    --shadow-sm:
+        0 4px 15px rgba(0, 0, 0, 0.18);
 
     --shadow:
-        0 10px 35px
-        rgba(0, 0, 0, 0.20);
+        0 12px 35px rgba(0, 0, 0, 0.22);
 
-    --shadow-hover:
-        0 16px 40px
-        rgba(0, 0, 0, 0.30);
-
+    --shadow-lg:
+        0 20px 60px rgba(0, 0, 0, 0.35);
 }
-
 
 body.dark #app-page header {
-
     background:
-        rgba(25, 28, 39, 0.88);
+        rgba(21, 27, 46, 0.9);
 
+    border-bottom-color:
+        rgba(41, 50, 74, 0.8);
 }
 
+body.dark #login-page {
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(99, 102, 241, 0.15),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(124, 58, 237, 0.12),
+            transparent 30%
+        ),
+
+        var(--bg);
+}
 
 body.dark .login-container {
-
     background:
-        rgba(25, 28, 39, 0.92);
+        rgba(21, 27, 46, 0.88);
 
     border-color:
         var(--border);
-
 }
 
+body.dark .month-plan,
+body.dark #today-button,
+body.dark #signup-button {
+    background:
+        var(--primary-soft);
+
+    color:
+        #c7d2fe;
+}
 
 body.dark .subject-pie::before {
-
     background:
         var(--card);
-
 }
 
-
-body.dark #signup-button {
-
+body.dark .dday-delete-button:hover {
     background:
-        var(--primary-soft);
-
-    color:
-        #b8b2ff;
-
-}
-
-
-body.dark #today-button {
-
-    background:
-        var(--primary-soft);
-
-    color:
-        #b8b2ff;
-
-}
-
-
-body.dark .month-plan {
-
-    background:
-        var(--primary-soft);
-
-    color:
-        #b8b2ff;
-
-}
-
-
-body.dark .chart-bar {
-
-    background:
-        linear-gradient(
-            to top,
-            #7167f5,
-            #9b94ff
-        );
-
+        #4c252c;
 }
 
 
 /* =========================================================
-   22. TABLET
-   ========================================================= */
+   23. TABLET
+========================================================= */
 
 @media (
     min-width: 769px
@@ -2959,501 +2408,354 @@ body.dark .chart-bar {
 ) {
 
     main {
-
         max-width:
-            950px;
+            960px;
 
+        padding:
+            30px 20px 70px;
     }
 
+    #app-page header {
+        padding:
+            0 24px;
+    }
 
-    .week-grid {
+    .plan-card {
+        grid-template-columns:
+            90px 1fr auto;
 
         gap:
-            6px;
-
+            15px;
     }
 
+    .week-grid {
+        gap:
+            6px;
+    }
 
     .week-day {
+        min-height:
+            160px;
 
         padding:
             9px;
-
     }
 
+    .week-plan {
+        padding:
+            7px;
+
+        font-size:
+            11px;
+    }
+
+    .month-weekdays,
+    .month-days {
+        gap:
+            5px;
+    }
+
+    .month-day {
+        min-height:
+            90px;
+    }
 
     .statistics {
-
         grid-template-columns:
             repeat(2, 1fr);
-
     }
-
 }
 
 
 /* =========================================================
-   23. MOBILE
-   ========================================================= */
+   24. MOBILE
+========================================================= */
 
 @media (
     max-width: 768px
 ) {
 
     #app-page header {
-
         height:
-            66px;
+            64px;
 
         padding:
-            0 16px;
-
+            0 15px;
     }
-
-
-    .header-brand-icon {
-
-        width:
-            38px;
-
-        height:
-            38px;
-
-    }
-
 
     .header-left h1 {
-
         font-size:
-            16px;
-
+            17px;
     }
 
-
-    .header-subtitle {
-
-        display:
-            none;
-
+    .header-right button {
+        padding:
+            0 10px;
     }
 
-
-    .logout-button {
+    #dark-mode-button {
+        width:
+            40px;
 
         padding:
-            0 11px;
-
-        font-size:
-            12px;
-
+            0;
     }
-
 
     main {
-
         padding:
-            25px 14px 60px;
-
+            24px 14px 60px;
     }
-
 
     .date-section {
-
         gap:
-            14px;
-
+            15px;
     }
-
-
-    .date-center {
-
-        min-width:
-            180px;
-
-    }
-
 
     .date-section h2 {
-
         font-size:
-            19px;
-
+            18px;
     }
-
-
-    .view-section {
-
-        margin-bottom:
-            22px;
-
-    }
-
 
     .view-button {
-
         min-width:
-            65px;
+            auto;
 
         padding:
-            8px 12px;
-
-        font-size:
-            12px;
-
+            8px 14px;
     }
-
 
     .plan-add-section,
     .planner-section,
     .dday-section,
     .statistics-section {
-
         padding:
-            20px;
+            18px;
 
         border-radius:
             17px;
-
     }
-
 
     #plan-form {
-
         grid-template-columns:
             1fr;
-
     }
 
-
-    #plan-form > button {
-
+    #plan-form button {
         grid-column:
             auto;
-
     }
-
 
     .plan-card {
-
         grid-template-columns:
             1fr;
 
         gap:
-            9px;
-
+            10px;
     }
-
 
     .plan-actions {
-
         justify-content:
             flex-end;
-
     }
 
-
     .week-grid {
-
         grid-template-columns:
             1fr;
 
+        gap:
+            8px;
     }
-
 
     .week-day {
-
         min-height:
             auto;
-
     }
 
-
-    .month-weekdays,
-    .month-days {
-
+    .month-days,
+    .month-weekdays {
         gap:
-            4px;
-
+            3px;
     }
-
 
     .month-day {
-
         min-height:
-            75px;
+            70px;
 
         padding:
             6px;
-
     }
-
 
     .month-plan {
-
         font-size:
             8px;
-
     }
-
 
     #dday-form {
-
         grid-template-columns:
             1fr;
-
     }
-
 
     #dday-form button {
-
         height:
-            46px;
-
+            44px;
     }
-
 
     .statistics {
-
         grid-template-columns:
             repeat(2, 1fr);
-
     }
-
 
     .stat-card {
-
         padding:
-            16px;
-
+            15px;
     }
-
 
     .stat-card strong {
-
         font-size:
-            21px;
-
-    }
-
-
-    .statistics-period {
-
-        overflow-x:
-            auto;
-
-    }
-
-
-    .subject-statistics-content {
-
-        grid-template-columns:
-            1fr;
-
-        gap:
             20px;
-
     }
-
-
-    .subject-pie-chart {
-
-        min-height:
-            230px;
-
-    }
-
-
-    .subject-pie {
-
-        width:
-            210px;
-
-        height:
-            210px;
-
-    }
-
-
-    .subject-pie::before {
-
-        width:
-            125px;
-
-        height:
-            125px;
-
-    }
-
-
-    .subject-pie-center strong {
-
-        font-size:
-            17px;
-
-    }
-
-
-    .subject-stat-info {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-    }
-
 
     .chart-container {
-
         height:
             200px;
 
         padding:
             15px 8px;
-
     }
-
 
     .chart-bar {
-
         width:
-            27px;
-
+            28px;
     }
 
+    .subject-statistics-content {
+        grid-template-columns:
+            1fr;
 
-    .modal-content {
-
-        padding:
-            26px 20px;
-
+        gap:
+            20px;
     }
 
+    .subject-pie-chart {
+        min-height:
+            240px;
+    }
+
+    .subject-pie {
+        width:
+            210px;
+
+        height:
+            210px;
+    }
+
+    .subject-pie::before {
+        width:
+            125px;
+
+        height:
+            125px;
+    }
+
+    .subject-pie-center strong {
+        font-size:
+            17px;
+    }
+
+    .subject-stat-info {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
 }
 
 
 /* =========================================================
-   24. SMALL MOBILE
-   ========================================================= */
+   25. SMALL MOBILE
+========================================================= */
 
 @media (
     max-width: 420px
 ) {
 
     .login-container {
-
         padding:
             32px 22px;
 
         border-radius:
             22px;
-
     }
 
-
-    .login-brand h1 {
-
+    .login-container h1 {
         font-size:
             24px;
-
     }
 
-
-    .date-nav-button {
-
+    .date-section > button {
         width:
             38px;
 
         height:
             38px;
-
     }
-
-
-    .date-center {
-
-        min-width:
-            150px;
-
-    }
-
 
     .date-section h2 {
-
         font-size:
             16px;
-
     }
 
+    .date-section > div {
+        min-width:
+            140px;
+    }
 
     .view-button {
-
-        min-width:
-            58px;
-
         padding:
-            7px 9px;
-
-        font-size:
-            11px;
-
-    }
-
-
-    .statistics {
-
-        gap:
-            8px;
-
-    }
-
-
-    .stat-card {
-
-        padding:
-            13px;
-
-    }
-
-
-    .stat-card-icon {
-
-        width:
-            30px;
-
-        height:
-            30px;
-
-    }
-
-
-    .stat-card strong {
-
-        font-size:
-            18px;
-
-    }
-
-
-    .subject-stat-item {
-
-        padding:
-            11px 12px;
-
-    }
-
-
-    .subject-stat-name {
+            7px 10px;
 
         font-size:
             12px;
-
     }
 
+    .statistics {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .stat-card {
+        padding:
+            13px;
+    }
+
+    .stat-card strong {
+        font-size:
+            18px;
+    }
+
+    .modal-content {
+        padding:
+            25px 20px;
+    }
+
+    .subject-stat-item {
+        padding:
+            12px;
+    }
+
+    .subject-stat-name {
+        font-size:
+            12px;
+    }
+
+    .subject-stat-time {
+        font-size:
+            12px;
+    }
 }
 
 
 /* =========================================================
-   25. TOUCH DEVICES
-   ========================================================= */
+   26. TOUCH DEVICE
+========================================================= */
 
 @media (
     hover: none
@@ -3462,61 +2764,84 @@ body.dark .chart-bar {
 ) {
 
     button {
+        min-height:
+            44px;
+    }
+
+    .date-section > button {
+        width:
+            46px;
+
+        height:
+            46px;
+    }
+
+    .plan-actions button {
+        width:
+            42px;
+
+        height:
+            42px;
+    }
+
+    .dday-delete-button {
+        min-width:
+            44px;
 
         min-height:
             44px;
-
     }
 
-
-    .plan-actions button {
-
-        width:
-            40px;
-
-        height:
-            40px;
-
+    .view-button {
+        min-height:
+            44px;
     }
-
-
-    .dday-delete-button {
-
-        width:
-            42px;
-
-        height:
-            42px;
-
-    }
-
 }
 
 
 /* =========================================================
-   26. PRINT / PDF
-   ========================================================= */
+   27. MOBILE LANDSCAPE
+========================================================= */
+
+@media (
+    max-width: 768px
+) and (
+    orientation: landscape
+) {
+
+    main {
+        padding-top:
+            20px;
+    }
+
+    .plan-card {
+        grid-template-columns:
+            90px 1fr auto;
+    }
+
+    .week-grid {
+        grid-template-columns:
+            repeat(7, minmax(100px, 1fr));
+
+        overflow-x:
+            auto;
+    }
+}
+
+
+/* =========================================================
+   28. PRINT / PDF
+========================================================= */
 
 @media print {
 
-    @page {
-
-        margin:
-            15mm;
-
-    }
-
-
     body {
-
         background:
             white !important;
 
         color:
             black !important;
-
     }
-
 
     #login-page,
     header,
@@ -3525,44 +2850,31 @@ body.dark .chart-bar {
     .plan-add-section,
     .dday-section,
     .export-section {
-
         display:
             none !important;
-
     }
 
-
     main {
-
         max-width:
             100%;
 
         padding:
             0;
-
     }
-
 
     .planner-section,
     .statistics-section {
-
-        padding:
-            0;
-
-        margin:
-            0 0 20px;
+        box-shadow:
+            none !important;
 
         border:
-            none;
+            none !important;
 
-        box-shadow:
-            none;
-
+        background:
+            white !important;
     }
 
-
     .plan-card {
-
         display:
             grid !important;
 
@@ -3588,38 +2900,18 @@ body.dark .chart-bar {
             1px solid #ddd !important;
 
         border-radius:
-            8px;
+            8px !important;
 
         page-break-inside:
             avoid;
-
     }
-
-
-    .plan-time {
-
-        display:
-            block !important;
-
-        color:
-            black !important;
-
-        font-size:
-            13px !important;
-
-    }
-
 
     .plan-content {
-
         display:
             block !important;
-
     }
 
-
     .plan-content h3 {
-
         display:
             block !important;
 
@@ -3631,12 +2923,9 @@ body.dark .chart-bar {
 
         margin-bottom:
             6px !important;
-
     }
 
-
     .plan-content p {
-
         display:
             block !important;
 
@@ -3657,18 +2946,26 @@ body.dark .chart-bar {
 
         max-height:
             none !important;
-
     }
 
+    .plan-time {
+        display:
+            block !important;
+
+        color:
+            black !important;
+
+        font-size:
+            13px !important;
+    }
 
     .plan-actions {
-
         display:
             none !important;
-
     }
 
-}
-body {
-    background: red !important;
+    .statistics {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
 }
