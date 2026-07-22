@@ -2,6 +2,7 @@
 <html lang="ko">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -13,284 +14,135 @@
 
     <link
         rel="stylesheet"
-        href="./style.css"
+        href="style.css"
     >
+
 </head>
 
 
 <body>
 
 
-<!-- =====================================================
-     로그인
-===================================================== -->
+    <!-- ==================================================
+         로그인 페이지
+    =================================================== -->
 
-<div
-    id="login-page"
-    class="page"
->
+    <div
+        id="login-page"
+        class="page"
+    >
 
-    <div class="login-container">
+        <div class="login-container">
 
-        <div class="login-logo">
-            📚
+            <div class="login-brand">
+                <div class="login-logo">
+                    📚
+                </div>
+
+                <h1>
+                    Study Planner
+                </h1>
+
+                <p>
+                    나만의 공부 계획을 체계적으로 관리해보세요.
+                </p>
+            </div>
+
+
+            <form id="login-form">
+
+                <div class="form-group">
+
+                    <label for="email">
+                        이메일
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="이메일을 입력하세요"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        비밀번호
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="비밀번호를 입력하세요"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    로그인
+                </button>
+
+
+                <button
+                    type="button"
+                    id="signup-button"
+                    class="secondary-button"
+                >
+                    회원가입
+                </button>
+
+            </form>
+
+
+            <p id="login-message"></p>
+
         </div>
-
-        <h1>
-            Study Planner
-        </h1>
-
-        <p>
-            오늘의 공부를 계획하고<br>
-            꾸준한 성장을 기록해보세요.
-        </p>
-
-
-        <form id="login-form">
-
-            <div class="input-group">
-
-                <label for="email">
-                    이메일
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="이메일을 입력하세요"
-                    required
-                >
-
-            </div>
-
-
-            <div class="input-group">
-
-                <label for="password">
-                    비밀번호
-                </label>
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="비밀번호를 입력하세요"
-                    required
-                >
-
-            </div>
-
-
-            <button type="submit">
-                로그인
-            </button>
-
-
-            <button
-                type="button"
-                id="signup-button"
-            >
-                회원가입
-            </button>
-
-        </form>
-
-
-        <p id="login-message"></p>
 
     </div>
 
-</div>
 
 
+    <!-- ==================================================
+         메인 앱
+    =================================================== -->
 
-<!-- =====================================================
-     메인 앱
-===================================================== -->
+    <div
+        id="app-page"
+        class="page hidden"
+    >
 
-<div
-    id="app-page"
-    class="page hidden"
->
 
+        <!-- ==================================================
+             헤더
+        =================================================== -->
 
-    <!-- =================================================
-         사이드바
-    ================================================== -->
-
-    <aside class="sidebar">
-
-        <div class="sidebar-logo">
-
-            <div class="sidebar-logo-icon">
-                📚
-            </div>
-
-            <div>
-
-                <strong>
-                    Study Planner
-                </strong>
-
-                <span>
-                    My Study Space
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <nav class="sidebar-nav">
-
-            <div class="sidebar-label">
-                MENU
-            </div>
-
-
-            <button
-                class="sidebar-nav-item active"
-                data-view="day"
-            >
-
-                <span>📅</span>
-
-                <span>
-                    오늘의 계획
-                </span>
-
-            </button>
-
-
-            <button
-                class="sidebar-nav-item"
-                data-view="week"
-            >
-
-                <span>📆</span>
-
-                <span>
-                    주간 계획
-                </span>
-
-            </button>
-
-
-            <button
-                class="sidebar-nav-item"
-                data-view="month"
-            >
-
-                <span>🗓️</span>
-
-                <span>
-                    월간 계획
-                </span>
-
-            </button>
-
-
-            <div class="sidebar-label">
-                MANAGEMENT
-            </div>
-
-
-            <a
-                href="#statistics-section"
-                class="sidebar-nav-item"
-            >
-
-                <span>📊</span>
-
-                <span>
-                    공부 통계
-                </span>
-
-            </a>
-
-
-            <a
-                href="#dday-section"
-                class="sidebar-nav-item"
-            >
-
-                <span>🎯</span>
-
-                <span>
-                    D-Day
-                </span>
-
-            </a>
-
-        </nav>
-
-
-        <div class="sidebar-bottom">
-
-            <button
-                id="dark-mode-button"
-                class="sidebar-setting-button"
-            >
-
-                <span>
-                    🌙
-                </span>
-
-                <span>
-                    다크모드
-                </span>
-
-            </button>
-
-
-            <button
-                id="logout-button"
-                class="sidebar-logout-button"
-            >
-
-                <span>
-                    🚪
-                </span>
-
-                <span>
-                    로그아웃
-                </span>
-
-            </button>
-
-        </div>
-
-    </aside>
-
-
-
-    <!-- =================================================
-         메인 영역
-    ================================================== -->
-
-    <div class="app-layout">
-
-
-        <!-- =================================================
-             상단 헤더
-        ================================================== -->
-
-        <header class="app-header">
+        <header>
 
             <div class="header-left">
 
-                <div class="mobile-menu-button">
-                    ☰
+                <div class="header-brand-icon">
+                    📚
                 </div>
 
                 <div>
 
-                    <span class="header-eyebrow">
-                        MY STUDY DASHBOARD
-                    </span>
-
                     <h1>
-                        공부 계획
+                        Study Planner
                     </h1>
+
+                    <span class="header-subtitle">
+                        나의 공부 관리
+                    </span>
 
                 </div>
 
@@ -299,17 +151,22 @@
 
             <div class="header-right">
 
-                <div class="header-date">
+                <button
+                    id="dark-mode-button"
+                    class="icon-button"
+                    aria-label="다크모드"
+                    title="다크모드"
+                >
+                    🌙
+                </button>
 
-                    <span>
-                        TODAY
-                    </span>
 
-                    <strong id="header-today-date">
-                        -
-                    </strong>
-
-                </div>
+                <button
+                    id="logout-button"
+                    class="logout-button"
+                >
+                    로그아웃
+                </button>
 
             </div>
 
@@ -317,43 +174,38 @@
 
 
 
-        <!-- =================================================
+        <!-- ==================================================
              메인 콘텐츠
-        ================================================== -->
+        =================================================== -->
 
         <main>
 
 
-            <!-- =================================================
-                 날짜 영역
-            ================================================== -->
+            <!-- ==================================================
+                 날짜 네비게이션
+            =================================================== -->
 
-            <section class="dashboard-date-section">
+            <section class="date-section">
 
                 <button
                     id="previous-date"
                     class="date-nav-button"
+                    aria-label="이전 날짜"
                 >
-                    ←
+                    ◀
                 </button>
 
 
-                <div class="dashboard-date-center">
-
-                    <span class="date-label">
-                        STUDY PLAN
-                    </span>
+                <div class="date-center">
 
                     <h2 id="current-date">
                         날짜
                     </h2>
 
-
                     <button
                         id="today-button"
-                        class="today-button"
                     >
-                        오늘로 이동
+                        오늘
                     </button>
 
                 </div>
@@ -362,17 +214,18 @@
                 <button
                     id="next-date"
                     class="date-nav-button"
+                    aria-label="다음 날짜"
                 >
-                    →
+                    ▶
                 </button>
 
             </section>
 
 
 
-            <!-- =================================================
+            <!-- ==================================================
                  보기 방식
-            ================================================== -->
+            =================================================== -->
 
             <section class="view-section">
 
@@ -403,102 +256,9 @@
 
 
 
-            <!-- =================================================
-                 빠른 통계
-            ================================================== -->
-
-            <section class="dashboard-summary">
-
-                <div class="summary-card">
-
-                    <div class="summary-icon purple">
-                        📝
-                    </div>
-
-                    <div>
-
-                        <span>
-                            전체 계획
-                        </span>
-
-                        <strong id="total-plans">
-                            0
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <div class="summary-card">
-
-                    <div class="summary-icon green">
-                        ✓
-                    </div>
-
-                    <div>
-
-                        <span>
-                            완료한 계획
-                        </span>
-
-                        <strong id="completed-plans">
-                            0
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <div class="summary-card">
-
-                    <div class="summary-icon orange">
-                        ⏱
-                    </div>
-
-                    <div>
-
-                        <span>
-                            공부 시간
-                        </span>
-
-                        <strong id="study-time">
-                            0시간
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <div class="summary-card">
-
-                    <div class="summary-icon blue">
-                        %
-                    </div>
-
-                    <div>
-
-                        <span>
-                            달성률
-                        </span>
-
-                        <strong id="achievement">
-                            0%
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =================================================
+            <!-- ==================================================
                  공부 계획 추가
-            ================================================== -->
+            =================================================== -->
 
             <section class="plan-add-section">
 
@@ -507,7 +267,7 @@
                     <div>
 
                         <span class="section-eyebrow">
-                            NEW TASK
+                            PLAN
                         </span>
 
                         <h2>
@@ -521,9 +281,10 @@
 
                 <form id="plan-form">
 
-                    <div class="input-group">
 
-                        <label>
+                    <div class="form-group">
+
+                        <label for="plan-subject">
                             과목
                         </label>
 
@@ -537,23 +298,23 @@
                     </div>
 
 
-                    <div class="input-group">
+                    <div class="form-group">
 
-                        <label>
+                        <label for="plan-detail">
                             세부 내용
                         </label>
 
                         <textarea
                             id="plan-detail"
-                            placeholder="예: 미적분 문제 풀이 및 오답 분석"
+                            placeholder="예: 미적분 적분 단원 문제 풀이 및 오답 분석"
                         ></textarea>
 
                     </div>
 
 
-                    <div class="input-group">
+                    <div class="form-group">
 
-                        <label>
+                        <label for="plan-start">
                             시작 시간
                         </label>
 
@@ -565,9 +326,9 @@
                     </div>
 
 
-                    <div class="input-group">
+                    <div class="form-group">
 
-                        <label>
+                        <label for="plan-end">
                             종료 시간
                         </label>
 
@@ -579,9 +340,14 @@
                     </div>
 
 
-                    <button type="submit">
-                        + 계획 추가
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        <span>＋</span>
+                        계획 추가
                     </button>
+
 
                 </form>
 
@@ -589,36 +355,33 @@
 
 
 
-            <!-- =================================================
-                 계획 리스트
-            ================================================== -->
+            <!-- ==================================================
+                 계획 표시 영역
+            =================================================== -->
 
             <section
                 id="planner"
                 class="planner-section"
             >
 
-                <!-- JavaScript에서 생성 -->
+                <!-- JavaScript에서 동적으로 생성 -->
 
             </section>
 
 
 
-            <!-- =================================================
+            <!-- ==================================================
                  D-Day
-            ================================================== -->
+            =================================================== -->
 
-            <section
-                class="dday-section"
-                id="dday-section"
-            >
+            <section class="dday-section">
 
                 <div class="section-header">
 
                     <div>
 
                         <span class="section-eyebrow">
-                            IMPORTANT DATES
+                            COUNTDOWN
                         </span>
 
                         <h2>
@@ -632,31 +395,52 @@
 
                 <form id="dday-form">
 
-                    <input
-                        type="text"
-                        id="dday-title"
-                        placeholder="예: 중간고사"
-                        required
+
+                    <div class="form-group">
+
+                        <label for="dday-title">
+                            일정 이름
+                        </label>
+
+                        <input
+                            type="text"
+                            id="dday-title"
+                            placeholder="예: 중간고사"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="dday-date">
+                            날짜
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dday-date"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
                     >
-
-
-                    <input
-                        type="date"
-                        id="dday-date"
-                        required
-                    >
-
-
-                    <button type="submit">
                         D-Day 추가
                     </button>
+
 
                 </form>
 
 
                 <div id="dday-list">
 
-                    <!-- JavaScript에서 생성 -->
+                    <!-- JavaScript에서 동적으로 생성 -->
 
                 </div>
 
@@ -664,21 +448,19 @@
 
 
 
-            <!-- =================================================
+            <!-- ==================================================
                  공부 통계
-            ================================================== -->
+            =================================================== -->
 
-            <section
-                class="statistics-section"
-                id="statistics-section"
-            >
+            <section class="statistics-section">
+
 
                 <div class="section-header">
 
                     <div>
 
                         <span class="section-eyebrow">
-                            STUDY ANALYTICS
+                            ANALYTICS
                         </span>
 
                         <h2>
@@ -690,23 +472,19 @@
                 </div>
 
 
-                <!-- 기간 선택 -->
 
-                <div
-                    id="statistics-period"
-                    class="statistics-period"
-                >
-
-                    <!-- JavaScript에서 생성 -->
-
-                </div>
-
-
-                <!-- 기존 통계 카드 -->
+                <!-- ==================================================
+                     기본 통계 카드
+                =================================================== -->
 
                 <div class="statistics">
 
+
                     <div class="stat-card">
+
+                        <div class="stat-card-icon">
+                            📋
+                        </div>
 
                         <h3>
                             전체 계획
@@ -721,6 +499,10 @@
 
                     <div class="stat-card">
 
+                        <div class="stat-card-icon">
+                            ✅
+                        </div>
+
                         <h3>
                             완료한 계획
                         </h3>
@@ -733,6 +515,10 @@
 
 
                     <div class="stat-card">
+
+                        <div class="stat-card-icon">
+                            ⏱️
+                        </div>
 
                         <h3>
                             공부 시간
@@ -747,6 +533,10 @@
 
                     <div class="stat-card">
 
+                        <div class="stat-card-icon">
+                            📈
+                        </div>
+
                         <h3>
                             달성률
                         </h3>
@@ -757,45 +547,54 @@
 
                     </div>
 
+
                 </div>
 
 
-                <!-- 공부 시간 그래프 -->
+
+                <!-- ==================================================
+                     기간별 공부 시간 그래프
+                =================================================== -->
 
                 <div
                     id="statistics-chart"
                 >
 
+                    <!-- JavaScript에서 동적으로 생성 -->
+
                 </div>
 
 
-                <!-- 과목별 통계 -->
+
+                <!-- ==================================================
+                     과목별 통계
+                =================================================== -->
 
                 <div
                     id="subject-statistics"
                     class="subject-statistics"
                 >
 
+                    <!-- JavaScript에서 동적으로 생성 -->
+
                 </div>
+
 
             </section>
 
 
 
-            <!-- =================================================
-                 PDF
-            ================================================== -->
+            <!-- ==================================================
+                 PDF 출력
+            =================================================== -->
 
             <section class="export-section">
 
-                <button id="pdf-button">
-
-                    📄
-
-                    <span>
-                        PDF로 저장
-                    </span>
-
+                <button
+                    id="pdf-button"
+                >
+                    <span>📄</span>
+                    PDF로 저장
                 </button>
 
             </section>
@@ -803,87 +602,92 @@
 
         </main>
 
+
     </div>
 
-</div>
 
 
+    <!-- ==================================================
+         날짜 복사 모달
+    =================================================== -->
 
-<!-- =====================================================
-     날짜 복사 모달
-===================================================== -->
+    <div
+        id="copy-modal"
+        class="modal hidden"
+    >
 
-<div
-    id="copy-modal"
-    class="modal hidden"
->
-
-    <div class="modal-content">
-
-        <button
-            id="close-copy-modal"
-            class="modal-close"
-        >
-            ✕
-        </button>
+        <div class="modal-content">
 
 
-        <div class="modal-icon">
-            📋
+            <button
+                id="close-copy-modal"
+                class="modal-close"
+                aria-label="닫기"
+            >
+                ✕
+            </button>
+
+
+            <div class="modal-icon">
+                📋
+            </div>
+
+
+            <h2>
+                계획 복사
+            </h2>
+
+
+            <p>
+                이 계획을 복사할 날짜를 선택하세요.
+            </p>
+
+
+            <div class="form-group">
+
+                <label for="copy-target-date">
+                    복사할 날짜
+                </label>
+
+                <input
+                    type="date"
+                    id="copy-target-date"
+                >
+
+            </div>
+
+
+            <button
+                id="confirm-copy-button"
+                class="confirm-copy-button"
+            >
+                이 날짜로 복사
+            </button>
+
+
         </div>
 
-
-        <h2>
-            계획 복사
-        </h2>
-
-
-        <p>
-            이 계획을 복사할 날짜를 선택하세요.
-        </p>
-
-
-        <label for="copy-target-date">
-            복사할 날짜
-        </label>
-
-
-        <input
-            type="date"
-            id="copy-target-date"
-        >
-
-
-        <button
-            id="confirm-copy-button"
-            class="confirm-copy-button"
-        >
-            이 날짜로 복사
-        </button>
-
     </div>
 
-</div>
 
 
+    <!-- ==================================================
+         외부 라이브러리
+    =================================================== -->
 
-<!-- =====================================================
-     Supabase
-===================================================== -->
-
-<script
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
 
 
-<!-- =====================================================
-     Study Planner
-===================================================== -->
+    <!-- ==================================================
+         Study Planner JavaScript
+    =================================================== -->
 
-<script
-    src="app.js"
-    defer
-></script>
+    <script
+        src="app.js"
+        defer
+    ></script>
 
 
 </body>
