@@ -2499,249 +2499,199 @@ body.dark #today-button {
 
 .subject-statistics {
 
-    margin-top:
-        30px;
+    margin-top: 30px;
 
-    display:
-        flex;
+    padding-top: 25px;
 
-    flex-direction:
-        column;
-
-    gap:
-        12px;
+    border-top: 1px solid var(--border);
 
 }
 
 
-/* 과목별 통계 제목 */
+/* 제목 */
 
-.subject-statistics-title {
+.subject-statistics h3 {
 
-    font-size:
-        15px;
+    font-size: 16px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    margin-bottom:
-        5px;
-
-    color:
-        var(--text);
+    margin-bottom: 20px;
 
 }
 
 
-/* 과목별 통계 카드 */
+/* 원형 그래프 + 목록 */
 
-.subject-stat-card {
+.subject-statistics-content {
 
-    display:
-        flex;
+    display: grid;
 
-    flex-direction:
-        column;
+    grid-template-columns: 1fr 1fr;
 
-    gap:
-        14px;
+    gap: 30px;
 
-    padding:
-        20px;
-
-    background:
-        var(--bg);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        14px;
-
-    transition:
-        all 0.2s ease;
+    align-items: center;
 
 }
 
 
-/* 마우스 올렸을 때 */
+/* =====================================================
+   원형 그래프
+===================================================== */
 
-.subject-stat-card:hover {
+.subject-pie-chart {
 
-    border-color:
-        #c7d2fe;
+    display: flex;
 
-    transform:
-        translateY(-2px);
+    align-items: center;
 
-    box-shadow:
-        0 8px 20px
-        rgba(99, 102, 241, 0.08);
+    justify-content: center;
 
-}
+    min-height: 280px;
 
+    padding: 20px;
 
-/* 과목 이름 */
+    background: var(--bg);
 
-.subject-stat-card h3 {
+    border: 1px solid var(--border);
 
-    font-size:
-        17px;
-
-    font-weight:
-        700;
-
-    color:
-        var(--primary);
+    border-radius: 16px;
 
 }
 
 
-/* 통계 정보 영역 */
+.subject-pie-chart canvas {
 
-.subject-stat-info {
+    width: 260px !important;
 
-    display:
-        grid;
+    height: 260px !important;
 
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap:
-        10px;
+    max-width: 100%;
 
 }
 
 
-/* 각각의 통계 */
+/* =====================================================
+   과목별 목록
+===================================================== */
+
+.subject-statistics-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+/* 개별 과목 */
 
 .subject-stat-item {
 
-    display:
-        flex;
+    display: flex;
 
-    flex-direction:
-        column;
+    align-items: center;
 
-    gap:
-        5px;
+    justify-content: space-between;
 
-    padding:
-        12px;
+    gap: 15px;
 
-    background:
-        var(--card);
+    padding: 14px 16px;
 
-    border:
-        1px solid var(--border);
+    background: var(--bg);
 
-    border-radius:
-        10px;
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    transition: all 0.2s ease;
 
 }
 
 
-/* 통계 항목 제목 */
+.subject-stat-item:hover {
 
-.subject-stat-item span {
+    border-color: #c7d2fe;
 
-    font-size:
-        11px;
-
-    color:
-        var(--sub-text);
+    transform: translateY(-1px);
 
 }
 
 
-/* 통계 값 */
+/* 왼쪽 영역 */
 
-.subject-stat-item strong {
+.subject-stat-name {
 
-    font-size:
-        14px;
+    display: flex;
 
-    color:
-        var(--text);
+    align-items: center;
 
-}
+    gap: 10px;
 
-
-/* 달성률 */
-
-.subject-stat-achievement {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        10px;
+    min-width: 0;
 
 }
 
 
-/* 달성률 바 */
+/* 색상 점 */
 
-.subject-stat-progress {
+.subject-stat-color {
 
-    flex:
-        1;
+    width: 11px;
 
-    height:
-        8px;
+    height: 11px;
 
-    background:
-        var(--border);
+    flex-shrink: 0;
 
-    border-radius:
-        999px;
-
-    overflow:
-        hidden;
+    border-radius: 50%;
 
 }
 
 
-/* 달성률 바 내부 */
+/* 과목명 */
 
-.subject-stat-progress-bar {
+.subject-stat-name strong {
 
-    height:
-        100%;
+    font-size: 14px;
 
-    background:
-        var(--primary);
+    font-weight: 700;
 
-    border-radius:
-        999px;
-
-    transition:
-        width 0.4s ease;
+    color: var(--text);
 
 }
 
 
-/* 달성률 퍼센트 */
+/* 오른쪽 영역 */
 
-.subject-stat-percent {
+.subject-stat-time {
 
-    min-width:
-        45px;
+    text-align: right;
 
-    text-align:
-        right;
+    white-space: nowrap;
 
-    font-size:
-        13px;
+    color: var(--text);
 
-    font-weight:
-        700;
+    font-size: 13px;
 
-    color:
-        var(--primary);
+    font-weight: 700;
+
+}
+
+
+/* 세부 정보 */
+
+.subject-stat-detail {
+
+    margin-top: 4px;
+
+    color: var(--sub-text);
+
+    font-size: 11px;
+
+    font-weight: 400;
 
 }
 
@@ -2750,30 +2700,29 @@ body.dark #today-button {
    과목별 통계 - 모바일
 ===================================================== */
 
-@media (
-    max-width: 768px
-) {
+@media (max-width: 768px) {
 
-    .subject-statistics {
+    .subject-statistics-content {
 
-        margin-top:
-            24px;
+        grid-template-columns: 1fr;
 
-    }
-
-
-    .subject-stat-card {
-
-        padding:
-            16px;
+        gap: 20px;
 
     }
 
 
-    .subject-stat-info {
+    .subject-pie-chart {
 
-        grid-template-columns:
-            repeat(2, 1fr);
+        min-height: 240px;
+
+    }
+
+
+    .subject-pie-chart canvas {
+
+        width: 220px !important;
+
+        height: 220px !important;
 
     }
 
@@ -2784,271 +2733,52 @@ body.dark #today-button {
    과목별 통계 - 작은 모바일
 ===================================================== */
 
-@media (
-    max-width: 420px
-) {
+@media (max-width: 420px) {
 
-    .subject-stat-card {
+    .subject-statistics {
 
-        padding:
-            14px;
+        margin-top: 24px;
 
-    }
-
-
-    .subject-stat-info {
-
-        grid-template-columns:
-            1fr 1fr;
-
-        gap:
-            8px;
-
-    }
-
-
-    .subject-stat-item {
-
-        padding:
-            10px;
-
-    }
-
-
-    .subject-stat-item strong {
-
-        font-size:
-            13px;
-
-    }
-
-}
-/* =====================================================
-   과목별 공부 시간 통계
-===================================================== */
-
-.subject-statistics {
-
-    margin-top: 30px;
-
-    padding-top: 25px;
-
-    border-top:
-        1px solid var(--border);
-
-}
-
-
-.subject-statistics h3 {
-
-    font-size:
-        16px;
-
-    margin-bottom:
-        20px;
-
-}
-
-
-/* 과목별 통계 전체 영역 */
-
-.subject-statistics-content {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:
-        30px;
-
-    align-items:
-        center;
-
-}
-
-
-/* 원형 그래프 영역 */
-
-.subject-pie-chart {
-
-    display:
-        flex;
-
-    justify-content:
-        center;
-
-    align-items:
-        center;
-
-    min-height:
-        280px;
-
-}
-
-
-/* Canvas */
-
-.subject-pie-chart canvas {
-
-    max-width:
-        280px;
-
-    max-height:
-        280px;
-
-}
-
-
-/* 과목별 통계 목록 */
-
-.subject-statistics-list {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        12px;
-
-}
-
-
-/* 각각의 과목 */
-
-.subject-stat-item {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    padding:
-        14px 16px;
-
-    background:
-        var(--bg);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        12px;
-
-}
-
-
-/* 왼쪽 과목 정보 */
-
-.subject-stat-name {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        10px;
-
-    font-weight:
-        700;
-
-}
-
-
-/* 그래프 색상 표시 */
-
-.subject-stat-color {
-
-    width:
-        12px;
-
-    height:
-        12px;
-
-    border-radius:
-        50%;
-
-    flex-shrink:
-        0;
-
-}
-
-
-/* 오른쪽 시간 */
-
-.subject-stat-time {
-
-    color:
-        var(--sub-text);
-
-    font-size:
-        13px;
-
-    font-weight:
-        600;
-
-}
-
-
-/* 과목 통계 세부 정보 */
-
-.subject-stat-detail {
-
-    margin-top:
-        5px;
-
-    font-size:
-        12px;
-
-    color:
-        var(--sub-text);
-
-}
-
-
-/* =====================================================
-   과목별 통계 - 모바일
-===================================================== */
-
-@media (
-    max-width: 768px
-) {
-
-    .subject-statistics-content {
-
-        grid-template-columns:
-            1fr;
-
-        gap:
-            20px;
+        padding-top: 20px;
 
     }
 
 
     .subject-pie-chart {
 
-        min-height:
-            240px;
+        min-height: 210px;
+
+        padding: 15px;
 
     }
 
 
     .subject-pie-chart canvas {
 
-        max-width:
-            240px;
+        width: 190px !important;
 
-        max-height:
-            240px;
+        height: 190px !important;
+
+    }
+
+
+    .subject-stat-item {
+
+        padding: 12px;
+
+    }
+
+
+    .subject-stat-name strong {
+
+        font-size: 13px;
+
+    }
+
+
+    .subject-stat-time {
+
+        font-size: 12px;
 
     }
 
