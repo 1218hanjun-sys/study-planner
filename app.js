@@ -2241,22 +2241,35 @@ function getPlanMinutes(plan) {
         Number(end[1]);
 
 
+    let duration =
+
+        endMinutes -
+        startMinutes;
+
+
+    // ==================================================
+    // 자정 넘김 처리
+    //
+    // 예:
+    // 23:00 → 01:00
+    // 01:00 - 23:00 = -1320
+    // -1320 + 1440 = 120분
+    //
+    // 결과: 2시간
+    // ==================================================
+
     if (
-        endMinutes <= startMinutes
+        duration < 0
     ) {
 
-        return 0;
+        duration += 24 * 60;
 
     }
 
 
-    return (
-        endMinutes -
-        startMinutes
-    );
+    return duration;
 
 }
-
 
 // ======================================================
 // 26. 날짜 범위 계산
