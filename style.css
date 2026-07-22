@@ -2493,3 +2493,333 @@ body.dark #today-button {
     text-align: center;
     opacity: 0.6;
 }
+/* =====================================================
+   26. 과목별 통계
+===================================================== */
+
+.subject-statistics {
+
+    margin-top:
+        30px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        12px;
+
+}
+
+
+/* 과목별 통계 제목 */
+
+.subject-statistics-title {
+
+    font-size:
+        15px;
+
+    font-weight:
+        700;
+
+    margin-bottom:
+        5px;
+
+    color:
+        var(--text);
+
+}
+
+
+/* 과목별 통계 카드 */
+
+.subject-stat-card {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        14px;
+
+    padding:
+        20px;
+
+    background:
+        var(--bg);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        14px;
+
+    transition:
+        all 0.2s ease;
+
+}
+
+
+/* 마우스 올렸을 때 */
+
+.subject-stat-card:hover {
+
+    border-color:
+        #c7d2fe;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(99, 102, 241, 0.08);
+
+}
+
+
+/* 과목 이름 */
+
+.subject-stat-card h3 {
+
+    font-size:
+        17px;
+
+    font-weight:
+        700;
+
+    color:
+        var(--primary);
+
+}
+
+
+/* 통계 정보 영역 */
+
+.subject-stat-info {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        10px;
+
+}
+
+
+/* 각각의 통계 */
+
+.subject-stat-item {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        5px;
+
+    padding:
+        12px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        10px;
+
+}
+
+
+/* 통계 항목 제목 */
+
+.subject-stat-item span {
+
+    font-size:
+        11px;
+
+    color:
+        var(--sub-text);
+
+}
+
+
+/* 통계 값 */
+
+.subject-stat-item strong {
+
+    font-size:
+        14px;
+
+    color:
+        var(--text);
+
+}
+
+
+/* 달성률 */
+
+.subject-stat-achievement {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+}
+
+
+/* 달성률 바 */
+
+.subject-stat-progress {
+
+    flex:
+        1;
+
+    height:
+        8px;
+
+    background:
+        var(--border);
+
+    border-radius:
+        999px;
+
+    overflow:
+        hidden;
+
+}
+
+
+/* 달성률 바 내부 */
+
+.subject-stat-progress-bar {
+
+    height:
+        100%;
+
+    background:
+        var(--primary);
+
+    border-radius:
+        999px;
+
+    transition:
+        width 0.4s ease;
+
+}
+
+
+/* 달성률 퍼센트 */
+
+.subject-stat-percent {
+
+    min-width:
+        45px;
+
+    text-align:
+        right;
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+
+    color:
+        var(--primary);
+
+}
+
+
+/* =====================================================
+   과목별 통계 - 모바일
+===================================================== */
+
+@media (
+    max-width: 768px
+) {
+
+    .subject-statistics {
+
+        margin-top:
+            24px;
+
+    }
+
+
+    .subject-stat-card {
+
+        padding:
+            16px;
+
+    }
+
+
+    .subject-stat-info {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+/* =====================================================
+   과목별 통계 - 작은 모바일
+===================================================== */
+
+@media (
+    max-width: 420px
+) {
+
+    .subject-stat-card {
+
+        padding:
+            14px;
+
+    }
+
+
+    .subject-stat-info {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:
+            8px;
+
+    }
+
+
+    .subject-stat-item {
+
+        padding:
+            10px;
+
+    }
+
+
+    .subject-stat-item strong {
+
+        font-size:
+            13px;
+
+    }
+
+}
